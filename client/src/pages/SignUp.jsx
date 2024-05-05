@@ -4,37 +4,49 @@ import { Link, useNavigate } from 'react-router-dom';
 // import OAuth from '../components/OAuth';
 
 export default function SignUp() {
+  // for handle change
   const [formData, setFormData] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  // handle input formData, spread operator to keep data in multiple fields, remove spaces
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
 
   const handleSubmit = async (e) => {
+    // prevent the page from refreshing
     e.preventDefault();
     if (!formData.username || !formData.email || !formData.password) {
       return setErrorMessage('Please fill out all fields.');
     }
     try {
       setLoading(true);
+      // make error message false at the beginning, catch later
       setErrorMessage(null);
+      // use fetch method to interact with api
       const res = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        // convert to string then send it; add a proxy to vite.config.js so target api url is valid
         body: JSON.stringify(formData),
       });
+      // convert to json- go to browser "Network"/click "signup"/shows "Signup successful"/also on Mongo DB
+      // browser signup form data shows in "Payload" and POST response in "Network/Headers"
       const data = await res.json();
       if (data.success === false) {
         return setErrorMessage(data.message);
       }
+      // loading effect and if no error, added useNavigate to send user to signin page
       setLoading(false);
       if (res.ok) {
         navigate('/sign-in');
       }
+      // handle errors listed above, in form fields and add the alert below
     } catch (error) {
       setErrorMessage(error.message);
+      // if no error
       setLoading(false);
     }
   };
@@ -92,6 +104,7 @@ export default function SignUp() {
               gradientDuoTone='pinkToOrange'
               outline
               type='submit'
+              // prevent multiple submit requests
               disabled={loading}
             >
               {loading ? (
@@ -111,6 +124,7 @@ export default function SignUp() {
               Sign In
             </Link>
           </div>
+          {/* add error message */}
           {errorMessage && (
             <Alert className='mt-5' color='failure'>
               {errorMessage}
