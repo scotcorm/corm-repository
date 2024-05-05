@@ -2,12 +2,27 @@ import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 // import OAuth from '../components/OAuth';
+// Once Redux is done add useDispatch and the below
+// useSelector lets us bring in loading errors from userSlice
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  signInStart,
+  signInSuccess,
+  signInFailure,
+} from '../redux/user/userSlice';
 
 export default function SignIn() {
   // for handle change
   const [formData, setFormData] = useState({});
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // now that we have redux-toolkit we don't want to use these 2 below
+  // useSelector lets us bring in loading errors from userSlice
+  // const [errorMessage, setErrorMessage] = useState(null);
+  // const [loading, setLoading] = useState(false);
+  // inside the signIn we say to use errorMessage so convert it
+  // user is from the name: user in userSlice
+  const { loading, error: errorMessage } = useSelector((state) => state.user);
+  // initialize dispatch to dispatch start success or failure
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   // handle input formData, spread operator to keep data in multiple fields, remove spaces
@@ -19,12 +34,16 @@ export default function SignIn() {
     // prevent the page from refreshing
     e.preventDefault();
     if (!formData.email || !formData.password) {
-      return setErrorMessage('Please fill out all fields.');
+      // return setErrorMessage('Please fill out all fields.');
+      // convert to dispatch
+      return dispatch(signInFailure('Please fill out all fields.'));
     }
     try {
-      setLoading(true);
-      // make error message false at the beginning, catch later
-      setErrorMessage(null);
+      // setLoading(true);
+      // // make error message false at the beginning, catch later
+      // setErrorMessage(null);
+      // get rid of those 2 to use redux
+      dispatch(signInStart());
       // use fetch method to interact with api
       const res = await fetch('/api/auth/signin', {
         method: 'POST',
@@ -36,18 +55,24 @@ export default function SignIn() {
       // browser signin form data shows in "Payload" and POST response in "Network/Headers"
       const data = await res.json();
       if (data.success === false) {
-        return setErrorMessage(data.message);
+        // instead of the below, use the dispatch error
+        // return setErrorMessage(data.message) dispatches from action.payload in user slice;
+        dispatch(signInFailure(data.message));
       }
       // loading effect and if no error, added useNavigate to send user to signin page
-      setLoading(false);
+      // setLoading(false);
       if (res.ok) {
+        // everything is OK, pass in the action.payload data from userSlice.  currentUser = data
+        dispatch(signInSuccess(data));
         navigate('/');
       }
       // handle errors listed above, in form fields and add the alert below
     } catch (error) {
-      setErrorMessage(error.message);
-      // if no error
-      setLoading(false);
+      // setErrorMessage(error.message);
+      // // if no error
+      // setLoading(false);
+      // dispatch failure to replace the above
+      dispatch(signInFailure(error.message));
     }
   };
 
