@@ -12,7 +12,7 @@ export default function Header() {
         to='/'
         className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white '
       >
-        <span className='px-2 py-1 bg-gradient-to-l from-orange-300 via-orange-500 to-orange-600 rounded-lg text-white'>
+        <span className='px-0 py-3 rounded-lg text-orange-500 border-2 border-black'>
           Corm
         </span>
         Repo
@@ -33,7 +33,7 @@ export default function Header() {
           <FaMoon />
         </Button>
         <Link to='/sign-in'>
-          <Button gradientDuoTone='pinkToOrange' outline>
+          <Button color='gray' outline>
             Sign In
           </Button>
         </Link>

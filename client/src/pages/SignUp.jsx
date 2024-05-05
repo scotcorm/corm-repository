@@ -57,7 +57,7 @@ export default function SignUp() {
         {/* div for the left side */}
         <div className='flex-1'>
           <Link to='/' className='font-bold dark:text-white text-4xl'>
-            <span className='px-2 py-1 bg-gradient-to-l from-orange-300 via-orange-400 to-orange-500 rounded-lg text-white'>
+            <span className='px-0 py-3 rounded-lg text-orange-500 border-2 border-black'>
               Corm
             </span>
             Repo
@@ -101,10 +101,9 @@ export default function SignUp() {
               />
             </div>
             <Button
-              gradientDuoTone='pinkToOrange'
+              color='gray'
               outline
-              type='submit'
-              // prevent multiple submit requests
+              type='submit' // prevent multiple submit requests
               disabled={loading}
             >
               {loading ? (
@@ -113,7 +112,7 @@ export default function SignUp() {
                   <span className='pl-3'>Loading...</span>
                 </>
               ) : (
-                'Sign Up'
+                <span className='text-blue-500'>Sign Up</span>
               )}
             </Button>
             {/* <OAuth /> */}
