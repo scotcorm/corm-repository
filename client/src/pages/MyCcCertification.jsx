@@ -1,8 +1,8 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import AboutSidebar from '../components/AboutSidebar';
-import AboutMain from '../components/AboutMain';
+import CcSidebar from '../components/CcSidebar';
+import CcMain from '../components/CcMain';
 
 export default function Dashboard() {
   const location = useLocation();
@@ -19,11 +19,11 @@ export default function Dashboard() {
     <div className='min-h-screen flex flex-col md:flex-row'>
       <div className='md:w-56'>
         {/* Sidebar */}
-        <AboutSidebar />
+        <CcSidebar />
       </div>
       {/* profile */}
       {/* if the tab = profile show the dash profile */}
-      {tab === 'page-summary' && <AboutMain />}
+      {tab === 'cc-summary' && <CcMain />}
     </div>
   );
 }

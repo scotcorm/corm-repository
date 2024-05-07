@@ -8,10 +8,11 @@ import DeleteRecord from './pages/DeleteRecord';
 import EditRecord from './pages/EditRecord';
 import FeralSwine from './pages/FeralSwine';
 import Genealogy from './pages/Genealogy';
-import ProductionData from './pages/ProductionData';
+import ProductionDashboard from './pages/ProductionDashboard';
 import Projects from './pages/Projects';
 import Notes from './pages/Notes';
-import Drummer from './pages/Drummer';
+import DigitalMusic from './pages/DigitalMusic';
+import MyCcCertification from './pages/MyCcCertification';
 import ShowRecord from './pages/ShowRecord';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
@@ -33,12 +34,13 @@ export default function App() {
         <Route element={<PrivateRoute />}>
           <Route path='/notes' element={<Notes />} />
         </Route>
-        <Route path='/drummer' element={<Drummer />} />
+        <Route path='/my-cc-certification' element={<MyCcCertification />} />
+        <Route path='/digital-music' element={<DigitalMusic />} />
         <Route path='/delete-record' element={<DeleteRecord />} />
         <Route path='/edit-record' element={<EditRecord />} />
         <Route path='/feral-swine' element={<FeralSwine />} />
         <Route path='/genealogy' element={<Genealogy />} />
-        <Route path='/production-data' element={<ProductionData />} />
+        <Route path='/production-dashboard' element={<ProductionDashboard />} />
         <Route path='/projects' element={<Projects />} />
         <Route path='/show-record' element={<ShowRecord />} />
         <Route path='/sign-in' element={<SignIn />} />

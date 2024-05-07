@@ -1,10 +1,10 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import AboutSidebar from '../components/AboutSidebar';
-import AboutMain from '../components/AboutMain';
+import ProductionDataSidebar from '../components/ProductionDataSidebar';
+import ProductionProfile from '../components/ProdictionProfile';
 
-export default function Dashboard() {
+export default function ProductionDashboard() {
   const location = useLocation();
   const [tab, setTab] = useState('');
   // having access to dashboard?tab=(posts for example) allows us to render diffrnt components in dashboard page
@@ -16,14 +16,14 @@ export default function Dashboard() {
     }
   }, [location.search]);
   return (
-    <div className='min-h-screen flex flex-col md:flex-row'>
-      <div className='md:w-56'>
+    <div>
+      <div className=''>
         {/* Sidebar */}
-        <AboutSidebar />
+        <ProductionDataSidebar />
       </div>
       {/* profile */}
-      {/* if the tab = profile show the dash profile */}
-      {tab === 'page-summary' && <AboutMain />}
+      {/* if the tab = production show the production profile */}
+      {tab === 'production' && <ProductionProfile />}
     </div>
   );
 }
