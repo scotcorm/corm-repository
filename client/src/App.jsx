@@ -10,11 +10,14 @@ import FeralSwine from './pages/FeralSwine';
 import Genealogy from './pages/Genealogy';
 import ProductionData from './pages/ProductionData';
 import Projects from './pages/Projects';
+import Notes from './pages/Notes';
+import Drummer from './pages/Drummer';
 import ShowRecord from './pages/ShowRecord';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import PrivateRoute from './components/PrivateRoute';
 
 export default function App() {
   return (
@@ -24,7 +27,13 @@ export default function App() {
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route path='/create-records' element={<CreateRecords />} />
-        <Route path='/dashboard' element={<Dashboard />} />
+        <Route element={<PrivateRoute />}>
+          <Route path='/dashboard' element={<Dashboard />} />
+        </Route>
+        <Route element={<PrivateRoute />}>
+          <Route path='/notes' element={<Notes />} />
+        </Route>
+        <Route path='/drummer' element={<Drummer />} />
         <Route path='/delete-record' element={<DeleteRecord />} />
         <Route path='/edit-record' element={<EditRecord />} />
         <Route path='/feral-swine' element={<FeralSwine />} />
