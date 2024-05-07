@@ -1,10 +1,12 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import userReducer from './user/userSlice';
+import themeReducer from './theme/themeSlice';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 const rootReducer = combineReducers({
   user: userReducer,
+  theme: themeReducer,
 });
 
 const persistConfig = {
@@ -22,7 +24,7 @@ export const store = configureStore({
     getDefaultMiddleware({ serializableCheck: false }),
 });
 
+// then add the persistor here and to main.jsx
 export const persistor = persistStore(store);
-// then add the persistor to main.jsx
 
 // once slice and store are done we can use them in signin page

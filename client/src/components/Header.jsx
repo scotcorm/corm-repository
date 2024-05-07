@@ -11,14 +11,17 @@ import { Link, useLocation } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
-// import { toggleTheme } from '../redux/theme/themeSlice';
+// we need useDispatch to call toggle theme
+import { toggleTheme } from '../redux/theme/themeSlice';
 // import { signoutSuccess } from '../redux/user/userSlice';
 
 export default function Header() {
   const path = useLocation().pathname;
-  // const dispatch = useDispatch();
+  // initialize it
+  const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
-  // const { theme } = useSelector((state) => state.theme);
+  // determine which theme is selected for image
+  const { theme } = useSelector((state) => state.theme);
 
   const handleSignout = async () => {
     try {
@@ -59,8 +62,13 @@ export default function Header() {
         <AiOutlineSearch />
       </Button>
       <div className='flex gap-2 md:order-2'>
-        <Button className='w-i2 h-10 hidden sm:inline' color='gray' pill>
-          <FaMoon />
+        <Button
+          className='w-12 h-10 hidden sm:inline'
+          color='gray'
+          pill
+          onClick={() => dispatch(toggleTheme())}
+        >
+          {theme === 'light' ? <FaSun /> : <FaMoon />}
         </Button>
 
         {currentUser ? (
