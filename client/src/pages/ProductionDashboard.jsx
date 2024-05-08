@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import ProductionDataSidebar from '../components/ProductionDataSidebar';
-import ProductionProfile from '../components/ProdictionProfile';
+import ProductionProfile from '../components/ProductionProfile';
 
 export default function ProductionDashboard() {
   const location = useLocation();
@@ -16,8 +16,8 @@ export default function ProductionDashboard() {
     }
   }, [location.search]);
   return (
-    <div>
-      <div className=''>
+    <div className='min-h-screen flex flex-col md:flex-row'>
+      <div className='md:w-56'>
         {/* Sidebar */}
         <ProductionDataSidebar />
       </div>

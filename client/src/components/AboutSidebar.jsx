@@ -20,14 +20,14 @@ export default function AboutSidebar() {
     <Sidebar className='w-full md:w-56'>
       <Sidebar.Items>
         <Sidebar.ItemGroup>
-          <Link to='/about?tab=page-summary'>
+          <Link to='/about?tab=profile'>
             <Sidebar.Item
-              active={tab === 'page-summary'}
+              active={tab === 'profile'}
               icon={HiUser}
               label={'User'}
               labelColor='dark'
             >
-              Page Summary
+              Profile
             </Sidebar.Item>
           </Link>
           <Sidebar.Item icon={HiArrowSmRight} className='cursor-pointer'>

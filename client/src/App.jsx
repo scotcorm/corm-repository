@@ -12,7 +12,7 @@ import ProductionDashboard from './pages/ProductionDashboard';
 import Projects from './pages/Projects';
 import Notes from './pages/Notes';
 import DigitalMusic from './pages/DigitalMusic';
-import MyCcCertification from './pages/MyCcCertification';
+import CcCert from './pages/CcCert';
 import ShowRecord from './pages/ShowRecord';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
@@ -34,7 +34,7 @@ export default function App() {
         <Route element={<PrivateRoute />}>
           <Route path='/notes' element={<Notes />} />
         </Route>
-        <Route path='/my-cc-certification' element={<MyCcCertification />} />
+        <Route path='/cc-cert' element={<CcCert />} />
         <Route path='/digital-music' element={<DigitalMusic />} />
         <Route path='/delete-record' element={<DeleteRecord />} />
         <Route path='/edit-record' element={<EditRecord />} />
