@@ -33,6 +33,7 @@ export default function ProductionDataSidebar() {
               icon={HiUser}
               label={'User'}
               labelColor='dark'
+              as='div'
             >
               Profile
             </Sidebar.Item>
