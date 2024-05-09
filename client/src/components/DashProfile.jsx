@@ -1,5 +1,5 @@
-import { Alert, Button, TextInput } from 'flowbite-react';
-import React, { useEffect, useRef, useState } from 'react';
+import { Alert, Button, Modal, TextInput } from 'flowbite-react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
   getDownloadURL,
@@ -14,32 +14,34 @@ import {
   updateStart,
   updateSuccess,
   updateFailure,
-  // deleteUserStart,
-  // deleteUserSuccess,
-  // deleteUserFailure,
-  // signoutSuccess,
+  deleteUserStart,
+  deleteUserSuccess,
+  deleteUserFailure,
+  signoutSuccess,
 } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
+import { HiOutlineExclamationCircle } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
 
 export default function DashProfile() {
-  const { currentUser } = useSelector((state) => state.user);
-  // add the image file to state
+  const { currentUser, error, loading } = useSelector((state) => state.user);
+  //   // add the image file to state
   const [imageFile, setImageFile] = useState(null);
-  // now that we have the image convert it to a url so we can use it
+  //   // now that we have the image convert it to a url so we can use it
   const [imageFileUrl, setImageFileUrl] = useState(null);
-  // save upload image info in state
+  //   // save upload image info in state
   const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
-  // set another piece of state for the error
+  //   // set another piece of state for the error
   const [imageFileUploadError, setImageFileUploadError] = useState(null);
-  // set up a blank use state for form data
+  //   // set up a blank use state for form data
   const [imageFileUploading, setImageFileUploading] = useState(false);
   const [updateUserSuccess, setUpdateUserSuccess] = useState(null);
   const [updateUserError, setUpdateUserError] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({});
   // click the image and ref opens the file choose window
   const filePickerRef = useRef();
   const dispatch = useDispatch();
-
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -56,10 +58,6 @@ export default function DashProfile() {
   }, [imageFile]);
 
   const uploadImage = async () => {
-    // rules_version = '2';
-    // Craft rules based on data in your Firestore database
-    // allow write: if firestore.get(
-    //    /databases/(default)/documents/users/$(request.auth.uid)).data.isAdmin;
     // service firebase.storage {
     //   match /b/{bucket}/o {
     //     match /{allPaths=**} {
@@ -72,26 +70,25 @@ export default function DashProfile() {
     // }
     setImageFileUploading(true);
     setImageFileUploadError(null);
-
-    // import getStorage at the top. add the app we created/exported in firebase.js
+    //     // import getStorage at the top. add the app we created/exported in firebase.js
     const storage = getStorage(app);
-    // get the filename
+    //     // get the filename
     const fileName = new Date().getTime() + imageFile.name;
-    // use ref from firebase
+    //     // use ref from firebase
     const storageRef = ref(storage, fileName);
-    // get image details as it is uploaded
+    //     // get image details as it is uploaded
     const uploadTask = uploadBytesResumable(storageRef, imageFile);
     uploadTask.on(
       'state_changed',
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        // remove decimal
+        //         // remove decimal
         setImageFileUploadProgress(progress.toFixed(0));
       },
       (error) => {
         setImageFileUploadError(
-          'Could not upload image (File must be less than 2mb'
+          'Could not upload image (File must be less than 2MB)'
         );
         setImageFileUploadProgress(null);
         setImageFile(null);
@@ -101,7 +98,6 @@ export default function DashProfile() {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setImageFileUrl(downloadURL);
-          // track changes to the image
           setFormData({ ...formData, profilePicture: downloadURL });
           setImageFileUploading(false);
         });
@@ -114,8 +110,8 @@ export default function DashProfile() {
   };
 
   const handleSubmit = async (e) => {
-    // don't submit a blank form
-    // add update functions to userSlice.js
+    //     // don't submit a blank form
+    //     // add update functions to userSlice.js
     e.preventDefault();
     setUpdateUserError(null);
     setUpdateUserSuccess(null);
@@ -149,13 +145,51 @@ export default function DashProfile() {
       setUpdateUserError(error.message);
     }
   };
+  const handleDeleteUser = async () => {
+    // also go to redux/userslice to create reducers
+    setShowModal(false);
+    try {
+      dispatch(deleteUserStart());
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        dispatch(deleteUserFailure(data.message));
+      } else {
+        dispatch(deleteUserSuccess(data));
+      }
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message));
+    }
+  };
+
+  const handleSignout = async () => {
+    try {
+      const res = await fetch('/api/user/signout', {
+        method: 'POST',
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        console.log(data.message);
+      } else {
+        dispatch(signoutSuccess());
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  //   // first add an api route
+  //   // next add the change event listener (onClick)
+  //   // call a function
+  //   // create the slice or reducers like user
+  //   // create the request to api route and complete the functions needed
 
   return (
     <div className='max-w-lg mx-auto p-3 w-full'>
       <h1 className='my-7 text-center font-semibold text-3xl'>Profile</h1>
-
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-        {/* select an image file and hode the button so the image is like a button*/}
         <input
           type='file'
           accept='image/*'
@@ -167,7 +201,6 @@ export default function DashProfile() {
           className='relative w-32 h-32 self-center cursor-pointer shadow-md overflow-hidden rounded-full'
           onClick={() => filePickerRef.current.click()}
         >
-          {/* // add the circular progress bar */}
           {imageFileUploadProgress && (
             <CircularProgressbar
               value={imageFileUploadProgress || 0}
@@ -207,7 +240,6 @@ export default function DashProfile() {
           id='username'
           placeholder='username'
           defaultValue={currentUser.username}
-          //add event listeners to call handleChange function
           onChange={handleChange}
         />
         <TextInput
@@ -215,23 +247,41 @@ export default function DashProfile() {
           id='email'
           placeholder='email'
           defaultValue={currentUser.email}
-          //add event listeners to call handleChange function
           onChange={handleChange}
         />
         <TextInput
           type='password'
           id='password'
           placeholder='password'
-          //add event listeners to call handleChange function
           onChange={handleChange}
         />
-        <Button type='submit' color='gray' outline>
-          Update
+        <Button
+          type='submit'
+          color='gray'
+          outline
+          disabled={loading || imageFileUploading}
+        >
+          {loading ? 'Loading...' : 'Update'}
         </Button>
+        {currentUser.isAdmin && (
+          <Link to={'/create-post'}>
+            <Button
+              type='button'
+              gradientDuoTone='purpleToPink'
+              className='w-full'
+            >
+              Create a post
+            </Button>
+          </Link>
+        )}
       </form>
       <div className='text-red-500 flex justify-between mt-5'>
-        <span className='cursorPointer'>Delete Account</span>
-        <span className='cursorPointer'>Sign Out</span>
+        <span onClick={() => setShowModal(true)} className='cursor-pointer'>
+          Delete Account
+        </span>
+        <span onClick={handleSignout} className='cursor-pointer'>
+          Sign Out
+        </span>
       </div>
       {updateUserSuccess && (
         <Alert color='success' className='mt-5'>
@@ -243,6 +293,35 @@ export default function DashProfile() {
           {updateUserError}
         </Alert>
       )}
+      {error && (
+        <Alert color='failure' className='mt-5'>
+          {error}
+        </Alert>
+      )}
+      <Modal
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        popup
+        size='md'
+      >
+        <Modal.Header />
+        <Modal.Body>
+          <div className='text-center'>
+            <HiOutlineExclamationCircle className='h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto' />
+            <h3 className='mb-5 text-lg text-gray-500 dark:text-gray-400'>
+              Are you sure you want to delete your account?
+            </h3>
+            <div className='flex justify-center gap-4'>
+              <Button color='failure' onClick={handleDeleteUser}>
+                Yes, I'm sure
+              </Button>
+              <Button color='gray' onClick={() => setShowModal(false)}>
+                No, cancel
+              </Button>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }
