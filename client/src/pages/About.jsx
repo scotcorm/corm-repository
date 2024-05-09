@@ -23,7 +23,7 @@ export default function Dashboard() {
       </div>
       {/* profile */}
       {/* if the tab = profile show the dash profile */}
-      {tab === 'page-summary' && <AboutMain />}
+      <AboutMain />
     </div>
   );
 }

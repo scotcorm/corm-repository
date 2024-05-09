@@ -1,13 +1,13 @@
 import React from 'react';
 import { Sidebar } from 'flowbite-react';
-import { HiArrowSmRight, HiUser } from 'react-icons/hi';
+import { HiArrowSmRight, HiOutlineCollection, HiUser } from 'react-icons/hi';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { signoutSuccess } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
-export default function DashSidebar() {
+export default function ProjectsSidebar() {
   const location = useLocation();
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
@@ -42,20 +42,15 @@ export default function DashSidebar() {
     <Sidebar className='w-full md:w-56'>
       <Sidebar.Items>
         <Sidebar.ItemGroup>
-          <Link
-            to='/dashboard?tab=profile
-          '
+          <Sidebar.Item
+            active={tab === 'profile'}
+            icon={HiUser}
+            label={'User'}
+            labelColor='dark'
+            as='div'
           >
-            <Sidebar.Item
-              active={tab === 'profile'}
-              icon={HiUser}
-              label={'User'}
-              labelColor='dark'
-              as='div'
-            >
-              Profile
-            </Sidebar.Item>
-          </Link>
+            Profile
+          </Sidebar.Item>
           <Sidebar.Item
             icon={HiArrowSmRight}
             className='cursor-pointer'
@@ -63,6 +58,14 @@ export default function DashSidebar() {
           >
             Sign Out
           </Sidebar.Item>
+          <Link
+            to='/projects?tab=main
+          '
+          >
+            <Sidebar.Item active={tab === 'main'} icon={HiOutlineCollection}>
+              Projects Page
+            </Sidebar.Item>
+          </Link>
         </Sidebar.ItemGroup>
       </Sidebar.Items>
     </Sidebar>

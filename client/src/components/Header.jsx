@@ -13,7 +13,7 @@ import { FaMoon, FaSun } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
 // we need useDispatch to call toggle theme
 import { toggleTheme } from '../redux/theme/themeSlice';
-// import { signoutSuccess } from '../redux/user/userSlice';
+import { signoutSuccess } from '../redux/user/userSlice';
 
 export default function Header() {
   const path = useLocation().pathname;
@@ -89,13 +89,13 @@ export default function Header() {
               <Dropdown.Item>Profile</Dropdown.Item>
             </Link>
             <Dropdown.Divider />
-
+            {/* call the handleSignout function */}
             <Dropdown.Item onClick={handleSignout}>Sign Out</Dropdown.Item>
           </Dropdown>
         ) : (
           <Link to='/sign-in'>
             <Button color='gray' outline>
-              Sign In
+              <span className='text-orange-500'>Sign In</span>
             </Button>
           </Link>
         )}
@@ -111,6 +111,9 @@ export default function Header() {
         </Navbar.Link>
         <Navbar.Link active={path === '/projects'} as={'div'}>
           <Link to='/projects'>Projects</Link>
+        </Navbar.Link>
+        <Navbar.Link active={path === '/cc-cert'} as={'div'}>
+          <Link to='/cc-cert'>Citation Repo</Link>
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>

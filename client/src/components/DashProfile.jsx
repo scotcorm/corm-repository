@@ -180,10 +180,10 @@ export default function DashProfile() {
     }
   };
 
-  //   // first add an api route
+  //   // first add an api route for when you click on a button, to call that route to do something
   //   // next add the change event listener (onClick)
-  //   // call a function
-  //   // create the slice or reducers like user
+  //   // call a function or redux toolkit
+  //   // create the redux/slice or reducers like user
   //   // create the request to api route and complete the functions needed
 
   return (

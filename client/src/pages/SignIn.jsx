@@ -109,7 +109,7 @@ export default function SignIn() {
               <Label value='Your password' />
               <TextInput
                 type='password'
-                placeholder='********'
+                placeholder='enter password here'
                 id='password'
                 onChange={handleChange}
               />
@@ -126,7 +126,7 @@ export default function SignIn() {
                   <span className='pl-3'>Loading...</span>
                 </>
               ) : (
-                <span className='text-blue-500'>Sign In</span>
+                <span className='text-orange-500'>Sign In</span>
               )}
             </Button>
             <OAuth />
