@@ -1,19 +1,13 @@
 import React from 'react';
 import { Sidebar } from 'flowbite-react';
-import {
-  HiArrowSmRight,
-  HiOutlineBadgeCheck,
-  HiOutlineBriefcase,
-  // HiOutlineCollection,
-  HiUser,
-} from 'react-icons/hi';
+import { HiArrowSmRight, HiOutlineCollection, HiUser } from 'react-icons/hi';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { signoutSuccess } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
-export default function CcSidebar() {
+export default function CitationSidebar() {
   const location = useLocation();
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
@@ -48,11 +42,16 @@ export default function CcSidebar() {
     <Sidebar className='w-full md:w-56'>
       <Sidebar.Items>
         <Sidebar.ItemGroup>
-          <Sidebar.Item icon={HiUser} label={'User'} labelColor='dark' as='div'>
+          <Sidebar.Item
+            active={tab === 'profile'}
+            icon={HiUser}
+            label={'User'}
+            labelColor='dark'
+            as='div'
+          >
             Profile
           </Sidebar.Item>
           <Sidebar.Item
-            active
             icon={HiArrowSmRight}
             className='cursor-pointer'
             onClick={handleSignout}
@@ -60,11 +59,11 @@ export default function CcSidebar() {
             Sign Out
           </Sidebar.Item>
           <Link
-            to='/about?tab=main
+            to='/citations?tab=main
           '
           >
-            <Sidebar.Item active={tab === 'main'} icon={HiOutlineBadgeCheck}>
-              My CC Certification
+            <Sidebar.Item active={tab === 'main'} icon={HiOutlineCollection}>
+              Citation Repo Page
             </Sidebar.Item>
           </Link>
         </Sidebar.ItemGroup>

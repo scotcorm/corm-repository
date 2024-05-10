@@ -19,6 +19,7 @@ import SignUp from './pages/SignUp';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import PrivateRoute from './components/PrivateRoute';
+import CitationRepo from './pages/CitationRepo';
 
 export default function App() {
   return (
@@ -35,6 +36,7 @@ export default function App() {
           <Route path='/notes' element={<Notes />} />
         </Route>
         <Route path='/cc-cert' element={<CcCert />} />
+        <Route path='/citation-repo' element={<CitationRepo />} />
         <Route path='/digital-music' element={<DigitalMusic />} />
         <Route path='/delete-record' element={<DeleteRecord />} />
         <Route path='/edit-record' element={<EditRecord />} />
