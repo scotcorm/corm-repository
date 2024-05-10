@@ -189,6 +189,7 @@ export default function DashProfile() {
   return (
     <div className='max-w-lg mx-auto p-3 w-full'>
       <h1 className='my-7 text-center font-semibold text-3xl'>Profile</h1>
+
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
         <input
           type='file'
@@ -257,20 +258,23 @@ export default function DashProfile() {
         />
         <Button
           type='submit'
-          color='gray'
+          color='warning'
           outline
           disabled={loading || imageFileUploading}
         >
-          {loading ? 'Loading...' : 'Update'}
+          {loading
+            ? 'Loading...'
+            : 'Make changes above, then click here to Update your profile'}
         </Button>
         {currentUser.isAdmin && (
-          <Link to={'/create-post'}>
+          <Link to={'/create-citation'}>
             <Button
               type='button'
-              gradientDuoTone='purpleToPink'
+              outline
+              gradientDuoTone='pinkToOrange'
               className='w-full'
             >
-              Create a post
+              Create a citation
             </Button>
           </Link>
         )}

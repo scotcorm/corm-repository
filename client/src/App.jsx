@@ -20,6 +20,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import PrivateRoute from './components/PrivateRoute';
 import CitationRepo from './pages/CitationRepo';
+import OnlyAdminPrivateRoute from './components/OnlyAdminPrivateRoute';
+import CreateCitation from './pages/CreateCitation';
 
 export default function App() {
   return (
@@ -28,11 +30,16 @@ export default function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
-        <Route path='/create-records' element={<CreateRecords />} />
+        <Route element={<OnlyAdminPrivateRoute />}>
+          <Route path='/create-records' element={<CreateRecords />} />
+        </Route>
+        <Route element={<OnlyAdminPrivateRoute />}>
+          <Route path='/create-citation' element={<CreateCitation />} />
+        </Route>
         <Route element={<PrivateRoute />}>
           <Route path='/dashboard' element={<Dashboard />} />
         </Route>
-        <Route element={<PrivateRoute />}>
+        <Route element={<OnlyAdminPrivateRoute />}>
           <Route path='/notes' element={<Notes />} />
         </Route>
         <Route path='/cc-cert' element={<CcCert />} />
