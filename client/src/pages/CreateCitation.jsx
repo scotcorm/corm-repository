@@ -61,7 +61,7 @@ export default function CreateCitation() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/post/create', {
+      const res = await fetch('/api/citation/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ export default function CreateCitation() {
 
       if (res.ok) {
         setPublishError(null);
-        navigate(`/post/${data.slug}`);
+        navigate(`/citation/${data.slug}`);
       }
     } catch (error) {
       setPublishError('Something went wrong');

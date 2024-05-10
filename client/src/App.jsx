@@ -22,6 +22,7 @@ import PrivateRoute from './components/PrivateRoute';
 import CitationRepo from './pages/CitationRepo';
 import OnlyAdminPrivateRoute from './components/OnlyAdminPrivateRoute';
 import CreateCitation from './pages/CreateCitation';
+import CreateNotes from './pages/CreateNotes';
 
 export default function App() {
   return (
@@ -41,6 +42,9 @@ export default function App() {
         </Route>
         <Route element={<OnlyAdminPrivateRoute />}>
           <Route path='/notes' element={<Notes />} />
+        </Route>
+        <Route element={<OnlyAdminPrivateRoute />}>
+          <Route path='/create-notes' element={<CreateNotes />} />
         </Route>
         <Route path='/cc-cert' element={<CcCert />} />
         <Route path='/citation-repo' element={<CitationRepo />} />

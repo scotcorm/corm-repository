@@ -13,7 +13,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { useNavigate } from 'react-router-dom';
 
-export default function CreateRecords() {
+export default function CreateNotes() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);
@@ -61,7 +61,7 @@ export default function CreateRecords() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/record/create', {
+      const res = await fetch('/api/citation/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ export default function CreateRecords() {
 
       if (res.ok) {
         setPublishError(null);
-        navigate(`/record/${data.slug}`);
+        navigate(`/citation/${data.slug}`);
       }
     } catch (error) {
       setPublishError('Something went wrong');
@@ -84,82 +84,42 @@ export default function CreateRecords() {
   };
   return (
     <div className='p-3 max-w-3xl mx-auto min-h-screen'>
-      <h1 className='text-center text-3xl my-7 font-semibold'>
-        Create a Monthly Production Record
-      </h1>
-      {/* http://127.0.0.1:5173/create-records */}
+      <h1 className='text-center text-3xl my-7 font-semibold'>Create a Note</h1>
+      {/* http://127.0.0.1:5173/create-citation */}
       <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
-        <div className='flex flex-col gap-4'>
+        <div className='flex flex-col gap-4 sm:flex-row justify-between'>
           <TextInput
-            type='string'
-            placeholder='Agent'
+            type='date'
+            placeholder='Date'
             required
-            id='agent'
+            id='date'
             className='flex-1'
-            onChange={(e) =>
-              setFormData({ ...formData, agent: e.target.value })
-            }
+            onChange={(e) => setFormData({ ...formData, date: e.target.value })}
           />
           <TextInput
-            type='month'
-            placeholder='Month and Year'
+            type='text'
+            placeholder='Title'
             required
-            id='month'
+            id='title'
             className='flex-1'
             onChange={(e) =>
-              setFormData({ ...formData, month: e.target.value })
+              setFormData({ ...formData, title: e.target.value })
             }
           />
-          <TextInput
-            type='number'
-            placeholder='Completed'
-            required
-            id='completed'
-            className='flex-1'
+          <Select
+            class='bg-white hover:bg-orange-500 rounded-lg'
             onChange={(e) =>
-              setFormData({ ...formData, completed: e.target.value })
+              setFormData({ ...formData, category: e.target.value })
             }
-          />
-          <TextInput
-            type='number'
-            placeholder='Average Cohort'
-            required
-            id='cohort'
-            className='flex-1'
-            onChange={(e) =>
-              setFormData({ ...formData, cohort: e.target.value })
-            }
-          />
-          <TextInput
-            type='number'
-            placeholder='Overlaps Completed'
-            required
-            id='overlaps'
-            className='flex-1'
-            onChange={(e) =>
-              setFormData({ ...formData, overlaps: e.target.value })
-            }
-          />
-          <TextInput
-            type='number'
-            placeholder='QA Passed'
-            required
-            id='qapassed'
-            className='flex-1'
-            onChange={(e) =>
-              setFormData({ ...formData, qapassed: e.target.value })
-            }
-          />
-          <TextInput
-            type='number'
-            placeholder='QA Failed'
-            required
-            id='qafailed'
-            className='flex-1'
-            onChange={(e) =>
-              setFormData({ ...formData, qafailed: e.target.value })
-            }
-          />
+          >
+            <option value='uncategorized'>Select a category</option>
+            <option value='personal'>Personal</option>
+            <option value='kaplan'>Kaplan</option>
+            <option value='mlis'>MLIS</option>
+            <option value='jobhunt'>Job Hunt</option>
+            <option value='developernotes'>Developer Notes</option>
+            <option value='other'>Other</option>
+          </Select>
         </div>
         <div className='flex gap-4 items-center justify-between border-4  p-3'>
           <FileInput
@@ -197,7 +157,7 @@ export default function CreateRecords() {
         )}
         <ReactQuill
           theme='snow'
-          placeholder='Add notes about monthly data provided...'
+          placeholder='Add note...'
           className='h-72 mb-12'
           required
           onChange={(value) => {
@@ -205,7 +165,7 @@ export default function CreateRecords() {
           }}
         />
         <Button type='submit' gradientDuoTone='pinkToOrange' outline>
-          Create Monthly Record
+          Add Note
         </Button>
         {publishError && (
           <Alert className='mt-5' color='failure'>
