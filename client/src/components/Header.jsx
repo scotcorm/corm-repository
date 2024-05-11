@@ -112,10 +112,10 @@ export default function Header() {
         <Navbar.Link active={path === '/projects'} as={'div'}>
           <Link to='/projects'>Projects</Link>
         </Navbar.Link>
-        <Navbar.Link active={path === '/citation-repo'} as={'div'}>
-          <Link to='/citation-repo'>Citation Repo</Link>
-        </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );
 }
+
+//hover:border-orange-400
+//className='bg-white active:bg-gray-200 hover:border-orange-400'

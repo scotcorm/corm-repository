@@ -8,7 +8,6 @@ const citationSchema = new mongoose.Schema(
     },
     content: {
       type: String,
-      required: true,
     },
     title: {
       type: String,
@@ -27,7 +26,6 @@ const citationSchema = new mongoose.Schema(
     },
     sourceurl: {
       type: String,
-      required: true,
       unique: true,
     },
     image: {
@@ -38,6 +36,7 @@ const citationSchema = new mongoose.Schema(
     license: {
       type: String,
       default: 'uncategorized',
+      required: true,
     },
     slug: {
       type: String,
