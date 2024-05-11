@@ -8,6 +8,7 @@ const citationSchema = new mongoose.Schema(
     },
     content: {
       type: String,
+      default: 'null',
     },
     title: {
       type: String,

@@ -38,8 +38,8 @@ export const getrecords = async (req, res, next) => {
       ...(req.query.recordId && { _id: req.query.recordId }),
       ...(req.query.searchTerm && {
         $or: [
-          { title: { $regex: req.query.searchTerm, $options: 'i' } },
-          { content: { $regex: req.query.searchTerm, $options: 'i' } },
+          { month: { $regex: req.query.searchTerm, $options: 'i' } },
+          { agent: { $regex: req.query.searchTerm, $options: 'i' } },
         ],
       }),
     })
@@ -92,8 +92,8 @@ export const updaterecord = async (req, res, next) => {
       req.params.recordId,
       {
         $set: {
-          title: req.body.title,
-          content: req.body.content,
+          month: req.body.month,
+          agent: req.body.agent,
           category: req.body.category,
           image: req.body.image,
         },

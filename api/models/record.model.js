@@ -6,43 +6,35 @@ const recordSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    content: {
+    title: {
       type: String,
       required: true,
+      default: 'null',
+    },
+    content: {
+      type: String,
+      default: 'null',
     },
     month: {
-      type: Date,
-      required: true,
-      unique: true,
+      type: String,
     },
     agent: {
       type: String,
-      required: true,
     },
     completed: {
       type: Number,
-      required: true,
-      unique: true,
     },
     cohort: {
       type: Number,
-      required: true,
-      unique: true,
     },
     overlaps: {
       type: Number,
-      required: true,
-      unique: true,
     },
     qapassed: {
       type: Number,
-      required: true,
-      unique: true,
     },
     qafailed: {
       type: Number,
-      required: true,
-      unique: true,
     },
     image: {
       type: String,
@@ -52,7 +44,6 @@ const recordSchema = new mongoose.Schema(
     slug: {
       type: String,
       required: true,
-      unique: true,
     },
   },
   { timestamps: true }
