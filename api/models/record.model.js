@@ -6,20 +6,17 @@ const recordSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    title: {
-      type: String,
-      required: true,
-      default: 'null',
-    },
     content: {
       type: String,
       default: 'null',
     },
     month: {
       type: String,
+      required: true,
     },
     agent: {
       type: String,
+      required: true,
     },
     completed: {
       type: Number,

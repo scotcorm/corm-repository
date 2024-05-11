@@ -5,10 +5,10 @@ export const create = async (req, res, next) => {
   if (!req.user.isAdmin) {
     return next(errorHandler(403, 'You are not allowed to create a Record'));
   }
-  if (!req.body.title || !req.body.content) {
+  if (!req.body.month || !req.body.agent) {
     return next(errorHandler(400, 'Please provide all required fields'));
   }
-  const slug = req.body.title
+  const slug = req.body.month
     .split(' ')
     .join('-')
     .toLowerCase()
@@ -33,7 +33,6 @@ export const getrecords = async (req, res, next) => {
     const sortDirection = req.query.order === 'asc' ? 1 : -1;
     const records = await Record.find({
       ...(req.query.userId && { userId: req.query.userId }),
-      ...(req.query.category && { category: req.query.category }),
       ...(req.query.slug && { slug: req.query.slug }),
       ...(req.query.recordId && { _id: req.query.recordId }),
       ...(req.query.searchTerm && {
@@ -94,8 +93,13 @@ export const updaterecord = async (req, res, next) => {
         $set: {
           month: req.body.month,
           agent: req.body.agent,
-          category: req.body.category,
+          completed: req.body.completed,
+          cohort: req.body.cohort,
+          overlaps: req.body.overlaps,
+          qapassed: req.body.qapassed,
+          qafailed: req.body.qafailed,
           image: req.body.image,
+          content: req.body.content,
         },
       },
       { new: true }

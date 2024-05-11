@@ -33,7 +33,7 @@ export const getcitations = async (req, res, next) => {
     const sortDirection = req.query.order === 'asc' ? 1 : -1;
     const citations = await Citation.find({
       ...(req.query.userId && { userId: req.query.userId }),
-      ...(req.query.category && { category: req.query.category }),
+      ...(req.query.license && { category: req.query.license }),
       ...(req.query.slug && { slug: req.query.slug }),
       ...(req.query.citationId && { _id: req.query.citationId }),
       ...(req.query.searchTerm && {
@@ -97,8 +97,11 @@ export const updatecitation = async (req, res, next) => {
       {
         $set: {
           title: req.body.title,
+          creator: req.body.creator,
+          source: req.body.source,
+          sourceurl: req.body.sourceurl,
           content: req.body.content,
-          category: req.body.category,
+          license: req.body.license,
           image: req.body.image,
         },
       },
