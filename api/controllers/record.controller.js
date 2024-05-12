@@ -26,49 +26,49 @@ export const create = async (req, res, next) => {
   }
 };
 
-// export const getrecords = async (req, res, next) => {
-//   try {
-//     const startIndex = parseInt(req.query.startIndex) || 0;
-//     const limit = parseInt(req.query.limit) || 9;
-//     const sortDirection = req.query.order === 'asc' ? 1 : -1;
-//     const records = await Record.find({
-//       ...(req.query.userId && { userId: req.query.userId }),
-//       ...(req.query.slug && { slug: req.query.slug }),
-//       ...(req.query.recordId && { _id: req.query.recordId }),
-//       ...(req.query.searchTerm && {
-//         $or: [
-//           { month: { $regex: req.query.searchTerm, $options: 'i' } },
-//           { agent: { $regex: req.query.searchTerm, $options: 'i' } },
-//         ],
-//       }),
-//     })
-//       .sort({ updatedAt: sortDirection })
-//       .skip(startIndex)
-//       .limit(limit);
+export const getrecords = async (req, res, next) => {
+  try {
+    const startIndex = parseInt(req.query.startIndex) || 0;
+    const limit = parseInt(req.query.limit) || 9;
+    const sortDirection = req.query.order === 'asc' ? 1 : -1;
+    const records = await Record.find({
+      ...(req.query.userId && { userId: req.query.userId }),
+      // ...(req.query.slug && { category: req.query.slug }),
+      ...(req.query.recordId && { _id: req.query.recordId }),
+      ...(req.query.searchTerm && {
+        $or: [
+          { month: { $regex: req.query.searchTerm, $options: 'i' } },
+          { agent: { $regex: req.query.searchTerm, $options: 'i' } },
+        ],
+      }),
+    })
+      .sort({ updatedAt: sortDirection })
+      .skip(startIndex)
+      .limit(limit);
 
-//     const totalRecords = await Record.countDocuments();
+    const totalRecords = await Record.countDocuments();
 
-//     const now = new Date();
+    const now = new Date();
 
-//     const oneMonthAgo = new Date(
-//       now.getFullYear(),
-//       now.getMonth() - 1,
-//       now.getDate()
-//     );
+    const oneMonthAgo = new Date(
+      now.getFullYear(),
+      now.getMonth() - 1,
+      now.getDate()
+    );
 
-//     const lastMonthRecords = await Record.countDocuments({
-//       createdAt: { $gte: oneMonthAgo },
-//     });
+    const lastMonthRecords = await Record.countDocuments({
+      createdAt: { $gte: oneMonthAgo },
+    });
 
-//     res.status(200).json({
-//       records,
-//       totalRecords,
-//       lastMonthRecords,
-//     });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+    res.status(200).json({
+      records,
+      totalRecords,
+      lastMonthRecords,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 // export const deleterecord = async (req, res, next) => {
 //   if (!req.user.isAdmin || req.user.id !== req.params.userId) {

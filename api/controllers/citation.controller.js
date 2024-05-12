@@ -26,50 +26,51 @@ export const create = async (req, res, next) => {
   }
 };
 
-// export const getcitations = async (req, res, next) => {
-//   try {
-//     const startIndex = parseInt(req.query.startIndex) || 0;
-//     const limit = parseInt(req.query.limit) || 9;
-//     const sortDirection = req.query.order === 'asc' ? 1 : -1;
-//     const citations = await Citation.find({
-//       ...(req.query.userId && { userId: req.query.userId }),
-//       ...(req.query.license && { category: req.query.license }),
-//       ...(req.query.slug && { slug: req.query.slug }),
-//       ...(req.query.citationId && { _id: req.query.citationId }),
-//       ...(req.query.searchTerm && {
-//         $or: [
-//           { title: { $regex: req.query.searchTerm, $options: 'i' } },
-//           { content: { $regex: req.query.searchTerm, $options: 'i' } },
-//         ],
-//       }),
-//     })
-//       .sort({ updatedAt: sortDirection })
-//       .skip(startIndex)
-//       .limit(limit);
+export const getcitations = async (req, res, next) => {
+  try {
+    const startIndex = parseInt(req.query.startIndex) || 0;
+    const limit = parseInt(req.query.limit) || 9;
+    const sortDirection = req.query.order === 'asc' ? 1 : -1;
+    // add limiters like localhost:3000/api/citation/getcitations?limit=1
+    const citations = await Citation.find({
+      ...(req.query.userId && { userId: req.query.userId }),
+      ...(req.query.license && { license: req.query.license }),
+      ...(req.query.slug && { license: req.query.slug }),
+      ...(req.query.citationId && { _id: req.query.citationId }),
+      ...(req.query.searchTerm && {
+        $or: [
+          { title: { $regex: req.query.searchTerm, $options: 'i' } },
+          { content: { $regex: req.query.searchTerm, $options: 'i' } },
+        ],
+      }),
+    })
+      .sort({ updatedAt: sortDirection })
+      .skip(startIndex)
+      .limit(limit);
 
-//     const totalCitations = await Citation.countDocuments();
+    const totalCitations = await Citation.countDocuments();
 
-//     const now = new Date();
+    const now = new Date();
 
-//     const oneMonthAgo = new Date(
-//       now.getFullYear(),
-//       now.getMonth() - 1,
-//       now.getDate()
-//     );
+    const oneMonthAgo = new Date(
+      now.getFullYear(),
+      now.getMonth() - 1,
+      now.getDate()
+    );
 
-//     const lastMonthCitations = await Citation.countDocuments({
-//       createdAt: { $gte: oneMonthAgo },
-//     });
+    const lastMonthCitations = await Citation.countDocuments({
+      createdAt: { $gte: oneMonthAgo },
+    });
 
-//     res.status(200).json({
-//       citations,
-//       totalCitations,
-//       lastMonthCitations,
-//     });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+    res.status(200).json({
+      citations,
+      totalCitations,
+      lastMonthCitations,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 // export const deletecitation = async (req, res, next) => {
 //   if (!req.user.isAdmin || req.user.id !== req.params.userId) {

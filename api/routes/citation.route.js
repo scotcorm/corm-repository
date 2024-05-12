@@ -3,14 +3,16 @@ import { verifyToken } from '../utils/verifyUser.js';
 import {
   create,
   // deletecitation,
-  // getcitations,
+  getcitations,
   // updatecitation,
 } from '../controllers/citation.controller.js';
 
 const router = express.Router();
 
 router.post('/create', verifyToken, create);
-// router.get('/getcitations', getcitations);
+router.get('/getcitations', getcitations);
+// then create getcitations function in the controller
+
 // router.delete(
 //   '/deletecitation/:citationId/:userId',
 //   verifyToken,
