@@ -13,7 +13,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { useNavigate } from 'react-router-dom';
 
-export default function CreateRecords() {
+export default function CreateRecord() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);
@@ -92,7 +92,19 @@ export default function CreateRecords() {
         <div className='flex flex-col gap-4'>
           <TextInput
             type='string'
+            placeholder='Brief title for this record'
+            text='cyan-800'
+            required
+            id='title'
+            className='flex-1'
+            onChange={(e) =>
+              setFormData({ ...formData, title: e.target.value })
+            }
+          />
+          <TextInput
+            type='string'
             placeholder='Agent'
+            text='cyan-800'
             required
             id='agent'
             className='flex-1'
@@ -103,6 +115,7 @@ export default function CreateRecords() {
           <TextInput
             type='month'
             placeholder='Month and Year'
+            text='cyan-800'
             required
             id='month'
             className='flex-1'
@@ -113,7 +126,7 @@ export default function CreateRecords() {
           <TextInput
             type='number'
             placeholder='Completed'
-            required
+            text='cyan-800'
             id='completed'
             className='flex-1'
             onChange={(e) =>
@@ -123,7 +136,7 @@ export default function CreateRecords() {
           <TextInput
             type='number'
             placeholder='Average Cohort'
-            required
+            text='cyan-800'
             id='cohort'
             className='flex-1'
             onChange={(e) =>
@@ -133,7 +146,7 @@ export default function CreateRecords() {
           <TextInput
             type='number'
             placeholder='Overlaps Completed'
-            required
+            text='cyan-800'
             id='overlaps'
             className='flex-1'
             onChange={(e) =>
@@ -143,7 +156,7 @@ export default function CreateRecords() {
           <TextInput
             type='number'
             placeholder='QA Passed'
-            required
+            text='cyan-800'
             id='qapassed'
             className='flex-1'
             onChange={(e) =>
@@ -153,7 +166,7 @@ export default function CreateRecords() {
           <TextInput
             type='number'
             placeholder='QA Failed'
-            required
+            text='cyan-800'
             id='qafailed'
             className='flex-1'
             onChange={(e) =>
@@ -169,7 +182,7 @@ export default function CreateRecords() {
           />
           <Button
             type='button'
-            gradientDuoTone='pinkToOrange'
+            text='cyan-800'
             size='sm'
             outline
             onClick={handleUpdloadImage}
@@ -204,7 +217,7 @@ export default function CreateRecords() {
             setFormData({ ...formData, content: value });
           }}
         />
-        <Button type='submit' gradientDuoTone='pinkToOrange' outline>
+        <Button type='submit' text='cyan-800' outline>
           Create Monthly Record
         </Button>
         {publishError && (

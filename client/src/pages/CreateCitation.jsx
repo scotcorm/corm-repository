@@ -14,11 +14,13 @@ import 'react-circular-progressbar/dist/styles.css';
 import { useNavigate } from 'react-router-dom';
 
 export default function CreateCitation() {
+  // add state here
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
+  console.log(formData);
 
   const navigate = useNavigate();
 
@@ -29,7 +31,9 @@ export default function CreateCitation() {
         return;
       }
       setImageUploadError(null);
+      // use a getStorage method from firebase and app from firebase.js
       const storage = getStorage(app);
+      // make the file name unique
       const fileName = new Date().getTime() + '-' + file.name;
       const storageRef = ref(storage, fileName);
       const uploadTask = uploadBytesResumable(storageRef, file);
@@ -73,7 +77,6 @@ export default function CreateCitation() {
         setPublishError(data.message);
         return;
       }
-
       if (res.ok) {
         setPublishError(null);
         navigate(`/citation/${data.slug}`);
@@ -123,7 +126,6 @@ export default function CreateCitation() {
           <TextInput
             type='text'
             placeholder='Source URL'
-            required
             id='sourceurl'
             className='flex-1'
             onChange={(e) =>
@@ -132,7 +134,7 @@ export default function CreateCitation() {
           />
 
           <Select
-            class='bg-white hover:bg-orange-500 rounded-lg'
+            className='bg-white rounded-lg'
             onChange={(e) =>
               setFormData({ ...formData, license: e.target.value })
             }
@@ -155,7 +157,7 @@ export default function CreateCitation() {
           />
           <Button
             type='button'
-            gradientDuoTone='pinkToOrange'
+            text='cyan-800'
             size='sm'
             outline
             onClick={handleUpdloadImage}
@@ -183,14 +185,14 @@ export default function CreateCitation() {
         )}
         <ReactQuill
           theme='snow'
-          placeholder='Add notes about your citation...'
+          placeholder="Notes about your citation are required: please add other information about things like where it is used, if changes were made and where the modifed image might be found, etc... Or even just a general note that there isn't a note."
           className='h-72 mb-12'
           required
           onChange={(value) => {
             setFormData({ ...formData, content: value });
           }}
         />
-        <Button type='submit' gradientDuoTone='pinkToOrange' outline>
+        <Button type='submit' text='cyan-800' outline>
           Publish
         </Button>
         {publishError && (

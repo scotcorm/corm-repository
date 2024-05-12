@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
-import CreateRecords from './pages/CreateRecords';
+import CreateRecord from './pages/CreateRecord';
 import Dashboard from './pages/Dashboard';
 import DeleteRecord from './pages/DeleteRecord';
 import EditRecord from './pages/EditRecord';
@@ -10,7 +10,7 @@ import FeralSwine from './pages/FeralSwine';
 import Genealogy from './pages/Genealogy';
 import ProductionDashboard from './pages/ProductionDashboard';
 import Projects from './pages/Projects';
-import Notes from './pages/Notes';
+//import Notes from './pages/Notes';
 import DigitalMusic from './pages/DigitalMusic';
 import CcCert from './pages/CcCert';
 import ShowRecord from './pages/ShowRecord';
@@ -22,7 +22,7 @@ import PrivateRoute from './components/PrivateRoute';
 import CitationRepo from './pages/CitationRepo';
 import OnlyAdminPrivateRoute from './components/OnlyAdminPrivateRoute';
 import CreateCitation from './pages/CreateCitation';
-import CreateNotes from './pages/CreateNotes';
+import CreateNote from './pages/CreateNote';
 
 export default function App() {
   return (
@@ -32,7 +32,7 @@ export default function App() {
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route element={<OnlyAdminPrivateRoute />}>
-          <Route path='/create-records' element={<CreateRecords />} />
+          <Route path='/create-record' element={<CreateRecord />} />
         </Route>
         <Route element={<OnlyAdminPrivateRoute />}>
           <Route path='/create-citation' element={<CreateCitation />} />
@@ -40,11 +40,11 @@ export default function App() {
         <Route element={<PrivateRoute />}>
           <Route path='/dashboard' element={<Dashboard />} />
         </Route>
+        {/* <Route element={<OnlyAdminPrivateRoute />}>
+          <Route path='/note' element={<Notes />} />
+        </Route> */}
         <Route element={<OnlyAdminPrivateRoute />}>
-          <Route path='/notes' element={<Notes />} />
-        </Route>
-        <Route element={<OnlyAdminPrivateRoute />}>
-          <Route path='/create-notes' element={<CreateNotes />} />
+          <Route path='/create-note' element={<CreateNote />} />
         </Route>
         <Route path='/cc-cert' element={<CcCert />} />
         <Route path='/citation-repo' element={<CitationRepo />} />

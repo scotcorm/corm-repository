@@ -18,13 +18,16 @@ const citationSchema = new mongoose.Schema(
     creator: {
       type: String,
       required: true,
+      unique: false,
     },
     source: {
       type: String,
       required: true,
+      unique: false,
     },
     sourceurl: {
       type: String,
+      unique: false,
     },
     image: {
       type: String,

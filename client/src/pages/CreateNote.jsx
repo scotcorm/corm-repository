@@ -13,7 +13,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { useNavigate } from 'react-router-dom';
 
-export default function CreateNotes() {
+export default function CreateNote() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);
@@ -61,7 +61,7 @@ export default function CreateNotes() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/citation/create', {
+      const res = await fetch('/api/note/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ export default function CreateNotes() {
 
       if (res.ok) {
         setPublishError(null);
-        navigate(`/citation/${data.slug}`);
+        navigate(`/note/${data.slug}`);
       }
     } catch (error) {
       setPublishError('Something went wrong');
@@ -85,7 +85,7 @@ export default function CreateNotes() {
   return (
     <div className='p-3 max-w-3xl mx-auto min-h-screen'>
       <h1 className='text-center text-3xl my-7 font-semibold'>Create a Note</h1>
-      {/* http://127.0.0.1:5173/create-citation */}
+      {/* http://127.0.0.1:5173/create-note */}
       <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
         <div className='flex flex-col gap-4 sm:flex-row justify-between'>
           <TextInput
@@ -98,7 +98,7 @@ export default function CreateNotes() {
           />
           <TextInput
             type='text'
-            placeholder='Title'
+            placeholder='Title- a short overview of the note...'
             required
             id='title'
             className='flex-1'
@@ -107,7 +107,7 @@ export default function CreateNotes() {
             }
           />
           <Select
-            class='bg-white hover:bg-orange-500 rounded-lg'
+            class='bg-white rounded-lg'
             onChange={(e) =>
               setFormData({ ...formData, category: e.target.value })
             }
@@ -129,7 +129,7 @@ export default function CreateNotes() {
           />
           <Button
             type='button'
-            gradientDuoTone='pinkToOrange'
+            text='cyan-800'
             size='sm'
             outline
             onClick={handleUpdloadImage}
@@ -164,7 +164,7 @@ export default function CreateNotes() {
             setFormData({ ...formData, content: value });
           }}
         />
-        <Button type='submit' gradientDuoTone='pinkToOrange' outline>
+        <Button type='submit' text='cyan-800' outline>
           Add Note
         </Button>
         {publishError && (
