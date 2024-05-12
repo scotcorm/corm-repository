@@ -18,16 +18,13 @@ const citationSchema = new mongoose.Schema(
     creator: {
       type: String,
       required: true,
-      unique: true,
     },
     source: {
       type: String,
       required: true,
-      unique: true,
     },
     sourceurl: {
       type: String,
-      unique: true,
     },
     image: {
       type: String,
@@ -37,7 +34,6 @@ const citationSchema = new mongoose.Schema(
     license: {
       type: String,
       default: 'uncategorized',
-      required: true,
     },
     slug: {
       type: String,

@@ -16,9 +16,7 @@ const noteSchema = new mongoose.Schema(
       unique: true,
     },
     date: {
-      type: Date,
-      required: true,
-      unique: true,
+      type: String,
     },
     image: {
       type: String,
