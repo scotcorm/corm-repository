@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import DashSidebar from '../components/DashSidebar';
 import DashProfile from '../components/DashProfile';
+import DashCitations from '../components/DashCitations';
+import DashRecords from '../components/DashRecords';
+import DashNotes from '../components/DashNotes';
 
 export default function Dashboard() {
   const location = useLocation();
@@ -24,6 +27,12 @@ export default function Dashboard() {
       {/* profile */}
       {/* if the tab = profile show the dash profile */}
       {tab === 'profile' && <DashProfile />}
+      {/* citations */}
+      {tab === 'citations' && <DashCitations />}
+      {/* citations */}
+      {tab === 'records' && <DashRecords />}
+      {/* citations */}
+      {tab === 'notes' && <DashNotes />}
     </div>
   );
 }

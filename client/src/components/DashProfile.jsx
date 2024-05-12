@@ -258,7 +258,7 @@ export default function DashProfile() {
         />
         <Button
           type='submit'
-          color='warning'
+          text='cyan-800'
           outline
           disabled={loading || imageFileUploading}
         >
@@ -268,12 +268,7 @@ export default function DashProfile() {
         </Button>
         {currentUser.isAdmin && (
           <Link to={'/create-citation'}>
-            <Button
-              type='button'
-              outline
-              gradientDuoTone='pinkToOrange'
-              className='w-full'
-            >
+            <Button type='button' outline text='cyan-800' className='w-full'>
               Create a citation
             </Button>
           </Link>
