@@ -45,7 +45,7 @@ export default function Header() {
         to='/'
         className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white '
       >
-        <span className='px-0 py-3 rounded-lg text-cyan-800 border-2 border-black'>
+        <span className='px-0 py-3 rounded-lg text-cyan-800 border-2 border-black dark:text-orange-400'>
           Corm
         </span>
         Repo

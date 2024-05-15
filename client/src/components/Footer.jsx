@@ -9,7 +9,10 @@ import {
 } from 'react-icons/bs';
 export default function FooterCom() {
   return (
-    <Footer container className='border border-t-8 border-cyan-800'>
+    <Footer
+      container
+      className='border border-t-8 border-cyan-800 dark:border-orange-400'
+    >
       <div className='w-full max-w-7xl mx-auto'>
         <div className='grid w-full justify-between sm:flex md:grid-cols-1'>
           <div className='mt-5'>
@@ -17,7 +20,7 @@ export default function FooterCom() {
               to='/'
               className='self-center whitespace-nowrap text-lg sm:text-xl font-semibold dark:text-white'
             >
-              <span className='px-0 py-3 rounded-lg text-cyan-800 border-2 border-black'>
+              <span className='px-0 py-3 rounded-lg text-cyan-800 border-2 border-black dark:text-orange-400'>
                 Corm
               </span>
               Repo
