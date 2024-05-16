@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 export default function DashCitations() {
   const { currentUser } = useSelector((state) => state.user);
   const [userCitations, setUserCitations] = useState([]);
+  const [showMore, setShowMore] = useState(true);
   console.log(userCitations);
 
   useEffect(() => {
@@ -17,6 +18,9 @@ export default function DashCitations() {
         const data = await res.json();
         if (res.ok) {
           setUserCitations(data.citations);
+          if (data.citations.length < 9) {
+            setShowMore(false);
+          }
         }
       } catch (error) {
         console.log(error.message);
@@ -28,6 +32,25 @@ export default function DashCitations() {
 
     // run useEffect when the User._id  is changed
   }, [currentUser._id]);
+
+  const handleShowMore = async () => {
+    const startIndex = userCitations.length;
+    try {
+      const res = await fetch(
+        `/api/citation/getcitations?userId=${currentUser._id}&startIndex=${startIndex}`
+      );
+      const data = await res.json();
+      if (res.ok) {
+        setUserCitations((prev) => [...prev, ...data.citations]);
+        if (data.citations.length < 9) {
+          setShowMore(false);
+        }
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div className='table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500'>
       {currentUser.isAdmin && userCitations.length > 0 ? (
@@ -84,6 +107,14 @@ export default function DashCitations() {
               </Table.Body>
             ))}
           </Table>
+          {showMore && (
+            <button
+              onClick={handleShowMore}
+              className='w-full text-orange-400 self-center text-sm py-7'
+            >
+              Show more
+            </button>
+          )}
         </>
       ) : (
         <p>You have no posts yet</p>
