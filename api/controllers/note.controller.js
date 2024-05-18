@@ -71,17 +71,20 @@ export const getnotes = async (req, res, next) => {
   }
 };
 
-// export const deletenote = async (req, res, next) => {
-//   if (!req.user.isAdmin || req.user.id !== req.params.userId) {
-//     return next(errorHandler(403, 'You are not allowed to delete this note'));
-//   }
-//   try {
-//     await Note.findByIdAndDelete(req.params.noteId);
-//     res.status(200).json('The note has been deleted');
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+// create routes then update the controller
+// then set an onClick Event Listener on Dash page for delete button
+
+export const deletenote = async (req, res, next) => {
+  if (!req.user.isAdmin || req.user.id !== req.params.userId) {
+    return next(errorHandler(403, 'You are not allowed to delete this note'));
+  }
+  try {
+    await Note.findByIdAndDelete(req.params.noteId);
+    res.status(200).json('The note has been deleted');
+  } catch (error) {
+    next(error);
+  }
+};
 
 // export const updatenote = async (req, res, next) => {
 //   if (!req.user.isAdmin || req.user.id !== req.params.userId) {

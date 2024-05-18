@@ -70,17 +70,20 @@ export const getrecords = async (req, res, next) => {
   }
 };
 
-// export const deleterecord = async (req, res, next) => {
-//   if (!req.user.isAdmin || req.user.id !== req.params.userId) {
-//     return next(errorHandler(403, 'You are not allowed to delete this record'));
-//   }
-//   try {
-//     await Record.findByIdAndDelete(req.params.recordId);
-//     res.status(200).json('The record has been deleted');
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+// create routes then update the controller
+// then set an onClick Event Listener on Dash page for delete button
+
+export const deleterecord = async (req, res, next) => {
+  if (!req.user.isAdmin || req.user.id !== req.params.userId) {
+    return next(errorHandler(403, 'You are not allowed to delete this record'));
+  }
+  try {
+    await Record.findByIdAndDelete(req.params.recordId);
+    res.status(200).json('The record has been deleted');
+  } catch (error) {
+    next(error);
+  }
+};
 
 // export const updaterecord = async (req, res, next) => {
 //   if (!req.user.isAdmin || req.user.id !== req.params.userId) {

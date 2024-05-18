@@ -72,19 +72,19 @@ export const getcitations = async (req, res, next) => {
   }
 };
 
-// export const deletecitation = async (req, res, next) => {
-//   if (!req.user.isAdmin || req.user.id !== req.params.userId) {
-//     return next(
-//       errorHandler(403, 'You are not allowed to delete this citation')
-//     );
-//   }
-//   try {
-//     await Citation.findByIdAndDelete(req.params.citationId);
-//     res.status(200).json('The citation has been deleted');
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+export const deletecitation = async (req, res, next) => {
+  if (!req.user.isAdmin || req.user.id !== req.params.userId) {
+    return next(
+      errorHandler(403, 'You are not allowed to delete this citation')
+    );
+  }
+  try {
+    await Citation.findByIdAndDelete(req.params.citationId);
+    res.status(200).json('The citation has been deleted');
+  } catch (error) {
+    next(error);
+  }
+};
 
 // export const updatecitation = async (req, res, next) => {
 //   if (!req.user.isAdmin || req.user.id !== req.params.userId) {
