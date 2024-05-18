@@ -6,6 +6,7 @@ import DashProfile from '../components/DashProfile';
 import DashCitations from '../components/DashCitations';
 import DashRecords from '../components/DashRecords';
 import DashNotes from '../components/DashNotes';
+import DashUsers from '../components/DashUsers';
 
 export default function Dashboard() {
   const location = useLocation();
@@ -29,10 +30,12 @@ export default function Dashboard() {
       {tab === 'profile' && <DashProfile />}
       {/* citations */}
       {tab === 'citations' && <DashCitations />}
-      {/* citations */}
+      {/* records */}
       {tab === 'records' && <DashRecords />}
-      {/* citations */}
+      {/* notes */}
       {tab === 'notes' && <DashNotes />}
+      {/* users */}
+      {tab === 'users' && <DashUsers />}
     </div>
   );
 }

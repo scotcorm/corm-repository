@@ -100,7 +100,7 @@ export default function DashNotes() {
               </Table.HeadCell>
             </Table.Head>
             {userNotes.map((note) => (
-              <Table.Body className='divide-y'>
+              <Table.Body className='divide-y' key={note._id}>
                 <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800'>
                   <Table.Cell>
                     {new Date(note.updatedAt).toLocaleDateString()}
