@@ -76,7 +76,7 @@ export default function CitationPage() {
       <img
         src={citation && citation.image}
         alt={citation && citation.title}
-        className='mt-10 p-3 max-h-[600px] w-full object-contain'
+        className='mt-10 p-3 max-h-[400px] w-full object-contain'
       />
       <div className='flex justify-between p-3 border-b border-slate-500 mx-auto w-full max-w-2xl text-xs'>
         <span>
