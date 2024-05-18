@@ -26,6 +26,7 @@ import CreateNote from './pages/CreateNote';
 import UpdateCitation from './pages/UpdateCitation';
 import UpdateRecord from './pages/UpdateRecord';
 import UpdateNote from './pages/UpdateNote';
+import CitationPage from './pages/CitationPage';
 
 export default function App() {
   return (
@@ -62,6 +63,7 @@ export default function App() {
         <Route path='/genealogy' element={<Genealogy />} />
         <Route path='/production-dashboard' element={<ProductionDashboard />} />
         <Route path='/projects' element={<Projects />} />
+        <Route path='/citation/:citationSlug' element={<CitationPage />} />
         <Route path='/show-record' element={<ShowRecord />} />
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />

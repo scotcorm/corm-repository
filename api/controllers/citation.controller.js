@@ -35,7 +35,7 @@ export const getcitations = async (req, res, next) => {
     const citations = await Citation.find({
       ...(req.query.userId && { userId: req.query.userId }),
       ...(req.query.license && { license: req.query.license }),
-      ...(req.query.slug && { license: req.query.slug }),
+      ...(req.query.slug && { slug: req.query.slug }),
       ...(req.query.citationId && { _id: req.query.citationId }),
       ...(req.query.searchTerm && {
         $or: [
