@@ -85,30 +85,30 @@ export const deleterecord = async (req, res, next) => {
   }
 };
 
-// export const updaterecord = async (req, res, next) => {
-//   if (!req.user.isAdmin || req.user.id !== req.params.userId) {
-//     return next(errorHandler(403, 'You are not allowed to update this record'));
-//   }
-//   try {
-//     const updatedRecord = await Record.findByIdAndUpdate(
-//       req.params.recordId,
-//       {
-//         $set: {
-//           month: req.body.month,
-//           agent: req.body.agent,
-//           completed: req.body.completed,
-//           cohort: req.body.cohort,
-//           overlaps: req.body.overlaps,
-//           qapassed: req.body.qapassed,
-//           qafailed: req.body.qafailed,
-//           image: req.body.image,
-//           content: req.body.content,
-//         },
-//       },
-//       { new: true }
-//     );
-//     res.status(200).json(updatedRecord);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+export const updaterecord = async (req, res, next) => {
+  if (!req.user.isAdmin || req.user.id !== req.params.userId) {
+    return next(errorHandler(403, 'You are not allowed to update this record'));
+  }
+  try {
+    const updatedRecord = await Record.findByIdAndUpdate(
+      req.params.recordId,
+      {
+        $set: {
+          month: req.body.month,
+          agent: req.body.agent,
+          completed: req.body.completed,
+          cohort: req.body.cohort,
+          overlaps: req.body.overlaps,
+          qapassed: req.body.qapassed,
+          qafailed: req.body.qafailed,
+          image: req.body.image,
+          content: req.body.content,
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json(updatedRecord);
+  } catch (error) {
+    next(error);
+  }
+};

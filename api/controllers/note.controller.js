@@ -86,25 +86,25 @@ export const deletenote = async (req, res, next) => {
   }
 };
 
-// export const updatenote = async (req, res, next) => {
-//   if (!req.user.isAdmin || req.user.id !== req.params.userId) {
-//     return next(errorHandler(403, 'You are not allowed to update this note'));
-//   }
-//   try {
-//     const updatedNote = await Note.findByIdAndUpdate(
-//       req.params.noteId,
-//       {
-//         $set: {
-//           title: req.body.title,
-//           content: req.body.content,
-//           category: req.body.category,
-//           image: req.body.image,
-//         },
-//       },
-//       { new: true }
-//     );
-//     res.status(200).json(updatedNote);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+export const updatenote = async (req, res, next) => {
+  if (!req.user.isAdmin || req.user.id !== req.params.userId) {
+    return next(errorHandler(403, 'You are not allowed to update this note'));
+  }
+  try {
+    const updatedNote = await Note.findByIdAndUpdate(
+      req.params.noteId,
+      {
+        $set: {
+          title: req.body.title,
+          content: req.body.content,
+          category: req.body.category,
+          image: req.body.image,
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json(updatedNote);
+  } catch (error) {
+    next(error);
+  }
+};

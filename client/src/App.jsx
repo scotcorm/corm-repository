@@ -4,8 +4,8 @@ import Home from './pages/Home';
 import About from './pages/About';
 import CreateRecord from './pages/CreateRecord';
 import Dashboard from './pages/Dashboard';
-import DeleteRecord from './pages/DeleteRecord';
-import EditRecord from './pages/EditRecord';
+// import DeleteRecord from './pages/DeleteRecord';
+// import EditRecord from './pages/EditRecord';
 import FeralSwine from './pages/FeralSwine';
 import Genealogy from './pages/Genealogy';
 import ProductionDashboard from './pages/ProductionDashboard';
@@ -23,6 +23,9 @@ import CitationRepo from './pages/CitationRepo';
 import OnlyAdminPrivateRoute from './components/OnlyAdminPrivateRoute';
 import CreateCitation from './pages/CreateCitation';
 import CreateNote from './pages/CreateNote';
+import UpdateCitation from './pages/UpdateCitation';
+import UpdateRecord from './pages/UpdateRecord';
+import UpdateNote from './pages/UpdateNote';
 
 export default function App() {
   return (
@@ -31,11 +34,17 @@ export default function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
-        <Route element={<OnlyAdminPrivateRoute />}>
-          <Route path='/create-record' element={<CreateRecord />} />
-        </Route>
+
         <Route element={<OnlyAdminPrivateRoute />}>
           <Route path='/create-citation' element={<CreateCitation />} />
+          <Route
+            path='/update-citation/:citationId'
+            element={<UpdateCitation />}
+          />
+          <Route path='/create-record' element={<CreateRecord />} />
+          <Route path='/update-record/:recordId' element={<UpdateRecord />} />
+          <Route path='/create-note' element={<CreateNote />} />
+          <Route path='/update-note/:noteId' element={<UpdateNote />} />
         </Route>
         <Route element={<PrivateRoute />}>
           <Route path='/dashboard' element={<Dashboard />} />
@@ -43,14 +52,12 @@ export default function App() {
         {/* <Route element={<OnlyAdminPrivateRoute />}>
           <Route path='/note' element={<Notes />} />
         </Route> */}
-        <Route element={<OnlyAdminPrivateRoute />}>
-          <Route path='/create-note' element={<CreateNote />} />
-        </Route>
+
         <Route path='/cc-cert' element={<CcCert />} />
         <Route path='/citation-repo' element={<CitationRepo />} />
         <Route path='/digital-music' element={<DigitalMusic />} />
-        <Route path='/delete-record' element={<DeleteRecord />} />
-        <Route path='/edit-record' element={<EditRecord />} />
+        {/* <Route path='/delete-record' element={<DeleteRecord />} />
+        <Route path='/edit-record' element={<EditRecord />} /> */}
         <Route path='/feral-swine' element={<FeralSwine />} />
         <Route path='/genealogy' element={<Genealogy />} />
         <Route path='/production-dashboard' element={<ProductionDashboard />} />

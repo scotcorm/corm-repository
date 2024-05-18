@@ -4,7 +4,7 @@ import {
   create,
   deleterecord,
   getrecords,
-  // updaterecord,
+  updaterecord,
 } from '../controllers/record.controller.js';
 
 const router = express.Router();
@@ -12,7 +12,7 @@ const router = express.Router();
 router.post('/create', verifyToken, create);
 router.get('/getrecords', getrecords);
 router.delete('/deleterecord/:recordId/:userId', verifyToken, deleterecord);
-// router.put('/updaterecord/:recordId/:userId', verifyToken, updaterecord);
+router.put('/updaterecord/:recordId/:userId', verifyToken, updaterecord);
 // create routes then update the controller
 
 export default router;

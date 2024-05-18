@@ -4,7 +4,7 @@ import {
   create,
   deletecitation,
   getcitations,
-  // updatecitation,
+  updatecitation,
 } from '../controllers/citation.controller.js';
 
 const router = express.Router();
@@ -18,7 +18,7 @@ router.delete(
   verifyToken,
   deletecitation
 );
-// router.put('/updatecitation/:citationId/:userId', verifyToken, updatecitation);
+router.put('/updatecitation/:citationId/:userId', verifyToken, updatecitation);
 // and create deletecitation in the controller
 // create routes then update the controller, then create state and function and modal on Dash page
 

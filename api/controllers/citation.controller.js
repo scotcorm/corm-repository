@@ -86,30 +86,30 @@ export const deletecitation = async (req, res, next) => {
   }
 };
 
-// export const updatecitation = async (req, res, next) => {
-//   if (!req.user.isAdmin || req.user.id !== req.params.userId) {
-//     return next(
-//       errorHandler(403, 'You are not allowed to update this citation')
-//     );
-//   }
-//   try {
-//     const updatedCitation = await Citation.findByIdAndUpdate(
-//       req.params.citationId,
-//       {
-//         $set: {
-//           title: req.body.title,
-//           creator: req.body.creator,
-//           source: req.body.source,
-//           sourceurl: req.body.sourceurl,
-//           content: req.body.content,
-//           license: req.body.license,
-//           image: req.body.image,
-//         },
-//       },
-//       { new: true }
-//     );
-//     res.status(200).json(updatedCitation);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+export const updatecitation = async (req, res, next) => {
+  if (!req.user.isAdmin || req.user.id !== req.params.userId) {
+    return next(
+      errorHandler(403, 'You are not allowed to update this citation')
+    );
+  }
+  try {
+    const updatedCitation = await Citation.findByIdAndUpdate(
+      req.params.citationId,
+      {
+        $set: {
+          title: req.body.title,
+          creator: req.body.creator,
+          source: req.body.source,
+          sourceurl: req.body.sourceurl,
+          content: req.body.content,
+          license: req.body.license,
+          image: req.body.image,
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json(updatedCitation);
+  } catch (error) {
+    next(error);
+  }
+};
