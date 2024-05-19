@@ -27,10 +27,14 @@ import UpdateCitation from './pages/UpdateCitation';
 import UpdateRecord from './pages/UpdateRecord';
 import UpdateNote from './pages/UpdateNote';
 import CitationPage from './pages/CitationPage';
+import ScrollToTop from './components/ScrollToTop';
+import NotePage from './pages/NotePage';
+import RecordPage from './pages/RecordPage';
 
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
@@ -64,6 +68,8 @@ export default function App() {
         <Route path='/production-dashboard' element={<ProductionDashboard />} />
         <Route path='/projects' element={<Projects />} />
         <Route path='/citation/:citationSlug' element={<CitationPage />} />
+        <Route path='/note/:noteSlug' element={<NotePage />} />
+        <Route path='/record/:recordSlug' element={<RecordPage />} />
         <Route path='/show-record' element={<ShowRecord />} />
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />

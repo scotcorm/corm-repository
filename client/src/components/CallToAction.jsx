@@ -9,11 +9,11 @@ export default function CallToAction() {
         <h2 className='text-2xl'>
           Add more info for the Call to Action section
         </h2>
-        <p classname='text-gray-500 my-2'>
+        <p className='text-gray-500 my-2'>
           I made this part with an intersting library- check it out!
         </p>
 
-        <Button outline color='gray' className='rounded-bl-none mt-5'>
+        <Button outline color='gray' className='rounded-br-none mt-5'>
           <a
             href='#'
             target='_blank'
@@ -24,7 +24,7 @@ export default function CallToAction() {
           </a>
         </Button>
       </div>
-      <div className='p-7 flex-1'>
+      <div className='p-7 flex-2'>
         <img src={logo} alt='corm image' />
       </div>
     </div>

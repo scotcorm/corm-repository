@@ -34,7 +34,7 @@ export const getnotes = async (req, res, next) => {
     const notes = await Note.find({
       ...(req.query.userId && { userId: req.query.userId }),
       ...(req.query.category && { category: req.query.category }),
-      ...(req.query.slug && { category: req.query.slug }),
+      ...(req.query.slug && { slug: req.query.slug }),
       ...(req.query.noteId && { _id: req.query.noteId }),
       ...(req.query.searchTerm && {
         $or: [

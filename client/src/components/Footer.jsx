@@ -48,7 +48,8 @@ export default function FooterCom() {
                 <Footer.Link href='#' target='_blank' rel='noopener noreferrer'>
                   Github
                 </Footer.Link>
-                <Footer.Link href='#'>Discord</Footer.Link>
+                {/* <Footer.Link href='#'>Discord</Footer.Link> */}
+                <Footer.Link href='#'>Netlify</Footer.Link>
               </Footer.LinkGroup>
             </div>
             <div>

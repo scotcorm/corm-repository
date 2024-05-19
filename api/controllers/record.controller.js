@@ -33,7 +33,7 @@ export const getrecords = async (req, res, next) => {
     const sortDirection = req.query.order === 'asc' ? 1 : -1;
     const records = await Record.find({
       ...(req.query.userId && { userId: req.query.userId }),
-      // ...(req.query.slug && { category: req.query.slug }),
+      ...(req.query.slug && { slug: req.query.slug }),
       ...(req.query.recordId && { _id: req.query.recordId }),
       ...(req.query.searchTerm && {
         $or: [

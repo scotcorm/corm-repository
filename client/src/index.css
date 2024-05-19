@@ -39,3 +39,33 @@ body {
 .dark .citation-content a {
   color: orange;
 }
+
+.note-content p {
+  margin-bottom: 0.5rem;
+}
+
+.note-content h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: sans-serif;
+  margin: 1.5rem 0;
+}
+
+.note-content h2 {
+  font-size: 1.4rem;
+  font-family: sans-serif;
+  margin: 1.5rem 0;
+}
+
+.note-content a {
+  color: rgb(73, 149, 199);
+  text-decoration: none;
+}
+
+.note-content a:hover {
+  text-decoration: underline;
+}
+
+.dark .note-content a {
+  color: orange;
+}

@@ -7,6 +7,9 @@ import cookieParser from 'cookie-parser';
 import citationRoutes from './routes/citation.route.js';
 import noteRoutes from './routes/note.route.js';
 import recordRoutes from './routes/record.route.js';
+import commentRoutes from './routes/comment.route.js';
+import notecommentRoutes from './routes/notecomment.route.js';
+import recordcommentRoutes from './routes/recordcomment.route.js';
 
 // add the route.js, import it above and below then add controller
 dotenv.config();
@@ -34,6 +37,9 @@ app.use('/api/auth', authRoutes);
 app.use('/api/citation', citationRoutes);
 app.use('/api/note', noteRoutes);
 app.use('/api/record', recordRoutes);
+app.use('/api/comment', commentRoutes);
+app.use('/api/notecomment', notecommentRoutes);
+app.use('/api/recordcomment', recordcommentRoutes);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
