@@ -1,7 +1,8 @@
 import { Button, Spinner } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-//import CallToAction from '../components/CallToAction';
+import CallToAction from '../components/CallToAction';
+
 // import CommentSection from '../components/CommentSection';
 // import CitationCard from '../components/CitationCard';
 
@@ -90,9 +91,9 @@ export default function CitationPage() {
         className='p-3 max-w-2xl mx-auto w-full citation-content'
         dangerouslySetInnerHTML={{ __html: citation && citation.content }}
       ></div>
-      {/* <div className='max-w-4xl mx-auto w-full'>
+      <div className='max-w-4xl mx-auto w-full'>
         <CallToAction />
-      </div> */}
+      </div>
       {/* <CommentSection citationId={citation._id} /> */}
 
       <div className='flex flex-col justify-center items-center mb-5'>
