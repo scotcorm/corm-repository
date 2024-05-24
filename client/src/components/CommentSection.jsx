@@ -10,7 +10,8 @@ export default function CommentSection({ citationId }) {
   const { currentUser } = useSelector((state) => state.user);
   const [comment, setComment] = useState('');
   const [commentError, setCommentError] = useState(null);
-  // const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState([]);
+  console.log(comments);
   // const [showModal, setShowModal] = useState(false);
   // const [commentToDelete, setCommentToDelete] = useState(null);
 
@@ -43,20 +44,22 @@ export default function CommentSection({ citationId }) {
     }
   };
 
-  // useEffect(() => {
-  //   const getComments = async () => {
-  //     try {
-  //       const res = await fetch(`/api/comment/getPostComments/${postId}`);
-  //       if (res.ok) {
-  //         const data = await res.json();
-  //         setComments(data);
-  //       }
-  //     } catch (error) {
-  //       console.log(error.message);
-  //     }
-  //   };
-  //   getComments();
-  // }, [postId]);
+  useEffect(() => {
+    const getComments = async () => {
+      try {
+        const res = await fetch(
+          `/api/comment/getCitationComments/${citationId}`
+        );
+        if (res.ok) {
+          const data = await res.json();
+          setComments(data);
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    getComments();
+  }, [citationId]);
 
   // const handleLike = async (commentId) => {
   //   try {
@@ -130,7 +133,7 @@ export default function CommentSection({ citationId }) {
           </Link>
         </div>
       ) : (
-        <div className='text-sm text-teal-500 my-5 flex gap-1'>
+        <div className='text-sm text-teal-800 my-5 flex gap-1'>
           You must be signed in to comment.
           <Link className='text-blue-500 hover:underline' to={'/sign-in'}>
             Sign In
@@ -140,7 +143,7 @@ export default function CommentSection({ citationId }) {
       {currentUser && (
         <form
           onSubmit={handleSubmit}
-          className='border border-teal-600 rounded-md p-3'
+          className='border border-cyan-800 rounded-md p-3'
         >
           <Textarea
             placeholder='Add a comment...'
@@ -164,7 +167,7 @@ export default function CommentSection({ citationId }) {
           )}
         </form>
       )}
-      {/* {comments.length === 0 ? (
+      {comments.length === 0 ? (
         <p className='text-sm my-5'>No comments yet!</p>
       ) : (
         <>
@@ -178,16 +181,16 @@ export default function CommentSection({ citationId }) {
             <Comment
               key={comment._id}
               comment={comment}
-              onLike={handleLike}
-              onEdit={handleEdit}
-              onDelete={(commentId) => {
-                setShowModal(true);
-                setCommentToDelete(commentId);
-              }}
+              // onLike={handleLike}
+              // onEdit={handleEdit}
+              // onDelete={(commentId) => {
+              //   setShowModal(true);
+              //   setCommentToDelete(commentId);
+              // }}
             />
           ))}
         </>
-      )} */}
+      )}
       {/* <Modal
         show={showModal}
         onClose={() => setShowModal(false)}

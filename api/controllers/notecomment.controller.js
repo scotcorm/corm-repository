@@ -1,6 +1,6 @@
-import Comment from '../models/notecomment.model.js';
+import Notecomment from '../models/notecomment.model.js';
 
-export const createNotecomment = async (req, res, next) => {
+export const createNoteComment = async (req, res, next) => {
   try {
     const { content, noteId, userId } = req.body;
 
@@ -10,29 +10,31 @@ export const createNotecomment = async (req, res, next) => {
       );
     }
 
-    const newComment = new Comment({
+    const newNoteComment = new Notecomment({
       content,
       noteId,
       userId,
     });
-    await newComment.save();
+    await newNoteComment.save();
 
-    res.status(200).json(newComment);
+    res.status(200).json(newNoteComment);
   } catch (error) {
     next(error);
   }
 };
 
-// export const getPostComments = async (req, res, next) => {
-//   try {
-//     const comments = await Comment.find({ postId: req.params.postId }).sort({
-//       createdAt: -1,
-//     });
-//     res.status(200).json(comments);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+export const getNoteComments = async (req, res, next) => {
+  try {
+    const notecomments = await Notecomment.find({
+      noteId: req.params.noteId,
+    }).sort({
+      createdAt: -1,
+    });
+    res.status(200).json(notecomments);
+  } catch (error) {
+    next(error);
+  }
+};
 
 // export const likeComment = async (req, res, next) => {
 //   try {

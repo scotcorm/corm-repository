@@ -1,18 +1,18 @@
 import express from 'express';
 import { verifyToken } from '../utils/verifyUser.js';
 import {
-  createComment,
+  createRecordComment,
   // deleteComment,
   // editComment,
-  // getRecordComments,
+  getRecordComments,
   // getcomments,
   // likeComment,
-} from '../controllers/comment.controller.js';
+} from '../controllers/recordcomment.controller.js';
 
 const router = express.Router();
 
-router.post('/create', verifyToken, createComment);
-// router.get('/getRecordComments/:recordId', getRecordComments);
+router.post('/createRecordComment', verifyToken, createRecordComment);
+router.get('/getRecordComments/:recordId', getRecordComments);
 // router.put('/likeComment/:commentId', verifyToken, likeComment);
 // router.put('/editComment/:commentId', verifyToken, editComment);
 // router.delete('/deleteComment/:commentId', verifyToken, deleteComment);

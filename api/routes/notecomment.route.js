@@ -1,18 +1,18 @@
 import express from 'express';
 import { verifyToken } from '../utils/verifyUser.js';
 import {
-  createComment,
+  createNoteComment,
   // deleteComment,
   // editComment,
-  // getNoteComments,
+  getNoteComments,
   // getcomments,
   // likeComment,
-} from '../controllers/comment.controller.js';
+} from '../controllers/notecomment.controller.js';
 
 const router = express.Router();
 
-router.post('/create', verifyToken, createComment);
-// router.get('/getNoteComments/:postId', getNoteComments);
+router.post('/createNoteComment', verifyToken, createNoteComment);
+router.get('/getNoteComments/:noteId', getNoteComments);
 // router.put('/likeComment/:commentId', verifyToken, likeComment);
 // router.put('/editComment/:commentId', verifyToken, editComment);
 // router.delete('/deleteComment/:commentId', verifyToken, deleteComment);

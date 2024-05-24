@@ -1,4 +1,4 @@
-import Comment from '../models/recordcomment.model.js';
+import Recordcomment from '../models/recordcomment.model.js';
 
 export const createRecordComment = async (req, res, next) => {
   try {
@@ -10,29 +10,31 @@ export const createRecordComment = async (req, res, next) => {
       );
     }
 
-    const newComment = new Comment({
+    const newRecordcomment = new Recordcomment({
       content,
       recordId,
       userId,
     });
-    await newComment.save();
+    await newRecordcomment.save();
 
-    res.status(200).json(newComment);
+    res.status(200).json(newRecordcomment);
   } catch (error) {
     next(error);
   }
 };
 
-// export const getRecordComments = async (req, res, next) => {
-//   try {
-//     const comments = await Comment.find({ postId: req.params.recordId }).sort({
-//       createdAt: -1,
-//     });
-//     res.status(200).json(comments);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+export const getRecordComments = async (req, res, next) => {
+  try {
+    const recordcomments = await Recordcomment.find({
+      recordId: req.params.recordId,
+    }).sort({
+      createdAt: -1,
+    });
+    res.status(200).json(recordcomments);
+  } catch (error) {
+    next(error);
+  }
+};
 
 // export const likeRecordComment = async (req, res, next) => {
 //   try {
