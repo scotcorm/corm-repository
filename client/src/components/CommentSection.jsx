@@ -12,10 +12,10 @@ export default function CommentSection({ citationId }) {
   const [commentError, setCommentError] = useState(null);
   const [comments, setComments] = useState([]);
   console.log(comments);
-  // const [showModal, setShowModal] = useState(false);
-  // const [commentToDelete, setCommentToDelete] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [commentToDelete, setCommentToDelete] = useState(null);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (comment.length > 200) {
@@ -37,7 +37,7 @@ export default function CommentSection({ citationId }) {
       if (res.ok) {
         setComment('');
         setCommentError(null);
-        // setComments([data, ...comments]);
+        setComments([data, ...comments]);
       }
     } catch (error) {
       setCommentError(error.message);
@@ -61,60 +61,60 @@ export default function CommentSection({ citationId }) {
     getComments();
   }, [citationId]);
 
-  // const handleLike = async (commentId) => {
-  //   try {
-  //     if (!currentUser) {
-  //       navigate('/sign-in');
-  //       return;
-  //     }
-  //     const res = await fetch(`/api/comment/likeComment/${commentId}`, {
-  //       method: 'PUT',
-  //     });
-  //     if (res.ok) {
-  //       const data = await res.json();
-  //       setComments(
-  //         comments.map((comment) =>
-  //           comment._id === commentId
-  //             ? {
-  //                 ...comment,
-  //                 likes: data.likes,
-  //                 numberOfLikes: data.likes.length,
-  //               }
-  //             : comment
-  //         )
-  //       );
-  //     }
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
+  const handleLike = async (commentId) => {
+    try {
+      if (!currentUser) {
+        navigate('/sign-in');
+        return;
+      }
+      const res = await fetch(`/api/comment/likeComment/${commentId}`, {
+        method: 'PUT',
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setComments(
+          comments.map((comment) =>
+            comment._id === commentId
+              ? {
+                  ...comment,
+                  likes: data.likes,
+                  numberOfLikes: data.likes.length,
+                }
+              : comment
+          )
+        );
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
-  // const handleEdit = async (comment, editedContent) => {
-  //   setComments(
-  //     comments.map((c) =>
-  //       c._id === comment._id ? { ...c, content: editedContent } : c
-  //     )
-  //   );
-  // };
+  const handleEdit = async (comment, editedContent) => {
+    setComments(
+      comments.map((c) =>
+        c._id === comment._id ? { ...c, content: editedContent } : c
+      )
+    );
+  };
 
-  // const handleDelete = async (commentId) => {
-  //   setShowModal(false);
-  //   try {
-  //     if (!currentUser) {
-  //       navigate('/sign-in');
-  //       return;
-  //     }
-  //     const res = await fetch(`/api/comment/deleteComment/${commentId}`, {
-  //       method: 'DELETE',
-  //     });
-  //     if (res.ok) {
-  //       const data = await res.json();
-  //       setComments(comments.filter((comment) => comment._id !== commentId));
-  //     }
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
+  const handleDelete = async (commentId) => {
+    setShowModal(false);
+    try {
+      if (!currentUser) {
+        navigate('/sign-in');
+        return;
+      }
+      const res = await fetch(`/api/comment/deleteComment/${commentId}`, {
+        method: 'DELETE',
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setComments(comments.filter((comment) => comment._id !== commentId));
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <div className='max-w-2xl mx-auto w-full p-3'>
       {currentUser ? (
@@ -181,17 +181,17 @@ export default function CommentSection({ citationId }) {
             <Comment
               key={comment._id}
               comment={comment}
-              // onLike={handleLike}
-              // onEdit={handleEdit}
-              // onDelete={(commentId) => {
-              //   setShowModal(true);
-              //   setCommentToDelete(commentId);
-              // }}
+              onLike={handleLike}
+              onEdit={handleEdit}
+              onDelete={(commentId) => {
+                setShowModal(true);
+                setCommentToDelete(commentId);
+              }}
             />
           ))}
         </>
       )}
-      {/* <Modal
+      <Modal
         show={showModal}
         onClose={() => setShowModal(false)}
         popup
@@ -217,7 +217,7 @@ export default function CommentSection({ citationId }) {
             </div>
           </div>
         </Modal.Body>
-      </Modal> */}
+      </Modal>
     </div>
   );
 }

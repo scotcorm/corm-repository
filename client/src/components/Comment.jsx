@@ -1,9 +1,8 @@
-// import moment from 'moment';
+import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { FaThumbsUp } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { Button, Textarea } from 'flowbite-react';
-import { set } from 'mongoose';
 
 export default function Comment({ comment, onLike, onEdit, onDelete }) {
   const [user, setUser] = useState({});
@@ -63,9 +62,9 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
           <span className='font-bold mr-1 text-xs truncate'>
             {user ? `@${user.username}` : 'anonymous user'}
           </span>
-          {/* <span className='text-gray-500 text-xs'>
+          <span className='text-gray-500 text-xs'>
             {moment(comment.createdAt).fromNow()}
-          </span> */}
+          </span>
         </div>
         {isEditing ? (
           <>
