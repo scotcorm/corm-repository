@@ -6,11 +6,12 @@ import Comment from './Comment';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
 
 //add citation ID
-export default function CommentSection({ recordId }) {
+export default function CommentSection({ citationId }) {
   const { currentUser } = useSelector((state) => state.user);
   const [comment, setComment] = useState('');
   const [commentError, setCommentError] = useState(null);
   const [comments, setComments] = useState([]);
+  console.log(comments);
   const [showModal, setShowModal] = useState(false);
   const [commentToDelete, setCommentToDelete] = useState(null);
 
@@ -21,7 +22,7 @@ export default function CommentSection({ recordId }) {
       return;
     }
     try {
-      const res = await fetch('/api/comment/create', {
+      const res = await fetch('/api/recordcomment/createRecordComment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,75 +44,75 @@ export default function CommentSection({ recordId }) {
     }
   };
 
-  // useEffect(() => {
-  //   const getComments = async () => {
-  //     try {
-  //       const res = await fetch(`/api/comment/getPostComments/${postId}`);
-  //       if (res.ok) {
-  //         const data = await res.json();
-  //         setComments(data);
-  //       }
-  //     } catch (error) {
-  //       console.log(error.message);
-  //     }
-  //   };
-  //   getComments();
-  // }, [postId]);
+  useEffect(() => {
+    const getComments = async () => {
+      try {
+        const res = await fetch(`/api/comment/getRecordComments/${recordId}`);
+        if (res.ok) {
+          const data = await res.json();
+          setComments(data);
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    getComments();
+  }, [citationId]);
 
-  // const handleLike = async (commentId) => {
-  //   try {
-  //     if (!currentUser) {
-  //       navigate('/sign-in');
-  //       return;
-  //     }
-  //     const res = await fetch(`/api/comment/likeComment/${commentId}`, {
-  //       method: 'PUT',
-  //     });
-  //     if (res.ok) {
-  //       const data = await res.json();
-  //       setComments(
-  //         comments.map((comment) =>
-  //           comment._id === commentId
-  //             ? {
-  //                 ...comment,
-  //                 likes: data.likes,
-  //                 numberOfLikes: data.likes.length,
-  //               }
-  //             : comment
-  //         )
-  //       );
-  //     }
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
+  const handleLike = async (recordcommentId) => {
+    try {
+      if (!currentUser) {
+        navigate('/sign-in');
+        return;
+      }
+      const res = await fetch(`/api/comment/likeComment/${recordcommentId}`, {
+        method: 'PUT',
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setComments(
+          comments.map((comment) =>
+            comment._id === commentId
+              ? {
+                  ...comment,
+                  likes: data.likes,
+                  numberOfLikes: data.likes.length,
+                }
+              : comment
+          )
+        );
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
-  // const handleEdit = async (comment, editedContent) => {
-  //   setComments(
-  //     comments.map((c) =>
-  //       c._id === comment._id ? { ...c, content: editedContent } : c
-  //     )
-  //   );
-  // };
+  const handleEdit = async (comment, editedContent) => {
+    setComments(
+      comments.map((c) =>
+        c._id === comment._id ? { ...c, content: editedContent } : c
+      )
+    );
+  };
 
-  // const handleDelete = async (commentId) => {
-  //   setShowModal(false);
-  //   try {
-  //     if (!currentUser) {
-  //       navigate('/sign-in');
-  //       return;
-  //     }
-  //     const res = await fetch(`/api/comment/deleteComment/${commentId}`, {
-  //       method: 'DELETE',
-  //     });
-  //     if (res.ok) {
-  //       const data = await res.json();
-  //       setComments(comments.filter((comment) => comment._id !== commentId));
-  //     }
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
+  const handleDelete = async (commentId) => {
+    setShowModal(false);
+    try {
+      if (!currentUser) {
+        navigate('/sign-in');
+        return;
+      }
+      const res = await fetch(`/api/comment/deleteComment/${commentId}`, {
+        method: 'DELETE',
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setComments(comments.filter((comment) => comment._id !== commentId));
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <div className='max-w-2xl mx-auto w-full p-3'>
       {currentUser ? (
@@ -130,7 +131,7 @@ export default function CommentSection({ recordId }) {
           </Link>
         </div>
       ) : (
-        <div className='text-sm text-teal-500 my-5 flex gap-1'>
+        <div className='text-sm text-teal-800 my-5 flex gap-1'>
           You must be signed in to comment.
           <Link className='text-blue-500 hover:underline' to={'/sign-in'}>
             Sign In
@@ -140,7 +141,7 @@ export default function CommentSection({ recordId }) {
       {currentUser && (
         <form
           onSubmit={handleSubmit}
-          className='border border-teal-600 rounded-md p-3'
+          className='border border-cyan-800 rounded-md p-3'
         >
           <Textarea
             placeholder='Add a comment...'
@@ -188,7 +189,7 @@ export default function CommentSection({ recordId }) {
           ))}
         </>
       )}
-      {/* <Modal
+      <Modal
         show={showModal}
         onClose={() => setShowModal(false)}
         popup
@@ -214,7 +215,7 @@ export default function CommentSection({ recordId }) {
             </div>
           </div>
         </Modal.Body>
-      </Modal> */}
+      </Modal>
     </div>
   );
 }

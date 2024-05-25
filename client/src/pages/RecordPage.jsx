@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import CallToAction from '../components/CallToAction';
 
-import RecordsCommentSection from '../components/RecordsCommentSection';
+import RecordCommentSection from '../components/RecordCommentSection';
 // import RecordCard from '../components/RecordCard';
 
 export default function RecordPage() {
@@ -90,7 +90,7 @@ export default function RecordPage() {
       <div className='max-w-3xl mx-auto w-full'>
         <CallToAction />
       </div>
-      <RecordsCommentSection recordId={record._id} />
+      <RecordCommentSection recordId={record._id} />
 
       <div className='flex flex-col justify-center items-center mb-5'>
         <h1 className='text-xl mt-5'>Recent articles</h1>

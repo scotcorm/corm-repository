@@ -26,6 +26,6 @@ const recordcommentSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Recordcomment = mongoose.model('Recordcomment', recordcommentSchema);
+const RecordComment = mongoose.model('RecordComment', recordcommentSchema);
 
-export default Recordcomment;
+export default RecordComment;
