@@ -77,7 +77,7 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
               <Button
                 type='button'
                 size='sm'
-                gradientDuoTone='purpleToBlue'
+                gradientDuoTone='pinkToOrange'
                 onClick={handleSave}
               >
                 Save
@@ -85,7 +85,7 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
               <Button
                 type='button'
                 size='sm'
-                gradientDuoTone='purpleToBlue'
+                gradientDuoTone='pinkToOrange'
                 outline
                 onClick={() => setIsEditing(false)}
               >

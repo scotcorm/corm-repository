@@ -14,6 +14,7 @@ export default function RecordComment({
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(recordcomment.content);
   const { currentUser } = useSelector((state) => state.user);
+
   useEffect(() => {
     const getUser = async () => {
       try {

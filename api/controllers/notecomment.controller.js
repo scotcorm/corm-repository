@@ -1,4 +1,4 @@
-import Notecomment from '../models/notecomment.model.js';
+import NoteComment from '../models/notecomment.model.js';
 
 export const createNoteComment = async (req, res, next) => {
   try {
@@ -10,7 +10,7 @@ export const createNoteComment = async (req, res, next) => {
       );
     }
 
-    const newNoteComment = new Notecomment({
+    const newNoteComment = new NoteComment({
       content,
       noteId,
       userId,
@@ -25,8 +25,8 @@ export const createNoteComment = async (req, res, next) => {
 
 export const getNoteComments = async (req, res, next) => {
   try {
-    const notecomments = await Notecomment.find({
-      noteId: req.params.noteId,
+    const notecomments = await NoteComment.find({
+      notecommentId: req.params.notecommentId,
     }).sort({
       createdAt: -1,
     });
@@ -36,26 +36,26 @@ export const getNoteComments = async (req, res, next) => {
   }
 };
 
-// export const likeComment = async (req, res, next) => {
-//   try {
-//     const comment = await Comment.findById(req.params.commentId);
-//     if (!comment) {
-//       return next(errorHandler(404, 'Comment not found'));
-//     }
-//     const userIndex = comment.likes.indexOf(req.user.id);
-//     if (userIndex === -1) {
-//       comment.numberOfLikes += 1;
-//       comment.likes.push(req.user.id);
-//     } else {
-//       comment.numberOfLikes -= 1;
-//       comment.likes.splice(userIndex, 1);
-//     }
-//     await comment.save();
-//     res.status(200).json(comment);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+export const likeNoteComment = async (req, res, next) => {
+  try {
+    const notecomment = await NoteComment.findById(req.params.notecommentId);
+    if (!notecomment) {
+      return next(errorHandler(404, 'Comment not found'));
+    }
+    const userIndex = notecomment.likes.indexOf(req.user.id);
+    if (userIndex === -1) {
+      notecomment.numberOfLikes += 1;
+      notecomment.likes.push(req.user.id);
+    } else {
+      notecomment.numberOfLikes -= 1;
+      notecomment.likes.splice(userIndex, 1);
+    }
+    await notecomment.save();
+    res.status(200).json(notecomment);
+  } catch (error) {
+    next(error);
+  }
+};
 
 // export const editComment = async (req, res, next) => {
 //   try {

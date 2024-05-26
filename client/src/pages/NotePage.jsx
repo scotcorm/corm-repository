@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import CallToAction from '../components/CallToAction';
 
-import NotesCommentSection from '../components/NotesCommentSection';
+import NoteCommentSection from '../components/NoteCommentSection';
 // import NoteCard from '../components/NoteCard';
 
 export default function NotePage() {
@@ -90,7 +90,7 @@ export default function NotePage() {
       <div className='max-w-3xl mx-auto w-full'>
         <CallToAction />
       </div>
-      <NotesCommentSection noteId={note._id} />
+      <NoteCommentSection noteId={note._id} />
 
       <div className='flex flex-col justify-center items-center mb-5'>
         <h1 className='text-xl mt-5'>Recent articles</h1>

@@ -2,23 +2,23 @@ import { Alert, Button, Modal, TextInput, Textarea } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import Comment from './Comment';
+import RecordComment from './RecordComment';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
 
 //add citation ID
-export default function CommentSection({ citationId }) {
+export default function RecordCommentSection({ recordId }) {
   const { currentUser } = useSelector((state) => state.user);
-  const [comment, setComment] = useState('');
-  const [commentError, setCommentError] = useState(null);
-  const [comments, setComments] = useState([]);
-  console.log(comments);
+  const [recordcomment, setRecordComment] = useState('');
+  const [recordcommentError, setRecordCommentError] = useState(null);
+  const [recordcomments, setRecordComments] = useState([]);
+  console.log(recordcomments);
   const [showModal, setShowModal] = useState(false);
-  const [commentToDelete, setCommentToDelete] = useState(null);
+  const [recordcommentToDelete, setRecordCommentToDelete] = useState(null);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (comment.length > 200) {
+    if (recordcomment.length > 200) {
       return;
     }
     try {
@@ -28,36 +28,38 @@ export default function CommentSection({ citationId }) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          content: comment,
+          content: recordcomment,
           recordId,
           userId: currentUser._id,
         }),
       });
       const data = await res.json();
       if (res.ok) {
-        setComment('');
-        setCommentError(null);
-        setComments([data, ...comments]);
+        setRecordComment('');
+        setRecordCommentError(null);
+        setRecordComments([data, ...recordcomments]);
       }
     } catch (error) {
-      setCommentError(error.message);
+      setRecordCommentError(error.message);
     }
   };
 
   useEffect(() => {
-    const getComments = async () => {
+    const getRecordComments = async () => {
       try {
-        const res = await fetch(`/api/comment/getRecordComments/${recordId}`);
+        const res = await fetch(
+          `/api/recordcomment/getRecordComments/${recordId}`
+        );
         if (res.ok) {
           const data = await res.json();
-          setComments(data);
+          setRecordComments(data);
         }
       } catch (error) {
         console.log(error.message);
       }
     };
-    getComments();
-  }, [citationId]);
+    getRecordComments();
+  }, [recordId]);
 
   const handleLike = async (recordcommentId) => {
     try {
@@ -70,15 +72,15 @@ export default function CommentSection({ citationId }) {
       });
       if (res.ok) {
         const data = await res.json();
-        setComments(
-          comments.map((comment) =>
-            comment._id === commentId
+        setRecordComments(
+          recordcomments.map((recordcomment) =>
+            recordcomment._id === recordcommentId
               ? {
-                  ...comment,
+                  ...recordcomment,
                   likes: data.likes,
                   numberOfLikes: data.likes.length,
                 }
-              : comment
+              : recordcomment
           )
         );
       }
@@ -87,27 +89,29 @@ export default function CommentSection({ citationId }) {
     }
   };
 
-  const handleEdit = async (comment, editedContent) => {
-    setComments(
-      comments.map((c) =>
-        c._id === comment._id ? { ...c, content: editedContent } : c
+  const handleEdit = async (recordcomment, editedContent) => {
+    setRecordComments(
+      recordcomments.map((c) =>
+        c._id === recordcomment._id ? { ...c, content: editedContent } : c
       )
     );
   };
 
-  const handleDelete = async (commentId) => {
+  const handleDelete = async (recordcommentId) => {
     setShowModal(false);
     try {
       if (!currentUser) {
         navigate('/sign-in');
         return;
       }
-      const res = await fetch(`/api/comment/deleteComment/${commentId}`, {
+      const res = await fetch(`/api/comment/deleteComment/${recordcommentId}`, {
         method: 'DELETE',
       });
       if (res.ok) {
         const data = await res.json();
-        setComments(comments.filter((comment) => comment._id !== commentId));
+        setRecordComments(
+          comments.filter((comment) => comment._id !== recordcommentId)
+        );
       }
     } catch (error) {
       console.log(error.message);
@@ -147,43 +151,43 @@ export default function CommentSection({ citationId }) {
             placeholder='Add a comment...'
             rows='3'
             maxLength='200'
-            onChange={(e) => setComment(e.target.value)}
-            value={comment}
+            onChange={(e) => setRecordComment(e.target.value)}
+            value={recordcomment}
           />
           <div className='flex justify-between items-center mt-5'>
             <p className='text-gray-500 text-xs'>
-              {200 - comment.length} characters remaining
+              {200 - recordcomment.length} characters remaining
             </p>
             <Button outline type='submit'>
               Submit
             </Button>
           </div>
-          {commentError && (
+          {recordcommentError && (
             <Alert color='failure' className='mt-5'>
-              {commentError}
+              {recordcommentError}
             </Alert>
           )}
         </form>
       )}
-      {comments.length === 0 ? (
+      {recordcomments.length === 0 ? (
         <p className='text-sm my-5'>No comments yet!</p>
       ) : (
         <>
           <div className='text-sm my-5 flex items-center gap-1'>
-            <p>Comments</p>
+            <p>Record Comments</p>
             <div className='border border-gray-400 py-1 px-2 rounded-sm'>
-              <p>{comments.length}</p>
+              <p>{recordcomments.length}</p>
             </div>
           </div>
-          {comments.map((comment) => (
-            <Comment
-              key={comment._id}
-              comment={comment}
+          {recordcomments.map((recordcomment) => (
+            <RecordComment
+              key={recordcomment._id}
+              recordcomment={recordcomment}
               onLike={handleLike}
               onEdit={handleEdit}
-              onDelete={(commentId) => {
+              onDelete={(recordcommentId) => {
                 setShowModal(true);
-                setCommentToDelete(commentId);
+                setRecordCommentToDelete(recordcommentId);
               }}
             />
           ))}

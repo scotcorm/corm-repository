@@ -6,112 +6,120 @@ import NoteComment from './NoteComment';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
 
 //add citation ID
-export default function CommentSection({ noteId }) {
+export default function NoteCommentSection({ noteId }) {
   const { currentUser } = useSelector((state) => state.user);
-  const [comment, setComment] = useState('');
-  const [commentError, setCommentError] = useState(null);
-  const [comments, setComments] = useState([]);
-  // const [showModal, setShowModal] = useState(false);
-  // const [commentToDelete, setCommentToDelete] = useState(null);
+  const [notecomment, setNoteComment] = useState('');
+  const [notecommentError, setNoteCommentError] = useState(null);
+  const [notecomments, setNoteComments] = useState([]);
+  console.log(notecomments);
+  const [showModal, setShowModal] = useState(false);
+  const [notecommentToDelete, setNoteCommentToDelete] = useState(null);
 
   // const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (comment.length > 200) {
+    if (notecomment.length > 200) {
       return;
     }
     try {
-      const res = await fetch('/api/comment/create', {
+      const res = await fetch('/api/notecomment/createNoteComment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          content: comment,
-          noteId,
+          content: notecomment,
+          notecommentId,
           userId: currentUser._id,
         }),
       });
       const data = await res.json();
       if (res.ok) {
-        setComment('');
-        setCommentError(null);
-        // setComments([data, ...comments]);
+        setNoteComment('');
+        setNoteCommentError(null);
+        setNoteComments([data, ...notecomments]);
       }
     } catch (error) {
-      setCommentError(error.message);
+      setNoteCommentError(error.message);
     }
   };
 
-  // useEffect(() => {
-  //   const getComments = async () => {
-  //     try {
-  //       const res = await fetch(`/api/comment/getPostComments/${postId}`);
-  //       if (res.ok) {
-  //         const data = await res.json();
-  //         setComments(data);
-  //       }
-  //     } catch (error) {
-  //       console.log(error.message);
-  //     }
-  //   };
-  //   getComments();
-  // }, [postId]);
+  useEffect(() => {
+    const getNoteComments = async () => {
+      try {
+        const res = await fetch(`/api/notecomment/getNoteComments/${noteId}`);
+        if (res.ok) {
+          const data = await res.json();
+          setNoteComments(data);
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    getNoteComments();
+  }, [noteId]);
 
-  // const handleLike = async (commentId) => {
-  //   try {
-  //     if (!currentUser) {
-  //       navigate('/sign-in');
-  //       return;
-  //     }
-  //     const res = await fetch(`/api/comment/likeComment/${commentId}`, {
-  //       method: 'PUT',
-  //     });
-  //     if (res.ok) {
-  //       const data = await res.json();
-  //       setComments(
-  //         comments.map((comment) =>
-  //           comment._id === commentId
-  //             ? {
-  //                 ...comment,
-  //                 likes: data.likes,
-  //                 numberOfLikes: data.likes.length,
-  //               }
-  //             : comment
-  //         )
-  //       );
-  //     }
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
+  const handleLike = async (notecommentId) => {
+    try {
+      if (!currentUser) {
+        navigate('/sign-in');
+        return;
+      }
+      const res = await fetch(
+        `/api/notecomment/likeNoteComment/${notecommentId}`,
+        {
+          method: 'PUT',
+        }
+      );
+      if (res.ok) {
+        const data = await res.json();
+        setNoteComments(
+          notecomments.map((notecomment) =>
+            notecomment._id === notecommentId
+              ? {
+                  ...comment,
+                  likes: data.likes,
+                  numberOfLikes: data.likes.length,
+                }
+              : notecomment
+          )
+        );
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
-  // const handleEdit = async (comment, editedContent) => {
-  //   setComments(
-  //     comments.map((c) =>
-  //       c._id === comment._id ? { ...c, content: editedContent } : c
-  //     )
-  //   );
-  // };
+  const handleEdit = async (notecomment, editedContent) => {
+    setNoteComments(
+      notecomments.map((c) =>
+        c._id === notecomment._id ? { ...c, content: editedContent } : c
+      )
+    );
+  };
 
-  // const handleDelete = async (commentId) => {
-  //   setShowModal(false);
-  //   try {
-  //     if (!currentUser) {
-  //       navigate('/sign-in');
-  //       return;
-  //     }
-  //     const res = await fetch(`/api/comment/deleteComment/${commentId}`, {
-  //       method: 'DELETE',
-  //     });
-  //     if (res.ok) {
-  //       const data = await res.json();
-  //       setComments(comments.filter((comment) => comment._id !== commentId));
-  //     }
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
+  const handleDelete = async (notecommentId) => {
+    setShowModal(false);
+    try {
+      if (!currentUser) {
+        navigate('/sign-in');
+        return;
+      }
+      const res = await fetch(`/api/comment/deleteComment/${notecommentId}`, {
+        method: 'DELETE',
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setNoteComments(
+          notecomments.filter(
+            (notecomment) => notecomment._id !== notecommentId
+          )
+        );
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <div className='max-w-2xl mx-auto w-full p-3'>
       {currentUser ? (
@@ -130,7 +138,7 @@ export default function CommentSection({ noteId }) {
           </Link>
         </div>
       ) : (
-        <div className='text-sm text-teal-500 my-5 flex gap-1'>
+        <div className='text-sm text-teal-800 my-5 flex gap-1'>
           You must be signed in to comment.
           <Link className='text-blue-500 hover:underline' to={'/sign-in'}>
             Sign In
@@ -140,55 +148,55 @@ export default function CommentSection({ noteId }) {
       {currentUser && (
         <form
           onSubmit={handleSubmit}
-          className='border border-teal-600 rounded-md p-3'
+          className='border border-cyan-800 rounded-md p-3'
         >
           <Textarea
             placeholder='Add a comment...'
             rows='3'
             maxLength='200'
-            onChange={(e) => setComment(e.target.value)}
-            value={comment}
+            onChange={(e) => setNoteComment(e.target.value)}
+            value={notecomment}
           />
           <div className='flex justify-between items-center mt-5'>
             <p className='text-gray-500 text-xs'>
-              {200 - comment.length} characters remaining
+              {200 - notecomment.length} characters remaining
             </p>
             <Button outline type='submit'>
               Submit
             </Button>
           </div>
-          {commentError && (
+          {notecommentError && (
             <Alert color='failure' className='mt-5'>
-              {commentError}
+              {notecommentError}
             </Alert>
           )}
         </form>
       )}
-      {comments.length === 0 ? (
+      {notecomments.length === 0 ? (
         <p className='text-sm my-5'>No comments yet!</p>
       ) : (
         <>
           <div className='text-sm my-5 flex items-center gap-1'>
-            <p>Comments</p>
+            <p>Note Comments</p>
             <div className='border border-gray-400 py-1 px-2 rounded-sm'>
-              <p>{comments.length}</p>
+              <p>{notecomments.length}</p>
             </div>
           </div>
-          {comments.map((comment) => (
-            <Comment
-              key={comment._id}
-              comment={comment}
+          {notecomments.map((notecomment) => (
+            <NoteComment
+              key={notecomment._id}
+              notecomment={notecomment}
               onLike={handleLike}
               onEdit={handleEdit}
-              onDelete={(commentId) => {
+              onDelete={(notecommentId) => {
                 setShowModal(true);
-                setCommentToDelete(commentId);
+                setNoteCommentToDelete(notecommentId);
               }}
             />
           ))}
         </>
       )}
-      {/* <Modal
+      <Modal
         show={showModal}
         onClose={() => setShowModal(false)}
         popup
@@ -204,7 +212,7 @@ export default function CommentSection({ noteId }) {
             <div className='flex justify-center gap-4'>
               <Button
                 color='failure'
-                onClick={() => handleDelete(commentToDelete)}
+                onClick={() => handleDelete(notecommentToDelete)}
               >
                 Yes, I'm sure
               </Button>
@@ -214,7 +222,7 @@ export default function CommentSection({ noteId }) {
             </div>
           </div>
         </Modal.Body>
-      </Modal> */}
+      </Modal>
     </div>
   );
 }
