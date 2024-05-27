@@ -129,13 +129,13 @@ export default function NoteComment({ notecomment, onLike, onEdit, onDelete }) {
                     >
                       Edit
                     </button>
-                    <button
+                    {/* <button
                       type='button'
                       onClick={() => onDelete(notecomment._id)}
                       className='text-gray-400 hover:text-red-500'
                     >
                       Delete
-                    </button>
+                    </button> */}
                   </>
                 )}
             </div>

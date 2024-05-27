@@ -134,13 +134,13 @@ export default function RecordComment({
                     >
                       Edit
                     </button>
-                    <button
+                    {/* <button
                       type='button'
                       onClick={() => onDelete(recordcomment._id)}
                       className='text-gray-400 hover:text-red-500'
                     >
                       Delete
-                    </button>
+                    </button> */}
                   </>
                 )}
             </div>

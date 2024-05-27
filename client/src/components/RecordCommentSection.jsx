@@ -6,16 +6,16 @@ import RecordComment from './RecordComment';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
 
 //add citation ID
-export default function RecordCommentSection({ recordId }) {
+export default function RecordCommentSection({ recordcommentId }) {
   const { currentUser } = useSelector((state) => state.user);
   const [recordcomment, setRecordComment] = useState('');
   const [recordcommentError, setRecordCommentError] = useState(null);
   const [recordcomments, setRecordComments] = useState([]);
-  console.log(recordcomments);
+  //console.log(recordcomments);
   const [showModal, setShowModal] = useState(false);
   const [recordcommentToDelete, setRecordCommentToDelete] = useState(null);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (recordcomment.length > 200) {
@@ -29,7 +29,7 @@ export default function RecordCommentSection({ recordId }) {
         },
         body: JSON.stringify({
           content: recordcomment,
-          recordId,
+          recordcommentId,
           userId: currentUser._id,
         }),
       });
@@ -48,7 +48,7 @@ export default function RecordCommentSection({ recordId }) {
     const getRecordComments = async () => {
       try {
         const res = await fetch(
-          `/api/recordcomment/getRecordComments/${recordId}`
+          `/api/recordcomment/getRecordComments/${recordcommentId}`
         );
         if (res.ok) {
           const data = await res.json();
@@ -59,7 +59,7 @@ export default function RecordCommentSection({ recordId }) {
       }
     };
     getRecordComments();
-  }, [recordId]);
+  }, [recordcommentId]);
 
   const handleLike = async (recordcommentId) => {
     try {
@@ -67,9 +67,12 @@ export default function RecordCommentSection({ recordId }) {
         navigate('/sign-in');
         return;
       }
-      const res = await fetch(`/api/comment/likeComment/${recordcommentId}`, {
-        method: 'PUT',
-      });
+      const res = await fetch(
+        `/api/recordcomment/likeRecordComment/${recordcommentId}`,
+        {
+          method: 'PUT',
+        }
+      );
       if (res.ok) {
         const data = await res.json();
         setRecordComments(
@@ -110,7 +113,9 @@ export default function RecordCommentSection({ recordId }) {
       if (res.ok) {
         const data = await res.json();
         setRecordComments(
-          comments.filter((comment) => comment._id !== recordcommentId)
+          recordcomments.filter(
+            (recordcomment) => recordcomment._id !== recordcommentId
+          )
         );
       }
     } catch (error) {
@@ -185,10 +190,10 @@ export default function RecordCommentSection({ recordId }) {
               recordcomment={recordcomment}
               onLike={handleLike}
               onEdit={handleEdit}
-              onDelete={(recordcommentId) => {
-                setShowModal(true);
-                setRecordCommentToDelete(recordcommentId);
-              }}
+              // onDelete={(recordcommentId) => {
+              //   setShowModal(true);
+              //   setRecordCommentToDelete(recordcommentId);
+              // }}
             />
           ))}
         </>
@@ -209,7 +214,7 @@ export default function RecordCommentSection({ recordId }) {
             <div className='flex justify-center gap-4'>
               <Button
                 color='failure'
-                onClick={() => handleDelete(commentToDelete)}
+                onClick={() => handleDelete(recordcommentToDelete)}
               >
                 Yes, I'm sure
               </Button>

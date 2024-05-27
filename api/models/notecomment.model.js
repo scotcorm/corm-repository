@@ -26,6 +26,6 @@ const notecommentSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const NoteComment = mongoose.model('Notecomment', notecommentSchema);
+const NoteComment = mongoose.model('NoteComment', notecommentSchema);
 
 export default NoteComment;

@@ -3,7 +3,7 @@ import { verifyToken } from '../utils/verifyUser.js';
 import {
   createNoteComment,
   // deleteComment,
-  // editComment,
+  editNoteComment,
   getNoteComments,
   // getcomments,
   likeNoteComment,
@@ -14,7 +14,7 @@ const router = express.Router();
 router.post('/createNoteComment', verifyToken, createNoteComment);
 router.get('/getNoteComments/:noteId', getNoteComments);
 router.put('/likeNoteComment/:notecommentId', verifyToken, likeNoteComment);
-// router.put('/editComment/:commentId', verifyToken, editComment);
+router.put('/editNoteComment/:notecommentId', verifyToken, editNoteComment);
 // router.delete('/deleteComment/:commentId', verifyToken, deleteComment);
 // router.get('/getcomments', verifyToken, getcomments);
 

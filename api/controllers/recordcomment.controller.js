@@ -2,7 +2,7 @@ import RecordComment from '../models/recordcomment.model.js';
 
 export const createRecordComment = async (req, res, next) => {
   try {
-    const { content, recordId, userId } = req.body;
+    const { content, recordcommentId, userId } = req.body;
 
     if (userId !== req.user.id) {
       return next(
@@ -12,7 +12,7 @@ export const createRecordComment = async (req, res, next) => {
 
     const newRecordComment = new RecordComment({
       content,
-      recordId,
+      recordcommentId,
       userId,
     });
     await newRecordComment.save();
@@ -26,7 +26,7 @@ export const createRecordComment = async (req, res, next) => {
 export const getRecordComments = async (req, res, next) => {
   try {
     const recordcomments = await RecordComment.find({
-      recordId: req.params.recordId,
+      recordcommentId: req.params.recordcommentId,
     }).sort({
       createdAt: -1,
     });
@@ -59,34 +59,35 @@ export const likeRecordComment = async (req, res, next) => {
   }
 };
 
-// export const editRecordComment = async (req, res, next) => {
-//   try {
-//     const comment = await Comment.findById(req.params.commentId);
-//     if (!comment) {
-//       return next(errorHandler(404, 'Comment not found'));
-//     }
-//     if (comment.userId !== req.user.id && !req.user.isAdmin) {
-//       return next(
-//         errorHandler(403, 'You are not allowed to edit this comment')
-//       );
-//     }
+export const editRecordComment = async (req, res, next) => {
+  try {
+    const recordcomment = await RecordComment.findById(
+      req.params.recordcommentId
+    );
+    if (!recordcomment) {
+      return next(errorHandler(404, 'Record Comment not found'));
+    }
+    if (recordcomment.userId !== req.user.id && !req.user.isAdmin) {
+      return next();
+      errorHandler(403, 'You are not allowed to edit this comment');
+    }
 
-//     const editedRecordComment = await Comment.findByIdAndUpdate(
-//       req.params.commentId,
-//       {
-//         content: req.body.content,
-//       },
-//       { new: true }
-//     );
-//     res.status(200).json(editedComment);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+    const editedRecordComment = await RecordComment.findByIdAndUpdate(
+      req.params.recordcommentId,
+      {
+        content: req.body.content,
+      },
+      { new: true }
+    );
+    res.status(200).json(editedRecordComment);
+  } catch (error) {
+    next(error);
+  }
+};
 
 // export const deleteRecordComment = async (req, res, next) => {
 //   try {
-//     const comment = await Comment.findById(req.params.recordId);
+//     const comment = await Comment.findById(req.params.recordcommentId);
 //     if (!comment) {
 //       return next(errorHandler(404, 'Comment not found'));
 //     }
@@ -95,7 +96,7 @@ export const likeRecordComment = async (req, res, next) => {
 //         errorHandler(403, 'You are not allowed to delete this comment')
 //       );
 //     }
-//     await Comment.findByIdAndDelete(req.params.recordId);
+//     await Comment.findByIdAndDelete(req.params.recordcommentId);
 //     res.status(200).json('Comment has been deleted');
 //   } catch (error) {
 //     next(error);

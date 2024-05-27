@@ -6,7 +6,7 @@ import NoteComment from './NoteComment';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
 
 //add citation ID
-export default function NoteCommentSection({ noteId }) {
+export default function NoteCommentSection({ notecommentId }) {
   const { currentUser } = useSelector((state) => state.user);
   const [notecomment, setNoteComment] = useState('');
   const [notecommentError, setNoteCommentError] = useState(null);
@@ -15,7 +15,7 @@ export default function NoteCommentSection({ noteId }) {
   const [showModal, setShowModal] = useState(false);
   const [notecommentToDelete, setNoteCommentToDelete] = useState(null);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (notecomment.length > 200) {
@@ -77,7 +77,7 @@ export default function NoteCommentSection({ noteId }) {
           notecomments.map((notecomment) =>
             notecomment._id === notecommentId
               ? {
-                  ...comment,
+                  ...notecomment,
                   likes: data.likes,
                   numberOfLikes: data.likes.length,
                 }
@@ -188,10 +188,10 @@ export default function NoteCommentSection({ noteId }) {
               notecomment={notecomment}
               onLike={handleLike}
               onEdit={handleEdit}
-              onDelete={(notecommentId) => {
-                setShowModal(true);
-                setNoteCommentToDelete(notecommentId);
-              }}
+              // onDelete={(notecommentId) => {
+              //   setShowModal(true);
+              //   setNoteCommentToDelete(notecommentId);
+              // }}
             />
           ))}
         </>
