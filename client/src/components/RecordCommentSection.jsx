@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button, Textarea } from 'flowbite-react';
-import { useState } from 'react';
+import RecordComment from './RecordComment';
 
 export default function RecordCommentSection({ recordId }) {
   const { currentUser } = useSelector((state) => state.user);
   const [recordcomment, setRecordComment] = useState('');
   const [recordcommentError, setRecordCommentError] = useState(null);
+  const [recordcomments, setRecordComments] = useState([]);
+  console.log(recordcomments);
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (recordcomment.length > 200) {
@@ -29,11 +31,29 @@ export default function RecordCommentSection({ recordId }) {
       if (res.ok) {
         setRecordComment('');
         setRecordCommentError(null);
+        setRecordComments([data, ...recordcomments]);
       }
     } catch (error) {
       setRecordCommentError(error.message);
     }
   };
+
+  useEffect(() => {
+    const getRecordComments = async () => {
+      try {
+        const res = await fetch(
+          `/api/recordcomment/getRecordComments/${recordId}`
+        );
+        if (res.ok) {
+          const data = await res.json();
+          setRecordComments(data);
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    getRecordComments();
+  }, [recordId]);
 
   return (
     <div className='max-w-2xl mx-auto w-full p-3'>
@@ -86,6 +106,31 @@ export default function RecordCommentSection({ recordId }) {
             </Alert>
           )}
         </form>
+      )}
+      {recordcomments.length === 0 ? (
+        <p className='text-sm my-5'>No record comments yet!</p>
+      ) : (
+        <>
+          <div className='text-sm my-5 flex items-center gap-1'>
+            <p>Comments</p>
+            <div className='border border-gray-400 py-1 px-2 rounded-sm'>
+              <p>{recordcomments.length}</p>
+            </div>
+          </div>
+
+          {recordcomments.map((recordcomment) => (
+            <RecordComment
+              key={recordcomment._id}
+              recordcomment={recordcomment}
+              // onLike={handleLike}
+              // onEdit={handleEdit}
+              // onDelete={(commentId) => {
+              //   setShowModal(true);
+              //   setCommentToDelete(commentId);
+              // }}
+            />
+          ))}
+        </>
       )}
     </div>
   );

@@ -1,6 +1,9 @@
 import express from 'express';
 import { verifyToken } from '../utils/verifyUser.js';
-import { createRecordComment } from '../controllers/recordcomment.controller.js';
+import {
+  createRecordComment,
+  getRecordComments,
+} from '../controllers/recordcomment.controller.js';
 //import {
 //createRecordComment,
 // deleteComment,
@@ -15,7 +18,7 @@ const router = express.Router();
 router.post('/create', verifyToken, createRecordComment);
 
 // router.post('/createRecordComment', verifyToken, createRecordComment);
-// router.get('/getRecordComments/:recordId', getRecordComments);
+router.get('/getRecordComments/:recordId', getRecordComments);
 // router.put(
 //   '/likeRecordComment/:recordcommentId',
 //   verifyToken,
