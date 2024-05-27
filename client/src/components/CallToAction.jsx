@@ -13,13 +13,8 @@ export default function CallToAction() {
           I made this part with an intersting library- check it out!
         </p>
 
-        <Button outline color='gray' className='rounded-br-none mt-5'>
-          <a
-            href='#'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='text-cyan-800'
-          >
+        <Button outline className='rounded-br-none mt-5'>
+          <a href='#' target='_blank' rel='noopener noreferrer'>
             Their name docs page
           </a>
         </Button>

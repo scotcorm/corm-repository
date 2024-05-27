@@ -23,6 +23,7 @@ const recordcommentSchema = new mongoose.Schema(
       default: 0,
     },
   },
+
   { timestamps: true }
 );
 
