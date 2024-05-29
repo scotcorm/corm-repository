@@ -3,6 +3,7 @@ import { verifyToken } from '../utils/verifyUser.js';
 import {
   createRecordComment,
   getRecordComments,
+  likeRecordComment,
 } from '../controllers/recordcomment.controller.js';
 //import {
 //createRecordComment,
@@ -19,11 +20,11 @@ router.post('/create', verifyToken, createRecordComment);
 
 // router.post('/createRecordComment', verifyToken, createRecordComment);
 router.get('/getRecordComments/:recordId', getRecordComments);
-// router.put(
-//   '/likeRecordComment/:recordcommentId',
-//   verifyToken,
-//   likeRecordComment
-// );
+router.put(
+  '/likeRecordComment/:recordcommentId',
+  verifyToken,
+  likeRecordComment
+);
 // router.put(
 //   '/editRecordComment/:recordcommentId',
 //   verifyToken,

@@ -53,28 +53,28 @@ export const getRecordComments = async (req, res, next) => {
   }
 };
 
-// export const likeRecordComment = async (req, res, next) => {
-//   try {
-//     const recordcomment = await RecordComment.findById(
-//       req.params.recordcommentId
-//     );
-//     if (!recordcomment) {
-//       return next(errorHandler(404, 'Comment not found'));
-//     }
-//     const userIndex = recordcomment.likes.indexOf(req.user.id);
-//     if (userIndex === -1) {
-//       recordcomment.numberOfLikes += 1;
-//       recordcomment.likes.push(req.user.id);
-//     } else {
-//       recordcomment.numberOfLikes -= 1;
-//       recordcomment.likes.splice(userIndex, 1);
-//     }
-//     await recordcomment.save();
-//     res.status(200).json(recordcomment);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+export const likeRecordComment = async (req, res, next) => {
+  try {
+    const recordcomment = await RecordComment.findById(
+      req.params.recordcommentId
+    );
+    if (!recordcomment) {
+      return next(errorHandler(404, 'Record Comment not found'));
+    }
+    const userIndex = recordcomment.likes.indexOf(req.user.id);
+    if (userIndex === -1) {
+      recordcomment.numberOfLikes += 1;
+      recordcomment.likes.push(req.user.id);
+    } else {
+      recordcomment.numberOfLikes -= 1;
+      recordcomment.likes.splice(userIndex, 1);
+    }
+    await recordcomment.save();
+    res.status(200).json(recordcomment);
+  } catch (error) {
+    next(error);
+  }
+};
 // export const editRecordComment = async (req, res, next) => {
 //   try {
 //     const recordcomment = await RecordComment.findById(

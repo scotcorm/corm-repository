@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button, Textarea } from 'flowbite-react';
 import RecordComment from './RecordComment';
 
@@ -9,7 +9,9 @@ export default function RecordCommentSection({ recordId }) {
   const [recordcomment, setRecordComment] = useState('');
   const [recordcommentError, setRecordCommentError] = useState(null);
   const [recordcomments, setRecordComments] = useState([]);
-  console.log(recordcomments);
+  const navigate = useNavigate();
+
+  // console.log(recordcomments);
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (recordcomment.length > 200) {
@@ -54,6 +56,37 @@ export default function RecordCommentSection({ recordId }) {
     };
     getRecordComments();
   }, [recordId]);
+
+  const handleLike = async (recordcommentId) => {
+    try {
+      if (!currentUser) {
+        navigate('/sign-in');
+        return;
+      }
+      const res = await fetch(
+        `/api/recordcomment/likeRecordComment/${recordcommentId}`,
+        {
+          method: 'PUT',
+        }
+      );
+      if (res.ok) {
+        const data = await res.json();
+        setRecordComments(
+          recordcomments.map((recordcomment) =>
+            recordcomment._id === recordcommentId
+              ? {
+                  ...recordcomment,
+                  likes: data.likes,
+                  numberOfLikes: data.likes.length,
+                }
+              : recordcomment
+          )
+        );
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <div className='max-w-2xl mx-auto w-full p-3'>
@@ -122,7 +155,7 @@ export default function RecordCommentSection({ recordId }) {
             <RecordComment
               key={recordcomment._id}
               recordcomment={recordcomment}
-              // onLike={handleLike}
+              onLike={handleLike}
               // onEdit={handleEdit}
               // onDelete={(commentId) => {
               //   setShowModal(true);
