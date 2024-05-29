@@ -88,6 +88,14 @@ export default function RecordCommentSection({ recordId }) {
     }
   };
 
+  const handleEdit = async (recordcomment, editedContent) => {
+    setRecordComments(
+      recordcomments.map((c) =>
+        c._id === recordcomment._id ? { ...c, content: editedContent } : c
+      )
+    );
+  };
+
   return (
     <div className='max-w-2xl mx-auto w-full p-3'>
       {currentUser ? (
@@ -156,7 +164,7 @@ export default function RecordCommentSection({ recordId }) {
               key={recordcomment._id}
               recordcomment={recordcomment}
               onLike={handleLike}
-              // onEdit={handleEdit}
+              onEdit={handleEdit}
               // onDelete={(commentId) => {
               //   setShowModal(true);
               //   setCommentToDelete(commentId);

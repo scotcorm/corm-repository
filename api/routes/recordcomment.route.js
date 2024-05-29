@@ -2,6 +2,7 @@ import express from 'express';
 import { verifyToken } from '../utils/verifyUser.js';
 import {
   createRecordComment,
+  editRecordComment,
   getRecordComments,
   likeRecordComment,
 } from '../controllers/recordcomment.controller.js';
@@ -25,11 +26,13 @@ router.put(
   verifyToken,
   likeRecordComment
 );
-// router.put(
-//   '/editRecordComment/:recordcommentId',
-//   verifyToken,
-//   editRecordComment
-// );
+router.put(
+  '/editRecordComment/:recordcommentId',
+  verifyToken,
+  editRecordComment
+);
+// first create route, then function in controller then import at top, then once route is done add to frontend ==============
+
 // router.delete('/deleteRecordComment/:commentId', verifyToken, deleteRecordComment);
 // router.get('/getRecordcomments', verifyToken, getrecordcomments);
 
