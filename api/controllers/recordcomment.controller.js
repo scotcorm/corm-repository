@@ -1,26 +1,6 @@
 import RecordComment from '../models/recordcomment.model.js';
 
 export const createRecordComment = async (req, res, next) => {
-  // try {
-  //   const { content, recordId, userId } = req.body;
-  //   if (userId !== req.user.id) {
-  //     return next(
-  //       errorHandler(403, 'You are not allowed to create this comment')
-  //     );
-  //   }
-
-  //   const newRecordComment = new RecordComment({
-  //     content,
-  //     recordId,
-  //     userId,
-  //   });
-  //   await newRecordComment.save();
-
-  //   res.status(200).json(newRecordComment);
-  // } catch (error) {
-  //   next(error);
-  // }
-
   try {
     const { content, recordId, userId } = req.body;
     if (userId !== req.user.id) {
@@ -84,8 +64,9 @@ export const editRecordComment = async (req, res, next) => {
       return next(errorHandler(404, 'Record Comment not found'));
     }
     if (recordcomment.userId !== req.user.id && !req.user.isAdmin) {
-      return next();
-      errorHandler(403, 'You are not allowed to edit this comment');
+      return next(
+        errorHandler(403, 'You are not allowed to edit this comment')
+      );
     }
     const editedRecordComment = await RecordComment.findByIdAndUpdate(
       req.params.recordcommentId,
