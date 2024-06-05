@@ -99,23 +99,25 @@ export const editRecordComment = async (req, res, next) => {
     next(error);
   }
 };
-// export const deleteRecordComment = async (req, res, next) => {
-//   try {
-//     const comment = await Comment.findById(req.params.recordcommentId);
-//     if (!comment) {
-//       return next(errorHandler(404, 'Comment not found'));
-//     }
-//     if (comment.userId !== req.user.id && !req.user.isAdmin) {
-//       return next(
-//         errorHandler(403, 'You are not allowed to delete this comment')
-//       );
-//     }
-//     await Comment.findByIdAndDelete(req.params.recordcommentId);
-//     res.status(200).json('Comment has been deleted');
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+export const deleteRecordComment = async (req, res, next) => {
+  try {
+    const recordcomment = await RecordComment.findById(
+      req.params.recordcommentId
+    );
+    if (!recordcomment) {
+      return next(errorHandler(404, 'Record Comment not found'));
+    }
+    if (recordcomment.userId !== req.user.id && !req.user.isAdmin) {
+      return next(
+        errorHandler(403, 'You are not allowed to delete this record comment')
+      );
+    }
+    await RecordComment.findByIdAndDelete(req.params.recordcommentId);
+    res.status(200).json('Record Comment has been deleted');
+  } catch (error) {
+    next(error);
+  }
+};
 // export const getcomments = async (req, res, next) => {
 //   if (!req.user.isAdmin)
 //     return next(errorHandler(403, 'You are not allowed to get all comments'));

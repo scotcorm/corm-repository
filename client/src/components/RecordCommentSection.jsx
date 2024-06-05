@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { Button, Textarea } from 'flowbite-react';
+import { Alert, Button, Modal, TextInput, Textarea } from 'flowbite-react';
 import RecordComment from './RecordComment';
+import { HiOutlineExclamationCircle } from 'react-icons/hi';
 
 export default function RecordCommentSection({ recordId }) {
   const { currentUser } = useSelector((state) => state.user);
@@ -10,6 +11,8 @@ export default function RecordCommentSection({ recordId }) {
   const [recordcommentError, setRecordCommentError] = useState(null);
   const [recordcomments, setRecordComments] = useState([]);
   const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  const [recordcommentToDelete, setRecordCommentToDelete] = useState(null);
 
   // console.log(recordcomments);
   const handleSubmit = async (e) => {
@@ -57,14 +60,14 @@ export default function RecordCommentSection({ recordId }) {
     getRecordComments();
   }, [recordId]);
 
-  const handleLike = async (recordcommentId) => {
+  const handleLike = async (recordId) => {
     try {
       if (!currentUser) {
         navigate('/sign-in');
         return;
       }
       const res = await fetch(
-        `/api/recordcomment/likeRecordComment/${recordcommentId}`,
+        `/api/recordcomment/likeRecordComment/${recordId}`,
         {
           method: 'PUT',
         }
@@ -73,7 +76,7 @@ export default function RecordCommentSection({ recordId }) {
         const data = await res.json();
         setRecordComments(
           recordcomments.map((recordcomment) =>
-            recordcomment._id === recordcommentId
+            recordcomment._id === recordId
               ? {
                   ...recordcomment,
                   likes: data.likes,
@@ -94,6 +97,32 @@ export default function RecordCommentSection({ recordId }) {
         c._id === recordcomment._id ? { ...c, content: editedContent } : c
       )
     );
+  };
+
+  const handleDelete = async (recordId) => {
+    setShowModal(false);
+    try {
+      if (!currentUser) {
+        navigate('/sign-in');
+        return;
+      }
+      const res = await fetch(
+        `/api/recordcomment/deleteRecordComment/${recordId}`,
+        {
+          method: 'DELETE',
+        }
+      );
+      if (res.ok) {
+        const data = await res.json();
+        setRecordComments(
+          recordcomments.filter(
+            (recordcomment) => recordcomment._id !== recordId
+          )
+        );
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -165,14 +194,42 @@ export default function RecordCommentSection({ recordId }) {
               recordcomment={recordcomment}
               onLike={handleLike}
               onEdit={handleEdit}
-              // onDelete={(commentId) => {
-              //   setShowModal(true);
-              //   setCommentToDelete(commentId);
-              // }}
+              onDelete={(recordId) => {
+                setShowModal(true);
+                setRecordCommentToDelete(recordId);
+              }}
             />
           ))}
         </>
       )}
+
+      <Modal
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        popup
+        size='md'
+      >
+        <Modal.Header />
+        <Modal.Body>
+          <div className='text-center'>
+            <HiOutlineExclamationCircle className='h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto' />
+            <h3 className='mb-5 text-lg text-gray-500 dark:text-gray-400'>
+              Are you sure you want to delete this record comment?
+            </h3>
+            <div className='flex justify-center gap-4'>
+              <Button
+                color='failure'
+                onClick={() => handleDelete(recordcommentToDelete)}
+              >
+                Yes, I'm sure
+              </Button>
+              <Button color='gray' onClick={() => setShowModal(false)}>
+                No, cancel
+              </Button>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }

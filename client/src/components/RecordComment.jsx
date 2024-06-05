@@ -4,7 +4,12 @@ import { FaThumbsUp } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { Button, Textarea } from 'flowbite-react';
 
-export default function RecordComment({ recordcomment, onLike, onEdit }) {
+export default function RecordComment({
+  recordcomment,
+  onLike,
+  onEdit,
+  onDelete,
+}) {
   const [user, setUser] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(recordcomment.content);
@@ -123,13 +128,22 @@ export default function RecordComment({ recordcomment, onLike, onEdit }) {
               {currentUser &&
                 (currentUser._id === recordcomment.userId ||
                   currentUser.isAdmin) && (
-                  <button
-                    type='button'
-                    onClick={handleEdit}
-                    className='text-gray-400 hover:text-blue-500'
-                  >
-                    Edit
-                  </button>
+                  <>
+                    <button
+                      type='button'
+                      onClick={handleEdit}
+                      className='text-gray-400 hover:text-blue-500'
+                    >
+                      Edit
+                    </button>
+                    <button
+                      type='button'
+                      onClick={() => onDelete(recordcomment._id)}
+                      className='text-gray-400 hover:text-red-500'
+                    >
+                      Delete
+                    </button>
+                  </>
                 )}
             </div>
           </>
