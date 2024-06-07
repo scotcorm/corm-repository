@@ -1,40 +1,40 @@
 import NoteComment from '../models/notecomment.model.js';
 
-// export const createNoteComment = async (req, res, next) => {
-//   try {
-//     const { content, noteId, userId } = req.body;
+export const createNoteComment = async (req, res, next) => {
+  try {
+    const { content, noteId, userId } = req.body;
 
-//     if (userId !== req.user.id) {
-//       return next(
-//         errorHandler(403, 'You are not allowed to create this comment')
-//       );
-//     }
+    if (userId !== req.user.id) {
+      return next(
+        errorHandler(403, 'You are not allowed to create this comment')
+      );
+    }
 
-//     const newNoteComment = new NoteComment({
-//       content,
-//       noteId,
-//       userId,
-//     });
-//     await newNoteComment.save();
+    const newNoteComment = new NoteComment({
+      content,
+      noteId,
+      userId,
+    });
+    await newNoteComment.save();
 
-//     res.status(200).json(newNoteComment);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+    res.status(200).json(newNoteComment);
+  } catch (error) {
+    next(error);
+  }
+};
 
-// export const getNoteComments = async (req, res, next) => {
-//   try {
-//     const notecomments = await NoteComment.find({
-//       notecommentId: req.params.noteId,
-//     }).sort({
-//       createdAt: -1,
-//     });
-//     res.status(200).json(notecomments);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+export const getNoteComments = async (req, res, next) => {
+  try {
+    const notecomments = await NoteComment.find({
+      notecommentId: req.params.noteId,
+    }).sort({
+      createdAt: -1,
+    });
+    res.status(200).json(notecomments);
+  } catch (error) {
+    next(error);
+  }
+};
 
 // export const likeNoteComment = async (req, res, next) => {
 //   try {

@@ -2,8 +2,8 @@ import { Button, Spinner } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import CallToAction from '../components/CallToAction';
-
 import NoteCommentSection from '../components/NoteCommentSection';
+
 // import NoteCard from '../components/NoteCard';
 
 export default function NotePage() {
@@ -13,7 +13,7 @@ export default function NotePage() {
   const [note, setNote] = useState(null);
   // const [recentNotes, setRecentNotes] = useStateNote
   useEffect(() => {
-    console.log(noteSlug);
+    //console.log(noteSlug);
     const fetchNote = async () => {
       try {
         setLoading(true);
@@ -64,14 +64,14 @@ export default function NotePage() {
       <h1 className='text-3xl mt-10 p-3 text-center font-serif max-w-2xl mx-auto lg:text-4xl'>
         {note && note.title}
       </h1>
-      <Link
-        to={`/search?category=${note && note.category}`}
+      {/* <Link
+        to={`/search?license=${note && note.category}`}
         className='self-center mt-5'
       >
         <Button color='gray' pill size='xs'>
-          {note && note.category}
+          {note && note.license}
         </Button>
-      </Link>
+      </Link> */}
       <img
         src={note && note.image}
         alt={note && note.title}
@@ -90,16 +90,17 @@ export default function NotePage() {
       <div className='max-w-3xl mx-auto w-full'>
         <CallToAction />
       </div>
-      <NoteCommentSection noteId={note._id} />
+      {/* <NoteCommentSection noteId={note._id} /> */}
+      <NoteCommentSection />
 
       <div className='flex flex-col justify-center items-center mb-5'>
         <h1 className='text-xl mt-5'>Recent articles</h1>
-        {/* <div className='flex flex-wrap gap-5 mt-5 justify-center'>
-          {recentNotes &&
+        <div className='flex flex-wrap gap-5 mt-5 justify-center'>
+          {/* {recentNotes &&
             recentNotes.map((note) => (
               <NoteCard key={note._id} note={note} />
-            ))}
-        </div> */}
+            ))} */}
+        </div>
       </div>
     </main>
   );
