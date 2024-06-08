@@ -11,9 +11,9 @@ export default function NotePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [note, setNote] = useState(null);
-  // const [recentNotes, setRecentNotes] = useStateNote
+  //const [recentNotes, setRecentNotes] = useStateNote;
   useEffect(() => {
-    //console.log(noteSlug);
+    console.log(noteSlug);
     const fetchNote = async () => {
       try {
         setLoading(true);
@@ -90,8 +90,8 @@ export default function NotePage() {
       <div className='max-w-3xl mx-auto w-full'>
         <CallToAction />
       </div>
-      {/* <NoteCommentSection noteId={note._id} /> */}
-      <NoteCommentSection />
+      <NoteCommentSection noteId={note._id} />
+      {/* <NoteCommentSection /> */}
 
       <div className='flex flex-col justify-center items-center mb-5'>
         <h1 className='text-xl mt-5'>Recent articles</h1>

@@ -5,14 +5,14 @@ import { Alert, Button, Modal, TextInput, Textarea } from 'flowbite-react';
 import NoteComment from './NoteComment';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
 
-export default function NoteCommentSection(noteId) {
+export default function NoteCommentSection({ noteId }) {
   const { currentUser } = useSelector((state) => state.user);
   const [notecomment, setNoteComment] = useState('');
   const [notecommentError, setNoteCommentError] = useState(null);
   const [notecomments, setNoteComments] = useState([]);
-  // const navigate = useNavigate();
-  // const [showModal, setShowModal] = useState(false);
-  // const [notecommentToDelete, setNoteCommentToDelete] = useState(null);
+  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  const [notecommentToDelete, setNoteCommentToDelete] = useState(null);
 
   //console.log(notecomments);
   const handleSubmit = async (e) => {
@@ -21,7 +21,7 @@ export default function NoteCommentSection(noteId) {
       return;
     }
     try {
-      const res = await fetch('/api/notecomment/create', {
+      const res = await fetch('/api/notecomment/createNoteComment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -58,70 +58,62 @@ export default function NoteCommentSection(noteId) {
     getNoteComments();
   }, [noteId]);
 
-  // const handleLike = async (noteId) => {
-  //   try {
-  //     if (!currentUser) {
-  //       navigate('/sign-in');
-  //       return;
-  //     }
-  //     const res = await fetch(
-  //       `/api/notecomment/likeNoteComment/${noteId}`,
-  //       {
-  //         method: 'PUT',
-  //       }
-  //     );
-  //     if (res.ok) {
-  //       const data = await res.json();
-  //       setNoteComments(
-  //         notecomments.map((notecomment) =>
-  //           notecomment._id === noteId
-  //             ? {
-  //                 ...notecomment,
-  //                 likes: data.likes,
-  //                 numberOfLikes: data.likes.length,
-  //               }
-  //             : notecomment
-  //         )
-  //       );
-  //     }
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
+  const handleLike = async (noteId) => {
+    try {
+      if (!currentUser) {
+        navigate('/sign-in');
+        return;
+      }
+      const res = await fetch(`/api/notecomment/likeNoteComment/${noteId}`, {
+        method: 'PUT',
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setNoteComments(
+          notecomments.map((notecomment) =>
+            notecomment._id === noteId
+              ? {
+                  ...notecomment,
+                  likes: data.likes,
+                  numberOfLikes: data.likes.length,
+                }
+              : notecomment
+          )
+        );
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
-  // const handleEdit = async (notecomment, editedContent) => {
-  //   setNoteComments(
-  //     notecomments.map((c) =>
-  //       c._id === notecomment._id ? { ...c, content: editedContent } : c
-  //     )
-  //   );
-  // };
+  const handleEdit = async (notecomment, editedContent) => {
+    setNoteComments(
+      notecomments.map((c) =>
+        c._id === notecomment._id ? { ...c, content: editedContent } : c
+      )
+    );
+  };
 
-  // const handleDelete = async (noteId) => {
-  //   setShowModal(false);
-  //   try {
-  //     if (!currentUser) {
-  //       navigate('/sign-in');
-  //       return;
-  //     }
-  //     const res = await fetch(
-  //       `/api/notecomment/deleteNoteComment/${noteId}`,
-  //       {
-  //         method: 'DELETE',
-  //       }
-  //     );
-  //     if (res.ok) {
-  //       const data = await res.json();
-  //       setNoteComments(
-  //         notecomments.filter(
-  //           (notecomment) => notecomment._id !== noteId
-  //         )
-  //       );
-  //     }
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
+  const handleDelete = async (noteId) => {
+    setShowModal(false);
+    try {
+      if (!currentUser) {
+        navigate('/sign-in');
+        return;
+      }
+      const res = await fetch(`/api/notecomment/deleteNoteComment/${noteId}`, {
+        method: 'DELETE',
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setNoteComments(
+          notecomments.filter((notecomment) => notecomment._id !== noteId)
+        );
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <div className='max-w-2xl mx-auto w-full p-3'>
@@ -200,7 +192,7 @@ export default function NoteCommentSection(noteId) {
           ))}
         </>
       )}
-      {/* <Modal
+      <Modal
         show={showModal}
         onClose={() => setShowModal(false)}
         popup
@@ -226,7 +218,7 @@ export default function NoteCommentSection(noteId) {
             </div>
           </div>
         </Modal.Body>
-      </Modal> */}
+      </Modal>
     </div>
   );
 }

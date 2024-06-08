@@ -6,7 +6,7 @@ export const createNoteComment = async (req, res, next) => {
 
     if (userId !== req.user.id) {
       return next(
-        errorHandler(403, 'You are not allowed to create this comment')
+        errorHandler(403, 'You are not allowed to create this Note comment')
       );
     }
 
@@ -26,7 +26,7 @@ export const createNoteComment = async (req, res, next) => {
 export const getNoteComments = async (req, res, next) => {
   try {
     const notecomments = await NoteComment.find({
-      notecommentId: req.params.noteId,
+      noteId: req.params.noteId,
     }).sort({
       createdAt: -1,
     });
@@ -36,69 +36,69 @@ export const getNoteComments = async (req, res, next) => {
   }
 };
 
-// export const likeNoteComment = async (req, res, next) => {
-//   try {
-//     const notecomment = await NoteComment.findById(req.params.notecommentId);
-//     if (!notecomment) {
-//       return next(errorHandler(404, 'Comment not found'));
-//     }
-//     const userIndex = notecomment.likes.indexOf(req.user.id);
-//     if (userIndex === -1) {
-//       notecomment.numberOfLikes += 1;
-//       notecomment.likes.push(req.user.id);
-//     } else {
-//       notecomment.numberOfLikes -= 1;
-//       notecomment.likes.splice(userIndex, 1);
-//     }
-//     await notecomment.save();
-//     res.status(200).json(notecomment);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+export const likeNoteComment = async (req, res, next) => {
+  try {
+    const notecomment = await NoteComment.findById(req.params.notecommentId);
+    if (!notecomment) {
+      return next(errorHandler(404, 'Comment not found'));
+    }
+    const userIndex = notecomment.likes.indexOf(req.user.id);
+    if (userIndex === -1) {
+      notecomment.numberOfLikes += 1;
+      notecomment.likes.push(req.user.id);
+    } else {
+      notecomment.numberOfLikes -= 1;
+      notecomment.likes.splice(userIndex, 1);
+    }
+    await notecomment.save();
+    res.status(200).json(notecomment);
+  } catch (error) {
+    next(error);
+  }
+};
 
-// export const editNoteComment = async (req, res, next) => {
-//   try {
-//     const notecomment = await NoteComment.findById(req.params.notecommentId);
-//     if (!notecomment) {
-//       return next(errorHandler(404, 'Note Comment not found'));
-//     }
-//     if (notecomment.userId !== req.user.id && !req.user.isAdmin) {
-//       return next(
-//         errorHandler(403, 'You are not allowed to edit this comment')
-//       );
-//     }
+export const editNoteComment = async (req, res, next) => {
+  try {
+    const notecomment = await NoteComment.findById(req.params.notecommentId);
+    if (!notecomment) {
+      return next(errorHandler(404, 'Note Comment not found'));
+    }
+    if (notecomment.userId !== req.user.id && !req.user.isAdmin) {
+      return next(
+        errorHandler(403, 'You are not allowed to edit this comment')
+      );
+    }
 
-//     const editedNoteComment = await NoteComment.findByIdAndUpdate(
-//       req.params.notecommentId,
-//       {
-//         content: req.body.content,
-//       },
-//       { new: true }
-//     );
-//     res.status(200).json(editedNoteComment);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+    const editedNoteComment = await NoteComment.findByIdAndUpdate(
+      req.params.notecommentId,
+      {
+        content: req.body.content,
+      },
+      { new: true }
+    );
+    res.status(200).json(editedNoteComment);
+  } catch (error) {
+    next(error);
+  }
+};
 
-// export const deleteComment = async (req, res, next) => {
-//   try {
-//     const comment = await Comment.findById(req.params.commentId);
-//     if (!comment) {
-//       return next(errorHandler(404, 'Comment not found'));
-//     }
-//     if (comment.userId !== req.user.id && !req.user.isAdmin) {
-//       return next(
-//         errorHandler(403, 'You are not allowed to delete this comment')
-//       );
-//     }
-//     await Comment.findByIdAndDelete(req.params.commentId);
-//     res.status(200).json('Comment has been deleted');
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+export const deleteNoteComment = async (req, res, next) => {
+  try {
+    const comment = await NoteComment.findById(req.params.commentId);
+    if (!comment) {
+      return next(errorHandler(404, 'Comment not found'));
+    }
+    if (comment.userId !== req.user.id && !req.user.isAdmin) {
+      return next(
+        errorHandler(403, 'You are not allowed to delete this comment')
+      );
+    }
+    await NoteComment.findByIdAndDelete(req.params.commentId);
+    res.status(200).json('Comment has been deleted');
+  } catch (error) {
+    next(error);
+  }
+};
 
 // export const getcomments = async (req, res, next) => {
 //   if (!req.user.isAdmin)
