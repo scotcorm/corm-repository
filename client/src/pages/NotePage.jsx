@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import CallToAction from '../components/CallToAction';
 import NoteCommentSection from '../components/NoteCommentSection';
+import NoteCard from '../components/NoteCard';
 
 // import NoteCard from '../components/NoteCard';
 
@@ -11,7 +12,8 @@ export default function NotePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [note, setNote] = useState(null);
-  //const [recentNotes, setRecentNotes] = useStateNote;
+  const [recentNotes, setRecentNotes] = useState(null);
+
   useEffect(() => {
     console.log(noteSlug);
     const fetchNote = async () => {
@@ -38,20 +40,20 @@ export default function NotePage() {
     fetchNote();
   }, [noteSlug]);
 
-  // useEffect(() => {
-  //   try {
-  //     const fetchRecentNotes = async () => {
-  //       const res = await fetch(`/api/note/getnotes?limit=3`);
-  //       const data = await res.json();
-  //       if (res.ok) {
-  //         setRecenNotens(data.notes);
-  //       }
-  //     };
-  //     fetchRecentNotes();
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // }, []);
+  useEffect(() => {
+    try {
+      const fetchRecentNotes = async () => {
+        const res = await fetch(`/api/note/getnotes?limit=3`);
+        const data = await res.json();
+        if (res.ok) {
+          setRecentNotes(data.notes);
+        }
+      };
+      fetchRecentNotes();
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, []);
 
   if (loading)
     return (
@@ -94,12 +96,10 @@ export default function NotePage() {
       {/* <NoteCommentSection /> */}
 
       <div className='flex flex-col justify-center items-center mb-5'>
-        <h1 className='text-xl mt-5'>Recent articles</h1>
+        <h1 className='text-xl mt-5'>Recent Notes</h1>
         <div className='flex flex-wrap gap-5 mt-5 justify-center'>
-          {/* {recentNotes &&
-            recentNotes.map((note) => (
-              <NoteCard key={note._id} note={note} />
-            ))} */}
+          {recentNotes &&
+            recentNotes.map((note) => <NoteCard key={note._id} note={note} />)}
         </div>
       </div>
     </main>
