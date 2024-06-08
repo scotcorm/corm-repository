@@ -97,7 +97,7 @@ export default function CitationPage() {
       <CommentSection citationId={citation._id} />
 
       <div className='flex flex-col justify-center items-center mb-5'>
-        <h1 className='text-xl mt-5'>Recent articles</h1>
+        <h1 className='text-xl mt-5'>Recent Citations</h1>
         <div className='flex flex-wrap gap-4 mt-5 justify-center'>
           {recentCitations &&
             recentCitations.map((citation) => (
