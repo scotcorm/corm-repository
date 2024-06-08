@@ -4,14 +4,14 @@ import { Link, useParams } from 'react-router-dom';
 import CallToAction from '../components/CallToAction';
 import RecordCommentSection from '../components/RecordCommentSection';
 
-// import RecordCard from '../components/RecordCard';
+import RecordCard from '../components/RecordCard';
 
 export default function RecordPage() {
   const { recordSlug } = useParams();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [record, setRecord] = useState(null);
-  // const [recentRecords, setRecentRecords] = useStateRecord
+  const [recentRecords, setRecentRecords] = useState(null);
   useEffect(() => {
     console.log(recordSlug);
     const fetchRecord = async () => {
@@ -38,20 +38,20 @@ export default function RecordPage() {
     fetchRecord();
   }, [recordSlug]);
 
-  // useEffect(() => {
-  //   try {
-  //     const fetchRecentNotes = async () => {
-  //       const res = await fetch(`/api/note/getnotes?limit=3`);
-  //       const data = await res.json();
-  //       if (res.ok) {
-  //         setRecenNotens(data.notes);
-  //       }
-  //     };
-  //     fetchRecentNotes();
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // }, []);
+  useEffect(() => {
+    try {
+      const fetchRecentRecords = async () => {
+        const res = await fetch(`/api/record/getrecords?limit=3`);
+        const data = await res.json();
+        if (res.ok) {
+          setRecentRecords(data.records);
+        }
+      };
+      fetchRecentRecords();
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, []);
 
   if (loading)
     return (
@@ -84,7 +84,7 @@ export default function RecordPage() {
         </span>
       </div>
       <div
-        className='p-3 max-w-2xl mx-auto w-full note-content'
+        className='p-3 max-w-2xl mx-auto w-full record-content'
         dangerouslySetInnerHTML={{ __html: record && record.content }}
       ></div>
       <div className='max-w-3xl mx-auto w-full'>
@@ -93,12 +93,12 @@ export default function RecordPage() {
       <RecordCommentSection recordId={record._id} />
 
       <div className='flex flex-col justify-center items-center mb-5'>
-        <h1 className='text-xl mt-5'>Recent articles</h1>
-        <div className='flex flex-wrap gap-5 mt-5 justify-center'>
-          {/* {recentRecords &&
+        <h1 className='text-xl mt-5'>Recent Records</h1>
+        <div className=' mt-5 justify-center gap-3'>
+          {recentRecords &&
             recentRecords.map((record) => (
-              <NoteCard key={record._id} note={record} />
-            ))} */}
+              <RecordCard key={record._id} record={record} />
+            ))}
         </div>
       </div>
     </main>

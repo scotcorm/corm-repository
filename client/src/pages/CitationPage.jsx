@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import CallToAction from '../components/CallToAction';
 
 import CommentSection from '../components/CommentSection';
-// import CitationCard from '../components/CitationCard';
+import CitationCard from '../components/CitationCard';
 
 export default function CitationPage() {
   const { citationSlug } = useParams();
@@ -40,20 +40,20 @@ export default function CitationPage() {
     fetchCitation();
   }, [citationSlug]);
 
-  // useEffect(() => {
-  //   try {
-  //     const fetchRecentCitations = async () => {
-  //       const res = await fetch(`/api/citation/getcitations?limit=3`);
-  //       const data = await res.json();
-  //       if (res.ok) {
-  //         setRecentCitations(data.citations);
-  //       }
-  //     };
-  //     fetchRecentCitations();
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // }, []);
+  useEffect(() => {
+    try {
+      const fetchRecentCitations = async () => {
+        const res = await fetch(`/api/citation/getcitations?limit=3`);
+        const data = await res.json();
+        if (res.ok) {
+          setRecentCitations(data.citations);
+        }
+      };
+      fetchRecentCitations();
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, []);
 
   if (loading)
     return (
@@ -98,12 +98,12 @@ export default function CitationPage() {
 
       <div className='flex flex-col justify-center items-center mb-5'>
         <h1 className='text-xl mt-5'>Recent articles</h1>
-        {/* <div className='flex flex-wrap gap-5 mt-5 justify-center'>
+        <div className='flex flex-wrap gap-4 mt-5 justify-center'>
           {recentCitations &&
             recentCitations.map((citation) => (
               <CitationCard key={citation._id} citation={citation} />
             ))}
-        </div> */}
+        </div>
       </div>
     </main>
   );
