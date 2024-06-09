@@ -124,8 +124,8 @@ export default function UpdateNote() {
             id='date'
             className='flex-1'
             onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+            value={formData.date}
           />
-          value={formData.date}
           <TextInput
             type='text'
             placeholder='Title- a short overview of the note...'
@@ -138,7 +138,7 @@ export default function UpdateNote() {
             value={formData.title}
           />
           <Select
-            class='bg-white rounded-lg'
+            className=' text-black'
             onChange={(e) =>
               setFormData({ ...formData, category: e.target.value })
             }

@@ -89,7 +89,7 @@ export default function DashRecordComments() {
               <Table.HeadCell>Date Updated</Table.HeadCell>
               <Table.HeadCell>recordComment Content</Table.HeadCell>
               <Table.HeadCell>Number of Likes</Table.HeadCell>
-              <Table.HeadCell>CitationId</Table.HeadCell>
+              <Table.HeadCell>RecordId</Table.HeadCell>
               <Table.HeadCell>UserId</Table.HeadCell>
               <Table.HeadCell>Delete</Table.HeadCell>
             </Table.Head>
@@ -102,7 +102,7 @@ export default function DashRecordComments() {
                   </Table.Cell>
                   <Table.Cell>{recordcomment.content}</Table.Cell>
                   <Table.Cell>{recordcomment.numberOfLikes}</Table.Cell>
-                  <Table.Cell>{recordcomment.citationId}</Table.Cell>
+                  <Table.Cell>{recordcomment.recordId}</Table.Cell>
                   <Table.Cell>{recordcomment.userId}</Table.Cell>
                   <Table.Cell>
                     <span

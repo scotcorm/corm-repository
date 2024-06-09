@@ -89,7 +89,7 @@ export default function DashNoteComments() {
               <Table.HeadCell>Date Updated</Table.HeadCell>
               <Table.HeadCell>noteComment Content</Table.HeadCell>
               <Table.HeadCell>Number of Likes</Table.HeadCell>
-              <Table.HeadCell>CitationId</Table.HeadCell>
+              <Table.HeadCell>NoteId</Table.HeadCell>
               <Table.HeadCell>UserId</Table.HeadCell>
               <Table.HeadCell>Delete</Table.HeadCell>
             </Table.Head>
@@ -102,7 +102,7 @@ export default function DashNoteComments() {
                   </Table.Cell>
                   <Table.Cell>{notecomment.content}</Table.Cell>
                   <Table.Cell>{notecomment.numberOfLikes}</Table.Cell>
-                  <Table.Cell>{notecomment.citationId}</Table.Cell>
+                  <Table.Cell>{notecomment.noteId}</Table.Cell>
                   <Table.Cell>{notecomment.userId}</Table.Cell>
                   <Table.Cell>
                     <span

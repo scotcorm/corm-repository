@@ -10,6 +10,7 @@ import DashUsers from '../components/DashUsers';
 import DashRecordComments from '../components/DashRecordComments';
 import DashNoteComments from '../components/DashNoteComments';
 import DashCitationComments from '../components/DashCitationComments';
+import DashboardComponent from '../components/DashboardComponent';
 
 export default function Dashboard() {
   const location = useLocation();
@@ -45,6 +46,8 @@ export default function Dashboard() {
       {tab === 'notecomments' && <DashNoteComments />}
       {/* citation comments */}
       {tab === 'citationcomments' && <DashCitationComments />}
+      {/* dashboard component */}
+      {tab === 'dash' && <DashboardComponent />}
     </div>
   );
 }
