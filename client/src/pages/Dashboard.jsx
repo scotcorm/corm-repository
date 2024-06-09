@@ -7,6 +7,9 @@ import DashCitations from '../components/DashCitations';
 import DashRecords from '../components/DashRecords';
 import DashNotes from '../components/DashNotes';
 import DashUsers from '../components/DashUsers';
+import DashRecordComments from '../components/DashRecordComments';
+import DashNoteComments from '../components/DashNoteComments';
+import DashCitationComments from '../components/DashCitationComments';
 
 export default function Dashboard() {
   const location = useLocation();
@@ -36,6 +39,12 @@ export default function Dashboard() {
       {tab === 'notes' && <DashNotes />}
       {/* users */}
       {tab === 'users' && <DashUsers />}
+      {/* record comments */}
+      {tab === 'recordcomments' && <DashRecordComments />}
+      {/* note comments */}
+      {tab === 'notecomments' && <DashNoteComments />}
+      {/* citation comments */}
+      {tab === 'citationcomments' && <DashCitationComments />}
     </div>
   );
 }

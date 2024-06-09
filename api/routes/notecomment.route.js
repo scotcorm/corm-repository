@@ -5,7 +5,7 @@ import {
   deleteNoteComment,
   editNoteComment,
   getNoteComments,
-  // getcomments,
+  getallnotecomments,
   likeNoteComment,
 } from '../controllers/notecomment.controller.js';
 
@@ -16,6 +16,6 @@ router.get('/getNoteComments/:noteId', getNoteComments);
 router.put('/likeNoteComment/:notecommentId', verifyToken, likeNoteComment);
 router.put('/editNoteComment/:notecommentId', verifyToken, editNoteComment);
 router.delete('/deleteNoteComment/:commentId', verifyToken, deleteNoteComment);
-// router.get('/getcomments', verifyToken, getcomments);
+router.get('/getallnotecomments', verifyToken, getallnotecomments);
 
 export default router;

@@ -1,8 +1,12 @@
 import React from 'react';
 import { Sidebar } from 'flowbite-react';
 import {
+  HiAnnotation,
   HiArrowSmRight,
   HiDocumentText,
+  HiOutlineCollection,
+  HiOutlineDocument,
+  HiOutlineDocumentDuplicate,
   HiOutlineDocumentText,
   HiOutlineUserGroup,
   HiUser,
@@ -64,51 +68,75 @@ export default function DashSidebar() {
           </Link>
 
           {currentUser.isAdmin && (
-            <Link to='/dashboard?tab=citations'>
-              <Sidebar.Item
-                active={tab === 'citations'}
-                icon={HiDocumentText}
-                as='div'
-              >
-                Citations
-              </Sidebar.Item>
-            </Link>
-          )}
+            <>
+              <Link to='/dashboard?tab=users'>
+                <Sidebar.Item
+                  active={tab === 'users'}
+                  icon={HiOutlineUserGroup}
+                  as='div'
+                >
+                  Users
+                </Sidebar.Item>
+              </Link>
 
-          {currentUser.isAdmin && (
-            <Link to='/dashboard?tab=users'>
-              <Sidebar.Item
-                active={tab === 'users'}
-                icon={HiOutlineUserGroup}
-                as='div'
-              >
-                Users
-              </Sidebar.Item>
-            </Link>
-          )}
+              <Link to='/dashboard?tab=citations'>
+                <Sidebar.Item
+                  active={tab === 'citations'}
+                  icon={HiOutlineCollection}
+                  as='div'
+                >
+                  Citations
+                </Sidebar.Item>
+              </Link>
 
-          {currentUser.isAdmin && (
-            <Link to='/dashboard?tab=records'>
-              <Sidebar.Item
-                active={tab === 'records'}
-                icon={HiOutlineDocumentText}
-                as='div'
-              >
-                Records
-              </Sidebar.Item>
-            </Link>
-          )}
+              <Link to='/dashboard?tab=citationcomments'>
+                <Sidebar.Item
+                  active={tab === 'citationcomments'}
+                  icon={HiAnnotation}
+                  as='div'
+                >
+                  Citation Comments
+                </Sidebar.Item>
+              </Link>
 
-          {currentUser.isAdmin && (
-            <Link to='/dashboard?tab=notes'>
-              <Sidebar.Item
-                active={tab === 'notes'}
-                icon={HiDocumentText}
-                as='div'
-              >
-                Notes
-              </Sidebar.Item>
-            </Link>
+              <Link to='/dashboard?tab=records'>
+                <Sidebar.Item
+                  active={tab === 'users'}
+                  icon={HiOutlineDocumentDuplicate}
+                  as='div'
+                >
+                  Records
+                </Sidebar.Item>
+              </Link>
+              <Link to='/dashboard?tab=recordcomments'>
+                <Sidebar.Item
+                  active={tab === 'recordcomments'}
+                  icon={HiAnnotation}
+                  as='div'
+                >
+                  Record Comments
+                </Sidebar.Item>
+              </Link>
+
+              <Link to='/dashboard?tab=notes'>
+                <Sidebar.Item
+                  active={tab === 'notes'}
+                  icon={HiOutlineDocumentText}
+                  as='div'
+                >
+                  Notes
+                </Sidebar.Item>
+              </Link>
+              <Link to='/dashboard?tab=notecomments'>
+                <Sidebar.Item
+                  active={tab === 'notecomments'}
+                  icon={HiAnnotation}
+                  as='div'
+                >
+                  Note Comments
+                </Sidebar.Item>
+              </Link>
+            </>
           )}
 
           <Sidebar.Item

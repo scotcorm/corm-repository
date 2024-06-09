@@ -6,6 +6,7 @@ import {
   editRecordComment,
   getRecordComments,
   likeRecordComment,
+  getallrecordcomments,
 } from '../controllers/recordcomment.controller.js';
 //import {
 //createRecordComment,
@@ -39,6 +40,6 @@ router.delete(
   verifyToken,
   deleteRecordComment
 );
-// router.get('/getRecordcomments', verifyToken, getrecordcomments);
+router.get('/getallrecordcomments', verifyToken, getallrecordcomments);
 
 export default router;
