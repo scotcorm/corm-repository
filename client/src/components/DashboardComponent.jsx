@@ -141,7 +141,8 @@ export default function DashboardComponent() {
     }
   }, [currentUser]);
   return (
-    <main className='p-3 max-w-6xl mx-auto min-h-screen'>
+    // <main className='flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md'>
+    <main className='p-3 max-w-6xl md:mx-auto min-h-screen mb-10'>
       <section>
         <h1 className='text-3xl mt-10 p-3 text-center font-serif max-w-2xl mx-auto lg:text-4xl'>
           Users
@@ -151,12 +152,14 @@ export default function DashboardComponent() {
           <div className='flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md'>
             <div className='flex justify-between'>
               <div className=''>
-                <h3 className='text-gray-500 text-md uppercase'>Total Users</h3>
+                <h3 className='text-gray-500 mt-10 text-md uppercase'>
+                  Total Users
+                </h3>
                 <p className='text-2xl'>{totalUsers}</p>
               </div>
-              <HiOutlineUserGroup className='bg-teal-600  text-white rounded-full text-5xl p-3 shadow-lg' />
+              <HiOutlineUserGroup className='bg-orange-400  text-white rounded-full mt-10 text-5xl p-3 shadow-lg' />
             </div>
-            <div className='flex  gap-2 text-sm'>
+            <div className='flex gap-2 text-sm'>
               <span className='text-green-500 flex items-center'>
                 <HiArrowNarrowUp />
                 {lastMonthUsers}
@@ -166,10 +169,10 @@ export default function DashboardComponent() {
           </div>
 
           <div className='flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md'>
-            <div className='flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800'>
+            <div className='flex flex-col w-full md:w-auto p-2 rounded-md dark:bg-gray-800'>
               <div className='flex justify-between  p-3 text-sm font-semibold'>
                 <h1 className='text-center p-2'>Recent Users</h1>
-                <Button outline gradientDuoTone='purpleToPink'>
+                <Button outline>
                   <Link to={'/dashboard?tab=users'}>See all</Link>
                 </Button>
               </div>
@@ -208,34 +211,34 @@ export default function DashboardComponent() {
           <div className='flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md'>
             <div className='flex justify-between'>
               <div className=''>
-                <h3 className='text-gray-500 text-md uppercase'>
+                <h3 className='text-gray-500 mt-10 text-md uppercase'>
                   Total Citations
                 </h3>
                 <p className='text-2xl'>{totalCitations}</p>
               </div>
-              <HiDocumentText className='bg-lime-600  text-white rounded-full text-5xl p-3 shadow-lg' />
+              <HiDocumentText className='bg-orange-400  text-white mt-10 rounded-full text-5xl p-3 shadow-lg' />
             </div>
             <div className='flex  gap-2 text-sm'>
               <span className='text-green-500 flex items-center'>
                 <HiArrowNarrowUp />
-                {lastMonthUsers}
+                {lastMonthCitations}
               </span>
               <div className='text-gray-500'>Last month</div>
             </div>
           </div>
 
           <div className='flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md'>
-            <div className='flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800'>
+            <div className='flex flex-col w-full md:w-auto p-2 rounded-md dark:bg-gray-800'>
               <div className='flex justify-between  p-3 text-sm font-semibold'>
                 <h1 className='text-center p-2'>Recent Citations</h1>
-                <Button outline gradientDuoTone='purpleToPink'>
+                <Button outline>
                   <Link to={'/dashboard?tab=citations'}>See all</Link>
                 </Button>
               </div>
               <Table hoverable>
                 <Table.Head>
-                  <Table.HeadCell>citation image</Table.HeadCell>
-                  <Table.HeadCell>citation Title</Table.HeadCell>
+                  <Table.HeadCell>Citation Image</Table.HeadCell>
+                  <Table.HeadCell>Citation Title</Table.HeadCell>
                 </Table.Head>
                 {citations &&
                   citations.map((citation) => (
@@ -244,7 +247,7 @@ export default function DashboardComponent() {
                         <Table.Cell>
                           <img
                             src={citation.image}
-                            alt='user'
+                            alt='citation'
                             className='w-14 h-10 rounded-md bg-gray-500'
                           />
                         </Table.Cell>
@@ -259,11 +262,11 @@ export default function DashboardComponent() {
           </div>
 
           <div className='flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md'>
-            <div className='flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800'>
+            <div className='flex flex-col w-full md:w-auto p-2 rounded-md dark:bg-gray-800'>
               <div className='flex justify-between  p-3 text-sm font-semibold'>
                 <h1 className='text-center p-2'>Recent Comments</h1>
-                <Button outline gradientDuoTone='purpleToPink'>
-                  <Link to={'/dashboard?tab=comments'}>See all</Link>
+                <Button outline>
+                  <Link to={'/dashboard?tab=citationcomments'}>See all</Link>
                 </Button>
               </div>
               <Table hoverable>
@@ -297,32 +300,34 @@ export default function DashboardComponent() {
           <div className='flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md'>
             <div className='flex justify-between'>
               <div className=''>
-                <h3 className='text-gray-500 text-md uppercase'>Total Notes</h3>
+                <h3 className='text-gray-500 mt-10 text-md uppercase'>
+                  Total Notes
+                </h3>
                 <p className='text-2xl'>{totalNotes}</p>
               </div>
-              <HiDocumentText className='bg-lime-600  text-white rounded-full text-5xl p-3 shadow-lg' />
+              <HiAnnotation className='bg-orange-400  text-white mt-10 rounded-full text-5xl p-3 shadow-lg' />
             </div>
             <div className='flex  gap-2 text-sm'>
               <span className='text-green-500 flex items-center'>
                 <HiArrowNarrowUp />
-                {lastMonthUsers}
+                {lastMonthNotes}
               </span>
               <div className='text-gray-500'>Last month</div>
             </div>
           </div>
 
           <div className='flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md'>
-            <div className='flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800'>
+            <div className='flex flex-col w-full md:w-auto p-2 rounded-md dark:bg-gray-800'>
               <div className='flex justify-between  p-3 text-sm font-semibold'>
                 <h1 className='text-center p-2'>Recent Notes</h1>
-                <Button outline gradientDuoTone='purpleToPink'>
+                <Button outline>
                   <Link to={'/dashboard?tab=notes'}>See all</Link>
                 </Button>
               </div>
               <Table hoverable>
                 <Table.Head>
-                  <Table.HeadCell>note image</Table.HeadCell>
-                  <Table.HeadCell>note Title</Table.HeadCell>
+                  <Table.HeadCell>Note Image</Table.HeadCell>
+                  <Table.HeadCell>Note Title</Table.HeadCell>
                 </Table.Head>
                 {notes &&
                   notes.map((note) => (
@@ -344,10 +349,10 @@ export default function DashboardComponent() {
           </div>
 
           <div className='flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md'>
-            <div className='flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800'>
+            <div className='flex flex-col w-full md:w-auto p-2 rounded-md dark:bg-gray-800'>
               <div className='flex justify-between  p-3 text-sm font-semibold'>
                 <h1 className='text-center p-2'>Recent Comments</h1>
-                <Button outline gradientDuoTone='purpleToPink'>
+                <Button outline>
                   <Link to={'/dashboard?tab=notecomments'}>See all</Link>
                 </Button>
               </div>
@@ -378,6 +383,95 @@ export default function DashboardComponent() {
       {/* <div className=''>Citations</div>
       <div className=''>Notes</div>
       <div className=''>Records</div> */}
+
+      <section className='mb-5'>
+        <h1 className='text-3xl mt-10 p-3 text-center font-serif max-w-2xl mx-auto lg:text-4xl'>
+          Records
+        </h1>
+
+        <div className='flex flex-wrap gap-4 py-3 justify-center'>
+          <div className='flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md'>
+            <div className='flex justify-between'>
+              <div className=''>
+                <h3 className='text-gray-500 mt-10 text-md uppercase'>
+                  Total Records
+                </h3>
+                <p className='text-2xl'>{totalRecords}</p>
+              </div>
+              <HiDocumentText className='bg-orange-400  text-white mt-10 rounded-full text-5xl p-3 shadow-lg' />
+            </div>
+            <div className='flex  gap-2 text-sm'>
+              <span className='text-green-500 flex items-center'>
+                <HiArrowNarrowUp />
+                {lastMonthRecords}
+              </span>
+              <div className='text-gray-500'>Last month</div>
+            </div>
+          </div>
+
+          <div className='flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md'>
+            <div className='flex flex-col w-full md:w-auto p-2 rounded-md dark:bg-gray-800'>
+              <div className='flex justify-between  p-3 text-sm font-semibold'>
+                <h1 className='text-center p-2'>Recent Records</h1>
+                <Button outline>
+                  <Link to={'/dashboard?tab=records'}>See all</Link>
+                </Button>
+              </div>
+              <Table hoverable>
+                <Table.Head>
+                  <Table.HeadCell>note image</Table.HeadCell>
+                  <Table.HeadCell>note Title</Table.HeadCell>
+                </Table.Head>
+                {records &&
+                  records.map((record) => (
+                    <Table.Body key={record._id} className='divide-y'>
+                      <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800'>
+                        <Table.Cell>
+                          <img
+                            src={record.image}
+                            alt='user'
+                            className='w-14 h-10 rounded-md bg-gray-500'
+                          />
+                        </Table.Cell>
+                        <Table.Cell className='w-96'>{record.title}</Table.Cell>
+                      </Table.Row>
+                    </Table.Body>
+                  ))}
+              </Table>
+            </div>
+          </div>
+
+          <div className='flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md'>
+            <div className='flex flex-col w-full md:w-auto p-2 rounded-md dark:bg-gray-800'>
+              <div className='flex justify-between  p-3 text-sm font-semibold'>
+                <h1 className='text-center p-2'>Recent Comments</h1>
+                <Button outline>
+                  <Link to={'/dashboard?tab=recordcomments'}>See all</Link>
+                </Button>
+              </div>
+              <Table hoverable>
+                <Table.Head>
+                  <Table.HeadCell>Comment content</Table.HeadCell>
+                  <Table.HeadCell>Likes</Table.HeadCell>
+                </Table.Head>
+                {recordcomments &&
+                  recordcomments.map((recordcomment) => (
+                    <Table.Body key={recordcomment._id} className='divide-y'>
+                      <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800'>
+                        <Table.Cell className='w-96'>
+                          <p className='line-clamp-2'>
+                            {recordcomment.content}
+                          </p>
+                        </Table.Cell>
+                        <Table.Cell>{recordcomment.numberOfLikes}</Table.Cell>
+                      </Table.Row>
+                    </Table.Body>
+                  ))}
+              </Table>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 
