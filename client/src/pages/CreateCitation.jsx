@@ -139,6 +139,7 @@ export default function CreateCitation() {
               setFormData({ ...formData, license: e.target.value })
             }
           >
+            <option value='uncategorized'>Select a category</option>
             <option value='by'>CC BY</option>
             <option value='by-nc'>CC BY NC</option>
             <option value='by-nc-nd'>CC BY NC ND</option>

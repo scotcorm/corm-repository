@@ -6,9 +6,9 @@ import CitationCard from '../components/CitationCard';
 
 export default function Search() {
   const [sidebarData, setSidebarData] = useState({
-    //searchTerm: '',
+    searchTerm: '',
     sort: 'desc',
-    license: 'uncategorized',
+    license: '',
   });
 
   const [citations, setCitations] = useState([]);
@@ -21,14 +21,14 @@ export default function Search() {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
-    //const searchTermFromUrl = urlParams.get('searchTerm');
+    const searchTermFromUrl = urlParams.get('searchTerm');
     const sortFromUrl = urlParams.get('sort');
     const licenseFromUrl = urlParams.get('license');
-    //if (searchTermFromUrl || sortFromUrl || licenseFromUrl) {
-    if (sortFromUrl || licenseFromUrl) {
+    if (searchTermFromUrl || sortFromUrl || licenseFromUrl) {
+      // if (sortFromUrl || licenseFromUrl) {
       setSidebarData({
         ...sidebarData,
-        //searchTerm: searchTermFromUrl,
+        searchTerm: searchTermFromUrl,
         sort: sortFromUrl,
         license: licenseFromUrl,
       });
@@ -57,9 +57,9 @@ export default function Search() {
   }, [location.search]);
 
   const handleChange = (e) => {
-    // if (e.target.id === 'searchTerm') {
-    //   setSidebarData({ ...sidebarData, searchTerm: e.target.value });
-    // }
+    if (e.target.id === 'searchTerm') {
+      setSidebarData({ ...sidebarData, searchTerm: e.target.value });
+    }
     if (e.target.id === 'sort') {
       const order = e.target.value || 'desc';
       setSidebarData({ ...sidebarData, sort: order });
@@ -73,7 +73,7 @@ export default function Search() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const urlParams = new URLSearchParams(location.search);
-    // urlParams.set('searchTerm', sidebarData.searchTerm);
+    urlParams.set('searchTerm', sidebarData.searchTerm);
     urlParams.set('sort', sidebarData.sort);
     urlParams.set('license', sidebarData.license);
     const searchQuery = urlParams.toString();
@@ -105,7 +105,7 @@ export default function Search() {
     <div className='flex flex-col md:flex-row'>
       <div className='p-7 border-b md:border-r md:min-h-screen border-gray-500'>
         <form className='flex flex-col gap-8' onSubmit={handleSubmit}>
-          {/* <div className='flex   items-center gap-2'>
+          <div className='flex   items-center gap-2'>
             <label className='whitespace-nowrap font-semibold'>
               Title Includes:
             </label>
@@ -116,7 +116,7 @@ export default function Search() {
               value={sidebarData.searchTerm}
               onChange={handleChange}
             />
-          </div> */}
+          </div>
 
           <div className='flex items-center gap-2'>
             <label className='font-semibold'>License:</label>
@@ -125,6 +125,7 @@ export default function Search() {
               value={sidebarData.license}
               id='license'
             >
+              <option value=' '>Select license</option>
               <option value='by'>CC-BY</option>
               <option value='by-nc'>CC-BY-NC</option>
               <option value='by-nd'>CC-BY-ND</option>
@@ -137,7 +138,7 @@ export default function Search() {
           <div className='flex items-center gap-2'>
             <label className='font-semibold'>Sort By:</label>
             <Select onChange={handleChange} value={sidebarData.sort} id='sort'>
-              <option value='desc'>Latest</option>
+              <option value='desc'>Newest</option>
               <option value='asc'>Oldest</option>
             </Select>
           </div>
