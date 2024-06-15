@@ -30,6 +30,7 @@ import CitationPage from './pages/CitationPage';
 import ScrollToTop from './components/ScrollToTop';
 import NotePage from './pages/NotePage';
 import RecordPage from './pages/RecordPage';
+import Search from './pages/Search';
 
 export default function App() {
   return (
@@ -73,6 +74,7 @@ export default function App() {
         <Route path='/show-record' element={<ShowRecord />} />
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
+        <Route path='/search' element={<Search />} />
       </Routes>
       <Footer />
     </BrowserRouter>
