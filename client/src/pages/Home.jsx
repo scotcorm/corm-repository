@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CallToAction from '../components/CallToAction';
 import CitationCard from '../components/CitationCard';
+import NoteCard from '../components/NoteCard';
 
 export default function Home() {
   const [citations, setCitations] = useState([]);
+  const [notes, setNotes] = useState([]);
 
   useEffect(() => {
     const fetchCitations = async () => {
@@ -15,6 +17,17 @@ export default function Home() {
     };
     fetchCitations();
   }, []);
+
+  useEffect(() => {
+    const fetchNotes = async () => {
+      const res = await fetch('/api/note/getNotes');
+      // make sure there is a getnotes controller
+      const data = await res.json();
+      setNotes(data.notes);
+    };
+    fetchNotes();
+  }, []);
+
   return (
     <div>
       <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
@@ -32,7 +45,7 @@ export default function Home() {
           View All Citations
         </Link>
       </div>
-      <div className='p-3 bg-amber-100 dark:bg-slate-700'>
+      <div className='p-3 bg-amber-100 dark:bg-slate-700 max-w-6xl mx-auto'>
         <CallToAction />
       </div>
       <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 py-7'>
@@ -51,6 +64,24 @@ export default function Home() {
               className='text-lg text-teal-500 hover:underline text-center'
             >
               View all Citations
+            </Link>
+          </div>
+        )}
+      </div>
+      <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 py-7'>
+        {notes && notes.length > 0 && (
+          <div className='flex flex-col gap-6'>
+            <h2 className='text-2xl font-semibold text-center'>Recent Notes</h2>
+            <div className='flex flex-wrap gap-4'>
+              {notes.map((note) => (
+                <NoteCard key={note._id} note={note} />
+              ))}
+            </div>
+            <Link
+              to={'/NotePage'}
+              className='text-lg text-teal-500 hover:underline text-center'
+            >
+              View all Notes
             </Link>
           </div>
         )}

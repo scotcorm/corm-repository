@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import AboutSidebar from '../components/AboutSidebar';
+// import AboutSidebar from '../components/AboutSidebar';
 import AboutMain from '../components/AboutMain';
 
 export default function Dashboard() {
@@ -19,7 +19,7 @@ export default function Dashboard() {
     <div className='min-h-screen flex flex-col md:flex-row'>
       <div className='md:w-56'>
         {/* Sidebar */}
-        <AboutSidebar />
+        {/* <AboutSidebar /> */}
       </div>
       {/* profile */}
       {/* if the tab = profile show the dash profile */}
