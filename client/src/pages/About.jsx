@@ -17,10 +17,10 @@ export default function Dashboard() {
   }, [location.search]);
   return (
     <div className='min-h-screen flex flex-col md:flex-row'>
-      <div className='md:w-56'>
-        {/* Sidebar */}
-        {/* <AboutSidebar /> */}
-      </div>
+      {/* <div className='md:w-56'> */}
+      {/* Sidebar */}
+      {/* <AboutSidebar /> */}
+      {/* </div> */}
       {/* profile */}
       {/* if the tab = profile show the dash profile */}
       <AboutMain />
