@@ -29,8 +29,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
-      <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
+    <div className=''>
+      <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto '>
         <h1 className='text-3xl font-bold lg:text-6xl'>Corm Repo</h1>
         <p className='text-gray-500 text-xs sm:text-sm'>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum,
@@ -40,12 +40,12 @@ export default function Home() {
         </p>
         <Link
           to='/search'
-          className='text-xs sm:text-sm text-teal-500 font-bold hover:underline'
+          className='text-xs sm:text-sm text-cyan-800 font-bold hover:underline'
         >
-          View All Citations
+          View All Citations and Notes
         </Link>
       </div>
-      <div className='p-3 bg-amber-100 dark:bg-slate-700 max-w-6xl mx-auto'>
+      <div className='p-3  dark:bg-slate-700 max-w-6xl mx-auto'>
         <CallToAction />
       </div>
       <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 py-7'>
@@ -61,7 +61,7 @@ export default function Home() {
             </div>
             <Link
               to={'/search'}
-              className='text-lg text-teal-500 hover:underline text-center'
+              className='text-lg text-cyan-800 hover:underline text-center'
             >
               View all Citations
             </Link>
@@ -78,8 +78,8 @@ export default function Home() {
               ))}
             </div>
             <Link
-              to={'/NotePage'}
-              className='text-lg text-teal-500 hover:underline text-center'
+              to={'/search'}
+              className='text-lg text-cyan-800 hover:underline text-center'
             >
               View all Notes
             </Link>

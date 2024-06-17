@@ -10,7 +10,7 @@ import FeralSwine from './pages/FeralSwine';
 import Genealogy from './pages/Genealogy';
 import ProductionDashboard from './pages/ProductionDashboard';
 import Projects from './pages/Projects';
-//import Notes from './pages/Notes';
+import Notes from './pages/Notes';
 import DigitalMusic from './pages/DigitalMusic';
 import CcCert from './pages/CcCert';
 import ShowRecord from './pages/ShowRecord';
@@ -40,6 +40,8 @@ export default function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
+        <Route path='/notes' element={<Notes />} />
+        <Route path='/genealogy' element={<Genealogy />} />
 
         <Route element={<OnlyAdminPrivateRoute />}>
           <Route path='/create-citation' element={<CreateCitation />} />
