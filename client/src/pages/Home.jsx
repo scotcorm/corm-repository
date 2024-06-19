@@ -78,7 +78,7 @@ export default function Home() {
               ))}
             </div>
             <Link
-              to={'/search'}
+              to={'/searchnotes'}
               className='text-lg text-cyan-800 hover:underline text-center'
             >
               View all Notes

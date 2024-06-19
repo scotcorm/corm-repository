@@ -31,6 +31,7 @@ import ScrollToTop from './components/ScrollToTop';
 import NotePage from './pages/NotePage';
 import RecordPage from './pages/RecordPage';
 import Search from './pages/Search';
+import SearchNotes from './pages/SearchNotes';
 
 export default function App() {
   return (
@@ -77,6 +78,7 @@ export default function App() {
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
         <Route path='/search' element={<Search />} />
+        <Route path='/searchnotes' element={<SearchNotes />} />
       </Routes>
       <Footer />
     </BrowserRouter>

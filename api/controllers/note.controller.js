@@ -31,14 +31,16 @@ export const getnotes = async (req, res, next) => {
     const startIndex = parseInt(req.query.startIndex) || 0;
     const limit = parseInt(req.query.limit) || 3;
     const sortDirection = req.query.order === 'asc' ? 1 : -1;
+    // add limiters like localhost:3000/api/citation/getcitations?limit=1
     const notes = await Note.find({
       ...(req.query.userId && { userId: req.query.userId }),
+      ...(req.query.category && { category: req.query.category }),
       ...(req.query.slug && { slug: req.query.slug }),
       ...(req.query.noteId && { _id: req.query.noteId }),
       ...(req.query.searchTerm && {
         $or: [
-          { month: { $regex: req.query.searchTerm, $options: 'i' } },
-          { agent: { $regex: req.query.searchTerm, $options: 'i' } },
+          { title: { $regex: req.query.searchTerm, $options: 'i' } },
+          { content: { $regex: req.query.searchTerm, $options: 'i' } },
         ],
       }),
     })

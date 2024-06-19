@@ -1,19 +1,19 @@
 import { Button, Select, TextInput } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import CitationCard from '../components/CitationCard';
-// import NoteCard from '../components/NoteCard';
+
+import NoteCard from '../components/NoteCard';
 // create page then add to app.jsx
 
 export default function Search() {
   const [sidebarData, setSidebarData] = useState({
     searchTerm: '',
     sort: 'desc',
-    license: '',
+    category: 'uncategorized',
   });
-  console.log(sidebarData);
-  const [citations, setCitations] = useState([]);
-  // const [notes, setNotes] = useState([]);
+  // console.log(sidebarData);
+
+  const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showMore, setShowMore] = useState(false);
   //const [showMoreNotes, setShowMoreNotes] = useState(false);
@@ -26,38 +26,38 @@ export default function Search() {
     const urlParams = new URLSearchParams(location.search);
     const searchTermFromUrl = urlParams.get('searchTerm');
     const sortFromUrl = urlParams.get('sort');
-    const licenseFromUrl = urlParams.get('license');
-    if (searchTermFromUrl || sortFromUrl || licenseFromUrl) {
-      //if (searchTermFromUrl || sortFromUrl) {
+    const categoryFromUrl = urlParams.get('category');
+    if (searchTermFromUrl || sortFromUrl || categoryFromUrl) {
+      // if (searchTermFromUrl || sortFromUrl) {
       setSidebarData({
         ...sidebarData,
         searchTerm: searchTermFromUrl,
         sort: sortFromUrl,
-        license: licenseFromUrl,
+        category: categoryFromUrl,
       });
     }
 
-    const fetchCitations = async () => {
+    const fetchNotes = async () => {
       setLoading(true);
       const searchQuery = urlParams.toString();
-      const res = await fetch(`/api/citation/getcitations?${searchQuery}`);
+      const res = await fetch(`/api/note/getnotes?${searchQuery}`);
       if (!res.ok) {
         setLoading(false);
         return;
       }
       if (res.ok) {
         const data = await res.json();
-        setCitations(data.citations);
+        setNotes(data.notes);
         setLoading(false);
         // setShowMore(true);
-        if (data.citations.length >= 3) {
+        if (data.notes.length >= 3) {
           setShowMore(true);
         } else {
           setShowMore(false);
         }
       }
     };
-    fetchCitations();
+    fetchNotes();
 
     // const fetchNotes = async () => {
     //   setLoading(true);
@@ -90,9 +90,9 @@ export default function Search() {
       const order = e.target.value;
       setSidebarData({ ...sidebarData, sort: order });
     }
-    if (e.target.id === 'license') {
-      const license = e.target.value || 'uncategorized';
-      setSidebarData({ ...sidebarData, license });
+    if (e.target.id === 'category') {
+      const category = e.target.value || 'uncategorized';
+      setSidebarData({ ...sidebarData, category });
     }
   };
 
@@ -101,25 +101,25 @@ export default function Search() {
     const urlParams = new URLSearchParams(location.search);
     urlParams.set('searchTerm', sidebarData.searchTerm);
     urlParams.set('sort', sidebarData.sort);
-    urlParams.set('license', sidebarData.license);
+    urlParams.set('category', sidebarData.category);
     const searchQuery = urlParams.toString();
-    navigate(`/search?${searchQuery}`);
+    navigate(`/searchnotes?${searchQuery}`);
   };
 
   const handleShowMore = async () => {
-    const numberOfCitations = citations.length;
-    const startIndex = numberOfCitations;
+    const numberOfNotes = notes.length;
+    const startIndex = numberOfNotes;
     const urlParams = new URLSearchParams(location.search);
     urlParams.set('startIndex', startIndex);
     const searchQuery = urlParams.toString();
-    const res = await fetch(`/api/citation/getcitations?${searchQuery}`);
+    const res = await fetch(`/api/note/getnotes?${searchQuery}`);
     if (!res.ok) {
       return;
     }
     if (res.ok) {
       const data = await res.json();
-      setCitations([...citations, ...data.citations]);
-      if (data.citations.length >= 3) {
+      setNotes([...notes, ...data.notes]);
+      if (data.notes.length >= 3) {
         setShowMore(true);
       } else {
         setShowMore(false);
@@ -162,22 +162,17 @@ export default function Search() {
               onChange={handleChange}
             />
           </div>
-
           <div className='flex items-center gap-2'>
-            <label className='font-semibold'>License:</label>
+            <label className='font-semibold'>Category:</label>
             <Select
               onChange={handleChange}
-              value={sidebarData.license}
-              id='license'
+              value={sidebarData.category}
+              id='category'
             >
               <option value='uncategorized'>Uncategorized</option>
-              <option value='cc-by'>CC-BY</option>
-              <option value='cc-by-nc'>CC-BY-NC</option>
-              <option value='cc-by-nd'>CC-BY-ND</option>
-              <option value='cc-by-sa'>CC-BY-SA</option>
-              <option value='cc-by-nc-sa'>CC-BY-NC-SA</option>
-              <option value='cc-by-nc-nd'>CC-BY-NC-ND</option>
-              <option value='other'>Other</option>
+              <option value='kaplan'>Kaplan</option>
+              <option value='mlis'>MLIS</option>
+              {/* <option value='javascript'>JavaScript</option> */}
             </Select>
           </div>
 
@@ -194,7 +189,7 @@ export default function Search() {
         </form>
         <Button className='hover:underline w-full mt-10'>
           <Link
-            to={'/search'}
+            to={'/searchnotes'}
             // className='text-lg text-black  hover:underline text-center block'
           >
             Clear Filters
@@ -204,18 +199,16 @@ export default function Search() {
 
       <div className='w-full'>
         <h1 className='text-3xl font-semibold sm:border-b border-gray-500 p-3 mt-5 '>
-          Citations results:
+          Notes results:
         </h1>
         <div className='p-7 flex flex-wrap gap-4'>
-          {!loading && citations.length === 0 && (
+          {!loading && notes.length === 0 && (
             <p className='text-xl text-gray-500'>No matches.</p>
           )}
           {loading && <p className='text-xl text-gray-500'>Loading...</p>}
           {!loading &&
-            citations &&
-            citations.map((citation) => (
-              <CitationCard key={citation._id} citation={citation} />
-            ))}
+            notes &&
+            notes.map((note) => <NoteCard key={note._id} note={note} />)}
           {showMore && (
             <button
               onClick={handleShowMore}
