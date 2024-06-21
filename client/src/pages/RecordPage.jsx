@@ -1,8 +1,9 @@
-import { Button, Spinner } from 'flowbite-react';
+import { Button, Spinner, Table } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import CallToAction from '../components/CallToAction';
 import RecordCommentSection from '../components/RecordCommentSection';
+import DashRecords from '../components/DashRecords';
 
 import RecordCard from '../components/RecordCard';
 
@@ -12,6 +13,7 @@ export default function RecordPage() {
   const [error, setError] = useState(false);
   const [record, setRecord] = useState(null);
   const [recentRecords, setRecentRecords] = useState(null);
+  const [userRecords, setUserRecords] = useState([]);
   useEffect(() => {
     console.log(recordSlug);
     const fetchRecord = async () => {
@@ -87,9 +89,10 @@ export default function RecordPage() {
         className='p-3 max-w-2xl mx-auto w-full record-content'
         dangerouslySetInnerHTML={{ __html: record && record.content }}
       ></div>
-      <div className='max-w-3xl mx-auto w-full'>
+
+      {/* <div className='max-w-3xl mx-auto w-full'>
         <CallToAction />
-      </div>
+      </div> */}
       <RecordCommentSection recordId={record._id} />
 
       <div className='flex flex-col justify-center items-center mb-5'>

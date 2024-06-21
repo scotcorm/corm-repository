@@ -140,13 +140,9 @@ export const updatenote = async (req, res, next) => {
       req.params.noteId,
       {
         $set: {
-          month: req.body.month,
-          agent: req.body.agent,
-          completed: req.body.completed,
-          cohort: req.body.cohort,
-          overlaps: req.body.overlaps,
-          qapassed: req.body.qapassed,
-          qafailed: req.body.qafailed,
+          date: req.body.date,
+          title: req.body.title,
+          category: req.body.category,
           image: req.body.image,
           content: req.body.content,
         },

@@ -259,17 +259,43 @@ export default function DashProfile() {
         <Button
           type='submit'
           text='cyan-800'
-          outline
           disabled={loading || imageFileUploading}
         >
           {loading
             ? 'Loading...'
             : 'Make changes above, then click here to Update your profile'}
         </Button>
+
+        <hr className='mt-10 mb-10 '></hr>
+
         {currentUser.isAdmin && (
           <Link to={'/create-citation'}>
             <Button type='button' outline text='cyan-800' className='w-full'>
-              Create a citation
+              Create a Citation
+            </Button>
+          </Link>
+        )}
+
+        {currentUser.isAdmin && (
+          <Link to={'/create-note'}>
+            <Button type='button' outline text='cyan-800' className='w-full'>
+              Create a Note
+            </Button>
+          </Link>
+        )}
+
+        {currentUser.isAdmin && (
+          <Link to={'/create-record'}>
+            <Button type='button' outline text='cyan-800' className='w-full'>
+              Create a Record
+            </Button>
+          </Link>
+        )}
+
+        {currentUser.isAdmin && (
+          <Link to={'/create-genealogyrecord'}>
+            <Button type='button' outline text='cyan-800' className='w-full'>
+              Create a Genealogy Record
             </Button>
           </Link>
         )}

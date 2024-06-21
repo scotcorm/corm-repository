@@ -10,7 +10,7 @@ import FeralSwine from './pages/FeralSwine';
 import Genealogy from './pages/Genealogy';
 import ProductionDashboard from './pages/ProductionDashboard';
 import Projects from './pages/Projects';
-import Notes from './pages/Notes';
+//import Notes from './pages/Notes';
 import DigitalMusic from './pages/DigitalMusic';
 import CcCert from './pages/CcCert';
 import ShowRecord from './pages/ShowRecord';
@@ -32,6 +32,9 @@ import NotePage from './pages/NotePage';
 import RecordPage from './pages/RecordPage';
 import Search from './pages/Search';
 import SearchNotes from './pages/SearchNotes';
+import CreateGenealogyRecord from './pages/CreateGenealogyRecord';
+import UpdateGenealogyRecord from './pages/UpdateGenealogyRecord';
+import GenealogyRecordPage from './pages/GenealogyRecordPage';
 
 export default function App() {
   return (
@@ -41,7 +44,7 @@ export default function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
-        <Route path='/notes' element={<Notes />} />
+        {/* <Route path='/notes' element={<Notes />} /> */}
         <Route path='/genealogy' element={<Genealogy />} />
 
         <Route element={<OnlyAdminPrivateRoute />}>
@@ -54,6 +57,14 @@ export default function App() {
           <Route path='/update-record/:recordId' element={<UpdateRecord />} />
           <Route path='/create-note' element={<CreateNote />} />
           <Route path='/update-note/:noteId' element={<UpdateNote />} />
+          <Route
+            path='/create-genealogyrecord'
+            element={<CreateGenealogyRecord />}
+          />
+          <Route
+            path='/update-genealogyrecord/:genealogyrecordId'
+            element={<UpdateGenealogyRecord />}
+          />
         </Route>
         <Route element={<PrivateRoute />}>
           <Route path='/dashboard' element={<Dashboard />} />
@@ -74,6 +85,10 @@ export default function App() {
         <Route path='/citation/:citationSlug' element={<CitationPage />} />
         <Route path='/note/:noteSlug' element={<NotePage />} />
         <Route path='/record/:recordSlug' element={<RecordPage />} />
+        <Route
+          path='/genealogyrecord/:genealogyrecordSlug'
+          element={<GenealogyRecordPage />}
+        />
         <Route path='/show-record' element={<ShowRecord />} />
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
