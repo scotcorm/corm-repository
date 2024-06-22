@@ -1,8 +1,10 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import ProjectsSidebar from '../components/ProjectsSidebar';
+
+//import ProjectsSidebar from '../components/ProjectsSidebar';
 import ProjectsMain from '../components/ProjectsMain';
+import ProjectsSection from '../components/ProjectsSection';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Dashboard() {
   const location = useLocation();
@@ -16,14 +18,15 @@ export default function Dashboard() {
     }
   }, [location.search]);
   return (
-    <div className='min-h-screen flex flex-col md:flex-row'>
-      <div className='md:w-56'>
-        {/* Sidebar */}
-        <ProjectsSidebar />
+    <div>
+      <div className='min-h-screen flex flex-col  '>
+        <div>
+          <ProjectsMain />
+        </div>
+        <div>
+          <ProjectsSection />
+        </div>
       </div>
-      {/* profile */}
-      {/* if the tab = profile show the dash profile */}
-      <ProjectsMain />
     </div>
   );
 }

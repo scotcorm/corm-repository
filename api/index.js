@@ -10,6 +10,8 @@ import recordRoutes from './routes/record.route.js';
 import commentRoutes from './routes/comment.route.js';
 import notecommentRoutes from './routes/notecomment.route.js';
 import recordcommentRoutes from './routes/recordcomment.route.js';
+import genealogyrecordRoutes from './routes/genealogyrecord.route.js';
+import genealogyrecordcommentRoutes from './routes/genealogyrecordcomment.route.js';
 
 // add the route.js, import it above and below then add controller
 dotenv.config();
@@ -40,6 +42,8 @@ app.use('/api/record', recordRoutes);
 app.use('/api/comment', commentRoutes);
 app.use('/api/notecomment', notecommentRoutes);
 app.use('/api/recordcomment', recordcommentRoutes);
+app.use('/api/genealogyrecord', genealogyrecordRoutes);
+app.use('/api/genealogyrecordcomment', genealogyrecordcommentRoutes);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

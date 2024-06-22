@@ -5,7 +5,7 @@ import {
   deletegenealogyrecord,
   getgenealogyrecords,
   updategenealogyrecord,
-} from '../controllers/record.controller.js';
+} from '../controllers/genealogyrecord.controller.js';
 
 const router = express.Router();
 
@@ -21,6 +21,6 @@ router.put(
   verifyToken,
   updategenealogyrecord
 );
-// create routes then update the controller
+//create routes then update the controller
 
 export default router;

@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import CallToAction from '../components/CallToAction';
 import CitationCard from '../components/CitationCard';
 import NoteCard from '../components/NoteCard';
+import GenealogyrecordCard from '../components/GenealogyrecordCard';
 
 export default function Home() {
   const [citations, setCitations] = useState([]);
   const [notes, setNotes] = useState([]);
+  const [genealogyrecords, setGenealogyrecords] = useState([]);
 
   useEffect(() => {
     const fetchCitations = async () => {
@@ -28,6 +30,16 @@ export default function Home() {
     fetchNotes();
   }, []);
 
+  useEffect(() => {
+    const fetchGenealogyrecords = async () => {
+      const res = await fetch('/api/genealogyrecord/getGenealogyrecords');
+      // make sure there is a getnotes controller
+      const data = await res.json();
+      setGenealogyrecords(data.genealogyrecords);
+    };
+    fetchGenealogyrecords();
+  }, []);
+
   return (
     <div className=''>
       <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto '>
@@ -38,12 +50,32 @@ export default function Home() {
           nemo, natus laborum quod incidunt qui? Repellendus culpa perspiciatis
           quidem cum, velit consectetur.
         </p>
-        <Link
-          to='/search'
-          className='text-xs sm:text-sm text-cyan-800 font-bold hover:underline'
-        >
-          View All Citations and Notes
-        </Link>
+        <div className='flex mx-auto gap-10'>
+          <div className='hover:underline'>
+            <Link
+              to='/search'
+              className='text-xs sm:text-sm text-cyan-800 font-bold hover:underline'
+            >
+              View All Citations
+            </Link>
+          </div>
+          <div className='hover:underline'>
+            <Link
+              to='/search'
+              className='text-xs sm:text-sm text-cyan-800 font-bold hover:underline'
+            >
+              View All Notes
+            </Link>
+          </div>
+          <div className='hover:underline'>
+            <Link
+              to='/search'
+              className='text-xs sm:text-sm text-cyan-800 font-bold hover:underline'
+            >
+              View Genealogy Records
+            </Link>
+          </div>
+        </div>
       </div>
       <div className='p-3  dark:bg-slate-700 max-w-6xl mx-auto'>
         <CallToAction />
@@ -82,6 +114,29 @@ export default function Home() {
               className='text-lg text-cyan-800 hover:underline text-center'
             >
               View all Notes
+            </Link>
+          </div>
+        )}
+      </div>
+      <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 py-7'>
+        {genealogyrecords && genealogyrecords.length > 0 && (
+          <div className='flex flex-col gap-6'>
+            <h2 className='text-2xl font-semibold text-center'>
+              Recent Genealogy Records
+            </h2>
+            <div className='flex flex-wrap gap-4'>
+              {genealogyrecords.map((genealogyrecord) => (
+                <GenealogyrecordCard
+                  key={genealogyrecord._id}
+                  genealogyrecord={genealogyrecord}
+                />
+              ))}
+            </div>
+            <Link
+              to={'/searchgenealogyrecords'}
+              className='text-lg text-cyan-800 hover:underline text-center'
+            >
+              View Genealogy Records
             </Link>
           </div>
         )}

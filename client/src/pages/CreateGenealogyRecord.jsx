@@ -61,7 +61,7 @@ export default function CreateGenealogyRecord() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/genealogyrecord/create', {
+      const res = await fetch('/api/genealogyrecord/creategenealogyrecord', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

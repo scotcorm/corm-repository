@@ -35,6 +35,7 @@ import SearchNotes from './pages/SearchNotes';
 import CreateGenealogyRecord from './pages/CreateGenealogyRecord';
 import UpdateGenealogyRecord from './pages/UpdateGenealogyRecord';
 import GenealogyRecordPage from './pages/GenealogyRecordPage';
+import SearchGenealogyrecords from './pages/SearchGenealogyrecords';
 
 export default function App() {
   return (
@@ -94,6 +95,10 @@ export default function App() {
         <Route path='/sign-up' element={<SignUp />} />
         <Route path='/search' element={<Search />} />
         <Route path='/searchnotes' element={<SearchNotes />} />
+        <Route
+          path='/searchgenealogyrecords'
+          element={<SearchGenealogyrecords />}
+        />
       </Routes>
       <Footer />
     </BrowserRouter>
