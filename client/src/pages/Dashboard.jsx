@@ -11,6 +11,10 @@ import DashRecordComments from '../components/DashRecordComments';
 import DashNoteComments from '../components/DashNoteComments';
 import DashCitationComments from '../components/DashCitationComments';
 import DashboardComponent from '../components/DashboardComponent';
+import DashGenealogyRecordComments from '../components/DashGenealogyRecordComments';
+import DashGenealogyRecords from '../components/DashGenealogyRecords';
+import DashProjectComments from '../components/DashProjectComments';
+import DashProjects from '../components/DashProjects';
 
 export default function Dashboard() {
   const location = useLocation();
@@ -36,12 +40,20 @@ export default function Dashboard() {
       {tab === 'citations' && <DashCitations />}
       {/* records */}
       {tab === 'records' && <DashRecords />}
+      {/* genealogy records */}
+      {tab === 'genealogyrecords' && <DashGenealogyRecords />}
+      {/* projects */}
+      {tab === 'projects' && <DashProjects />}
+      {/* project comments */}
+      {tab === 'projectcomments' && <DashProjectComments />}
       {/* notes */}
       {tab === 'notes' && <DashNotes />}
       {/* users */}
       {tab === 'users' && <DashUsers />}
       {/* record comments */}
       {tab === 'recordcomments' && <DashRecordComments />}
+      {/* genealogy record comments */}
+      {tab === 'genealogyrecordcomments' && <DashGenealogyRecordComments />}
       {/* note comments */}
       {tab === 'notecomments' && <DashNoteComments />}
       {/* citation comments */}

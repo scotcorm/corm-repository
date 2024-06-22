@@ -4,6 +4,7 @@ import CallToAction from '../components/CallToAction';
 import CitationCard from '../components/CitationCard';
 import NoteCard from '../components/NoteCard';
 import GenealogyrecordCard from '../components/GenealogyrecordCard';
+import { Button } from 'flowbite-react';
 
 export default function Home() {
   const [citations, setCitations] = useState([]);
@@ -51,29 +52,33 @@ export default function Home() {
           quidem cum, velit consectetur.
         </p>
         <div className='flex mx-auto gap-10'>
-          <div className='hover:underline'>
-            <Link
-              to='/search'
-              className='text-xs sm:text-sm text-cyan-800 font-bold hover:underline'
-            >
-              View All Citations
-            </Link>
+          <div>
+            <Button outline className='br-none mt-5'>
+              <Link to='/search' className='text-xs sm:text-sm font-bold  '>
+                View All Citations
+              </Link>
+            </Button>
           </div>
-          <div className='hover:underline'>
-            <Link
-              to='/search'
-              className='text-xs sm:text-sm text-cyan-800 font-bold hover:underline'
-            >
-              View All Notes
-            </Link>
+          <div>
+            <Button outline className='br-none mt-5'>
+              <Link
+                to='/searchnotes'
+                className='text-xs sm:text-sm  font-bold  '
+              >
+                View All Notes
+              </Link>
+            </Button>
           </div>
-          <div className='hover:underline'>
-            <Link
-              to='/search'
-              className='text-xs sm:text-sm text-cyan-800 font-bold hover:underline'
-            >
-              View Genealogy Records
-            </Link>
+          <div>
+            <Button outline className='br-none mt-5'>
+              {/* <a href='#' target='_blank' rel='noopener noreferrer'> */}
+              <Link
+                to='/searchgenealogyrecords'
+                className='text-xs sm:text-sm  font-bold  '
+              >
+                View All Genealogy Records
+              </Link>
+            </Button>
           </div>
         </div>
       </div>

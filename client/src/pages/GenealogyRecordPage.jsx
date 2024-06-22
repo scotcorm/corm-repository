@@ -107,7 +107,7 @@ export default function GenealogyRecordPage() {
       {/* <GenealogyrecordCommentSection /> */}
 
       <div className='flex flex-col justify-center items-center mb-5'>
-        <h1 className='text-xl mt-5'>Recent Genealogyrecords</h1>
+        <h1 className='text-xl mt-5'>Recent Genealogy Records</h1>
         <div className='flex flex-wrap gap-5 mt-5 justify-center'>
           {recentGenealogyrecords &&
             recentGenealogyrecords.map((genealogyrecord) => (

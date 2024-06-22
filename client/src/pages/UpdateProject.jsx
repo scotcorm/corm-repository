@@ -14,22 +14,22 @@ import 'react-circular-progressbar/dist/styles.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-export default function UpdateGenealogyrecord() {
+export default function UpdateProject() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
-  const { genealogyrecordId } = useParams();
+  const { projectId } = useParams();
 
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
 
   useEffect(() => {
     try {
-      const fetchGenealogyrecord = async () => {
+      const fetchProject = async () => {
         const res = await fetch(
-          `/api/genealogyrecord/getgenealogyrecords?genealogyrecordId=${genealogyrecordId}`
+          `/api/project/getprojects?projectId=${projectId}`
         );
         const data = await res.json();
         if (!res.ok) {
@@ -39,14 +39,14 @@ export default function UpdateGenealogyrecord() {
         }
         if (res.ok) {
           setPublishError(null);
-          setFormData(data.genealogyrecords[0]);
+          setFormData(data.projects[0]);
         }
       };
-      fetchGenealogyrecord();
+      fetchProject();
     } catch (error) {
       console.log(error.message);
     }
-  }, [genealogyrecordId]);
+  }, [projectId]);
 
   const handleUpdloadImage = async () => {
     try {
@@ -89,7 +89,7 @@ export default function UpdateGenealogyrecord() {
     try {
       //++++++++++++++++++++++++++++++
       const res = await fetch(
-        `/api/genealogyrecord/updategenealogyrecord/${formData._id}/${currentUser._id}`,
+        `/api/project/updateproject/${formData._id}/${currentUser._id}`,
         {
           method: 'PUT',
           headers: {
@@ -107,7 +107,7 @@ export default function UpdateGenealogyrecord() {
 
       if (res.ok) {
         setPublishError(null);
-        navigate(`/genealogyrecord/${data.slug}`);
+        navigate(`/project/${data.slug}`);
       }
     } catch (error) {
       setPublishError('Something went wrong');
@@ -116,9 +116,9 @@ export default function UpdateGenealogyrecord() {
   return (
     <div className='p-3 max-w-3xl mx-auto min-h-screen'>
       <h1 className='text-center text-3xl my-7 font-semibold'>
-        Update a GenealogyRecord
+        Update a Project
       </h1>
-      {/* http://127.0.0.1:5173/create-genealogyrecord */}
+      {/* http://127.0.0.1:5173/create-project */}
       <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
         <div className='flex flex-col gap-4 sm:flex-row justify-between'>
           <TextInput
@@ -132,7 +132,7 @@ export default function UpdateGenealogyrecord() {
           />
           <TextInput
             type='text'
-            placeholder='Title- a short overview of the genealogyrecord...'
+            placeholder='Title- a short overview of the project...'
             required
             id='title'
             className='flex-1'
@@ -153,9 +153,7 @@ export default function UpdateGenealogyrecord() {
             <option value='kaplan'>Kaplan</option>
             <option value='mlis'>MLIS</option>
             <option value='jobhunt'>Job Hunt</option>
-            <option value='developergenealogyrecords'>
-              Developer Genealogyrecords
-            </option>
+            <option value='developerprojects'>Developer Projects</option>
             <option value='other'>Other</option>
           </Select>
         </div>
@@ -196,7 +194,7 @@ export default function UpdateGenealogyrecord() {
         <ReactQuill
           theme='snow'
           value={formData.content}
-          placeholder='Add Genealogy Record...'
+          placeholder='Add project...'
           className='h-72 mb-12'
           required
           onChange={(value) => {
@@ -204,7 +202,7 @@ export default function UpdateGenealogyrecord() {
           }}
         />
         <Button type='submit' text='cyan-800' outline>
-          Edit Genealogy record
+          Edit Project
         </Button>
         {publishError && (
           <Alert className='mt-5' color='failure'>

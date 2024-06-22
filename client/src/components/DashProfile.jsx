@@ -299,6 +299,14 @@ export default function DashProfile() {
             </Button>
           </Link>
         )}
+
+        {currentUser.isAdmin && (
+          <Link to={'/create-project'}>
+            <Button type='button' outline text='cyan-800' className='w-full'>
+              Create a Project
+            </Button>
+          </Link>
+        )}
       </form>
       <div className='text-red-500 flex justify-between mt-5'>
         <span onClick={() => setShowModal(true)} className='cursor-pointer'>

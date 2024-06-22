@@ -23,6 +23,8 @@ import CitationRepo from './pages/CitationRepo';
 import OnlyAdminPrivateRoute from './components/OnlyAdminPrivateRoute';
 import CreateCitation from './pages/CreateCitation';
 import CreateNote from './pages/CreateNote';
+import CreateProject from './pages/CreateProject';
+import UpdateProject from './pages/UpdateProject';
 import UpdateCitation from './pages/UpdateCitation';
 import UpdateRecord from './pages/UpdateRecord';
 import UpdateNote from './pages/UpdateNote';
@@ -36,6 +38,7 @@ import CreateGenealogyRecord from './pages/CreateGenealogyRecord';
 import UpdateGenealogyRecord from './pages/UpdateGenealogyRecord';
 import GenealogyRecordPage from './pages/GenealogyRecordPage';
 import SearchGenealogyrecords from './pages/SearchGenealogyrecords';
+import ProjectPage from './pages/ProjectPage';
 
 export default function App() {
   return (
@@ -56,6 +59,11 @@ export default function App() {
           />
           <Route path='/create-record' element={<CreateRecord />} />
           <Route path='/update-record/:recordId' element={<UpdateRecord />} />
+          <Route path='/create-project' element={<CreateProject />} />
+          <Route
+            path='/update-project/:projectId'
+            element={<UpdateProject />}
+          />
           <Route path='/create-note' element={<CreateNote />} />
           <Route path='/update-note/:noteId' element={<UpdateNote />} />
           <Route
@@ -83,6 +91,7 @@ export default function App() {
         <Route path='/genealogy' element={<Genealogy />} />
         <Route path='/production-dashboard' element={<ProductionDashboard />} />
         <Route path='/projects' element={<Projects />} />
+        <Route path='/project/:projectSlug' element={<ProjectPage />} />
         <Route path='/citation/:citationSlug' element={<CitationPage />} />
         <Route path='/note/:noteSlug' element={<NotePage />} />
         <Route path='/record/:recordSlug' element={<RecordPage />} />

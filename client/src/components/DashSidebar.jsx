@@ -149,6 +149,44 @@ export default function DashSidebar() {
                   Note Comments
                 </Sidebar.Item>
               </Link>
+
+              <Link to='/dashboard?tab=projects'>
+                <Sidebar.Item
+                  active={tab === 'projects'}
+                  icon={HiOutlineDocumentText}
+                  as='div'
+                >
+                  Projects
+                </Sidebar.Item>
+              </Link>
+              <Link to='/dashboard?tab=projectcomments'>
+                <Sidebar.Item
+                  active={tab === 'projectcomments'}
+                  icon={HiAnnotation}
+                  as='div'
+                >
+                  Project Comments
+                </Sidebar.Item>
+              </Link>
+
+              <Link to='/dashboard?tab=genealogyrecords'>
+                <Sidebar.Item
+                  active={tab === 'genealogyrecords'}
+                  icon={HiOutlineDocumentText}
+                  as='div'
+                >
+                  Genealogy records
+                </Sidebar.Item>
+              </Link>
+              <Link to='/dashboard?tab=genealogyrecordcomments'>
+                <Sidebar.Item
+                  active={tab === 'genealogyrecordcomments'}
+                  icon={HiAnnotation}
+                  as='div'
+                >
+                  Genealogy Comments
+                </Sidebar.Item>
+              </Link>
             </>
           )}
 
