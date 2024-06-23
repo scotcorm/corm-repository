@@ -69,3 +69,7 @@ body {
 .dark .note-content a {
   color: orange;
 }
+
+* {
+  scroll-behavior: smooth;
+}

@@ -54,7 +54,10 @@ export default function Home() {
         <div className='flex mx-auto gap-10'>
           <div>
             <Button outline className='br-none mt-5'>
-              <Link to='/search' className='text-xs sm:text-sm font-bold  '>
+              <Link
+                to='/search'
+                className='text-xs sm:text-sm font-bold cursor-pointer '
+              >
                 View All Citations
               </Link>
             </Button>
@@ -63,7 +66,7 @@ export default function Home() {
             <Button outline className='br-none mt-5'>
               <Link
                 to='/searchnotes'
-                className='text-xs sm:text-sm  font-bold  '
+                className='text-xs sm:text-sm  font-bold cursor-pointer '
               >
                 View All Notes
               </Link>
@@ -74,7 +77,7 @@ export default function Home() {
               {/* <a href='#' target='_blank' rel='noopener noreferrer'> */}
               <Link
                 to='/searchgenealogyrecords'
-                className='text-xs sm:text-sm  font-bold  '
+                className='text-xs sm:text-sm  font-bold cursor-pointer '
               >
                 View All Genealogy Records
               </Link>
