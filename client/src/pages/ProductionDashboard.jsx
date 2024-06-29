@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 //import ProductionDataSidebar from '../components/ProductionDataSidebar';
 import ProductionDashNavbar from '../components/ProductionDashNavbar';
 import ProductionProfile from '../components/ProductionProfile';
+import { HiOutlineArrowUp } from 'react-icons/hi';
 
 export default function ProductionDashboard() {
   const location = useLocation();
@@ -19,12 +20,13 @@ export default function ProductionDashboard() {
 
   return (
     <div className='min-h-screen flex flex-col md:flex-row'>
-      <div className='md:w-56'>
+      {/* <div className='md:w-56'>
         <ProductionDashNavbar />
-      </div>
+      </div> */}
       <div className='w-full'>
         <ProductionProfile />
       </div>
+
       {/* if the tab = production show the production profile */}
       {/* {tab === 'section1' && <Section1 />} */}
     </div>
