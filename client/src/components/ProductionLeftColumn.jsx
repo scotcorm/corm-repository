@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ProductionCard from './ProductionCard';
 import ProductionBarChart from './ProductionBarChart';
 import ProductionTable from './ProductionTable';
+import ProductionCardR from './ProductionCardR';
 
 export default function ProductionLeftColumn() {
   return (
@@ -9,7 +10,7 @@ export default function ProductionLeftColumn() {
       <div className='flex flex-col lg:flex-row gap-2 w-full'>
         <ProductionCard />
 
-        <ProductionCard />
+        <ProductionCardR />
       </div>
       <div className='flex-auto w-full'>
         <ProductionBarChart />
