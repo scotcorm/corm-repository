@@ -94,6 +94,44 @@ export default function DashboardComponent() {
       }
     };
 
+    const findAverageCohort = async () => {
+      try {
+        const res = await fetch('/api/record/getrecords');
+        const data = await res.json();
+        const AverageCohort = records.map((record) => <li>{record.cohort}</li>);
+        if (res.ok) {
+          setRecords(data.records);
+          setTotalRecords(data.totalRecords);
+          setLastMonthRecords(data.lastMonthRecords);
+          setAverageCohort(data.AverageCohort);
+        }
+        console.log(data.records);
+        // const arrayDataItems = data.records.map((props) => (
+        //   <li>{props.cohort}</li>
+        // ));
+
+        // console.log(arrayDataItems);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
+    // ======================================================================
+    const objects = [{ value: 10 }, { value: 20 }, { value: 30 }];
+
+    function averageOfProperty(array, key) {
+      const sum = array.reduce((acc, obj) => acc + (obj[key] || 0), 0);
+      return array.length ? sum / array.length : 0;
+    }
+
+    const average = averageOfProperty(objects, 'value');
+
+    console.log(average);
+
+    //const arrayDataItems = courses.map((course) => <li>{course}</li>);
+
+    // ======================================================================
+
     // const fetchAverageCohort = async () => {
     //   try {
     //     const res = await fetch('/api/record/getrecords');
@@ -107,19 +145,6 @@ export default function DashboardComponent() {
     //     console.log(error.message);
     //   }
     // };
-
-    // ======================================================================
-    const objects = [{ value: 10 }, { value: 20 }, { value: 30 }];
-
-    function averageOfProperty(array, key) {
-      const sum = array.reduce((acc, obj) => acc + (obj[key] || 0), 0);
-      return array.length ? sum / array.length : 0;
-    }
-
-    const average = averageOfProperty(objects, 'value');
-
-    console.log(average);
-    // ======================================================================
 
     // const fetchAverageCohort = async () => {
     //   try {
@@ -184,6 +209,7 @@ export default function DashboardComponent() {
       // fetchNotes();
       // fetchNoteComments();
       fetchRecords();
+      findAverageCohort();
       // fetchRecordComments();
     }
   }, [currentUser]);
