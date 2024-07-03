@@ -9,42 +9,33 @@ const recordSchema = new mongoose.Schema(
     title: {
       type: String,
       required: true,
-      unique: true,
     },
     content: {
       type: String,
       required: true,
-      unique: true,
     },
     month: {
       type: String,
       required: true,
-      unique: false,
     },
     agent: {
       type: String,
       required: true,
-      unique: false,
     },
     completed: {
       type: Number,
-      unique: false,
     },
     cohort: {
       type: Number,
-      unique: false,
     },
     overlaps: {
       type: Number,
-      unique: false,
     },
     qapassed: {
       type: Number,
-      unique: false,
     },
     qafailed: {
       type: Number,
-      unique: false,
     },
     image: {
       type: String,

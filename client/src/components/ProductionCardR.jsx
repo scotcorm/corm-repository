@@ -216,10 +216,10 @@ export default function DashboardComponent() {
   return (
     <Card className='w-xs' decoration='top' decorationColor='cyan-800'>
       <Flex justifyContent='between' alignItems='center'>
-        <Text>Records</Text>
-        <BadgeDelta deltaType='moderateIncrease'>+1.5%</BadgeDelta>
+        <Text>Average Cohort</Text>
+        <BadgeDelta deltaType='moderateIncrease'>+0.25%</BadgeDelta>
       </Flex>
-      <Metric>{totalRecords}</Metric>
+      <Metric>1175</Metric>
     </Card>
   );
 }

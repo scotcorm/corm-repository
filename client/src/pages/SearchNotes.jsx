@@ -162,8 +162,10 @@ export default function Search() {
               onChange={handleChange}
             />
           </div>
-          <div className='flex items-center gap-2'>
+
+          {/* <div className='flex items-center gap-2'>
             <label className='font-semibold'>Category:</label>
+
             <Select
               onChange={handleChange}
               value={sidebarData.category}
@@ -173,8 +175,8 @@ export default function Search() {
               <option value='kaplan'>Kaplan</option>
               <option value='mlis'>MLIS</option>
               {/* <option value='javascript'>JavaScript</option> */}
-            </Select>
-          </div>
+          {/* </form> </Select>
+          </div> */}
 
           <div className='flex items-center gap-2'>
             <label className='font-semibold'>Sort By:</label>

@@ -171,12 +171,12 @@ export default function Search() {
               id='license'
             >
               <option value='uncategorized'>Uncategorized</option>
-              <option value='cc-by'>CC-BY</option>
-              <option value='cc-by-nc'>CC-BY-NC</option>
-              <option value='cc-by-nd'>CC-BY-ND</option>
-              <option value='cc-by-sa'>CC-BY-SA</option>
-              <option value='cc-by-nc-sa'>CC-BY-NC-SA</option>
-              <option value='cc-by-nc-nd'>CC-BY-NC-ND</option>
+              <option value='by'>CC-BY</option>
+              <option value='by-nc'>CC-BY-NC</option>
+              <option value='by-nd'>CC-BY-ND</option>
+              <option value='by-sa'>CC-BY-SA</option>
+              <option value='by-nc-sa'>CC-BY-NC-SA</option>
+              <option value='by-nc-nd'>CC-BY-NC-ND</option>
               <option value='other'>Other</option>
             </Select>
           </div>
