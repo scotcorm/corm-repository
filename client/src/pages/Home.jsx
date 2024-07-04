@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CallToAction from '../components/CallToAction';
 import CitationCard from '../components/CitationCard';
-import NoteCard from '../components/NoteCard';
+// import NoteCard from '../components/NoteCard';
+import ProjectCard from '../components/ProjectCard';
 import GenealogyrecordCard from '../components/GenealogyrecordCard';
 import { Button } from 'flowbite-react';
 
 export default function Home() {
   const [citations, setCitations] = useState([]);
-  const [notes, setNotes] = useState([]);
+  // const [notes, setNotes] = useState([]);
+  const [projects, setProjects] = useState([]);
   const [genealogyrecords, setGenealogyrecords] = useState([]);
 
   useEffect(() => {
@@ -21,14 +23,24 @@ export default function Home() {
     fetchCitations();
   }, []);
 
+  // useEffect(() => {
+  //   const fetchNotes = async () => {
+  //     const res = await fetch('/api/note/getNotes');
+  //     // make sure there is a getnotes controller
+  //     const data = await res.json();
+  //     setNotes(data.notes);
+  //   };
+  //   fetchNotes();
+  // }, []);
+
   useEffect(() => {
-    const fetchNotes = async () => {
-      const res = await fetch('/api/note/getNotes');
-      // make sure there is a getnotes controller
+    const fetchProjects = async () => {
+      const res = await fetch('/api/project/getProjects');
+      // make sure there is a getprojects controller
       const data = await res.json();
-      setNotes(data.notes);
+      setProjects(data.projects);
     };
-    fetchNotes();
+    fetchProjects();
   }, []);
 
   useEffect(() => {
@@ -65,13 +77,24 @@ export default function Home() {
           <div>
             <Button outline className='br-none mt-5'>
               <Link
+                to='/projects'
+                className='text-xs sm:text-sm  font-bold cursor-pointer '
+              >
+                View All Projects
+              </Link>
+            </Button>
+          </div>
+
+          {/* <div>
+            <Button outline className='br-none mt-5'>
+              <Link
                 to='/searchnotes'
                 className='text-xs sm:text-sm  font-bold cursor-pointer '
               >
                 View All Notes
               </Link>
             </Button>
-          </div>
+          </div> */}
           <div>
             <Button outline className='br-none mt-5'>
               {/* <a href='#' target='_blank' rel='noopener noreferrer'> */}
@@ -108,7 +131,7 @@ export default function Home() {
           </div>
         )}
       </div>
-      <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 py-7'>
+      {/* <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 py-7'>
         {notes && notes.length > 0 && (
           <div className='flex flex-col gap-6'>
             <h2 className='text-2xl font-semibold text-center'>Recent Notes</h2>
@@ -125,7 +148,29 @@ export default function Home() {
             </Link>
           </div>
         )}
+      </div> */}
+
+      <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 py-7'>
+        {projects && projects.length > 0 && (
+          <div className='flex flex-col gap-6'>
+            <h2 className='text-2xl font-semibold text-center'>
+              Recent Projects
+            </h2>
+            <div className='flex flex-wrap gap-4'>
+              {projects.map((project) => (
+                <ProjectCard key={project._id} project={project} />
+              ))}
+            </div>
+            <Link
+              to={'/projects'}
+              className='text-lg text-cyan-800 hover:underline text-center'
+            >
+              View all Projects
+            </Link>
+          </div>
+        )}
       </div>
+
       <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 py-7'>
         {genealogyrecords && genealogyrecords.length > 0 && (
           <div className='flex flex-col gap-6'>

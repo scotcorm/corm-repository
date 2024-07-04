@@ -1,7 +1,7 @@
 import { Button, Select, TextInput } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++not an active page+++++++++++++++
 import ProjectCard from '../components/ProjectCard';
 // create page then add to app.jsx
 
@@ -106,26 +106,26 @@ export default function Search() {
     navigate(`/searchprojects?${searchQuery}`);
   };
 
-  // const handleShowMore = async () => {
-  //   const numberOfProjects = projects.length;
-  //   const startIndex = numberOfProjects;
-  //   const urlParams = new URLSearchParams(location.search);
-  //   urlParams.set('startIndex', startIndex);
-  //   const searchQuery = urlParams.toString();
-  //   const res = await fetch(`/api/project/getprojects?${searchQuery}`);
-  //   if (!res.ok) {
-  //     return;
-  //   }
-  //   if (res.ok) {
-  //     const data = await res.json();
-  //     setProjects([...projects, ...data.projects]);
-  //     if (data.projects.length >= 3) {
-  //       setShowMore(true);
-  //     } else {
-  //       setShowMore(false);
-  //     }
-  //   }
-  // };
+  const handleShowMore = async () => {
+    const numberOfProjects = projects.length;
+    const startIndex = numberOfProjects;
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set('startIndex', startIndex);
+    const searchQuery = urlParams.toString();
+    const res = await fetch(`/api/project/getprojects?${searchQuery}`);
+    if (!res.ok) {
+      return;
+    }
+    if (res.ok) {
+      const data = await res.json();
+      setProjects([...projects, ...data.projects]);
+      if (data.projects.length >= 3) {
+        setShowMore(true);
+      } else {
+        setShowMore(false);
+      }
+    }
+  };
 
   // const handleShowMoreNotes = async () => {
   //   const numberOfNotes = notes.length;

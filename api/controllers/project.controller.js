@@ -29,7 +29,7 @@ export const createproject = async (req, res, next) => {
 export const getprojects = async (req, res, next) => {
   try {
     const startIndex = parseInt(req.query.startIndex) || 0;
-    const limit = parseInt(req.query.limit) || 9;
+    const limit = parseInt(req.query.limit) || 3;
     const sortDirection = req.query.order === 'asc' ? 1 : -1;
     // add limiters like localhost:3000/api/citation/getcitations?limit=1
     const projects = await Project.find({

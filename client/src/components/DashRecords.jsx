@@ -22,8 +22,8 @@ export default function DashRecords() {
         const data = await res.json();
         if (res.ok) {
           setUserRecords(data.records);
-          if (data.records.length < 9) {
-            setShowMore(false);
+          if (data.records.length >= 3) {
+            setShowMore(true);
           }
         }
       } catch (error) {
@@ -46,8 +46,8 @@ export default function DashRecords() {
       const data = await res.json();
       if (res.ok) {
         setUserRecords((prev) => [...prev, ...data.records]);
-        if (data.records.length < 9) {
-          setShowMore(false);
+        if (data.records.length >= 3) {
+          setShowMore(true);
         }
       }
     } catch (error) {

@@ -20,8 +20,8 @@ export default function DashNotes() {
         const data = await res.json();
         if (res.ok) {
           setUserNotes(data.notes);
-          if (data.notes.length < 9) {
-            setShowMore(false);
+          if (data.notes.length >= 3) {
+            setShowMore(true);
           }
         }
       } catch (error) {
@@ -44,8 +44,8 @@ export default function DashNotes() {
       const data = await res.json();
       if (res.ok) {
         setUserNotes((prev) => [...prev, ...data.notes]);
-        if (data.notes.length < 9) {
-          setShowMore(false);
+        if (data.notes.length >= 3) {
+          setShowMore(true);
         }
       }
     } catch (error) {

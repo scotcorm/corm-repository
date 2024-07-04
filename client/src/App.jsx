@@ -39,6 +39,7 @@ import UpdateGenealogyRecord from './pages/UpdateGenealogyRecord';
 import GenealogyRecordPage from './pages/GenealogyRecordPage';
 import SearchGenealogyrecords from './pages/SearchGenealogyrecords';
 import ProjectPage from './pages/ProjectPage';
+import TermsConditions from './pages/TermsConditions';
 
 export default function App() {
   return (
@@ -50,6 +51,7 @@ export default function App() {
         <Route path='/about' element={<About />} />
         {/* <Route path='/notes' element={<Notes />} /> */}
         <Route path='/genealogy' element={<Genealogy />} />
+        <Route path='/terms-conditions' element={<TermsConditions />} />
 
         <Route element={<OnlyAdminPrivateRoute />}>
           <Route path='/create-citation' element={<CreateCitation />} />

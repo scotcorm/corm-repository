@@ -6,35 +6,35 @@ import ProjectCard from '../components/ProjectCard';
 import ProjectsMain from '../components/ProjectsMain';
 
 export default function Search() {
-  const [sidebarData, setSidebarData] = useState({
-    searchTerm: '',
-    sort: 'desc',
-    category: 'uncategorized',
-  });
+  // const [sidebarData, setSidebarData] = useState({
+  //   searchTerm: '',
+  //   sort: 'desc',
+  //   category: 'uncategorized',
+  // });
 
-  console.log(sidebarData);
+  // console.log(sidebarData);
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showMore, setShowMore] = useState(false);
 
   const location = useLocation();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
-    const searchTermFromUrl = urlParams.get('searchTerm');
-    const sortFromUrl = urlParams.get('sort');
+    // const searchTermFromUrl = urlParams.get('searchTerm');
+    // const sortFromUrl = urlParams.get('sort');
     // const categoryFromUrl = urlParams.get('category');
     // if (searchTermFromUrl || sortFromUrl || categoryFromUrl) {
-    if (searchTermFromUrl || sortFromUrl) {
-      setSidebarData({
-        ...sidebarData,
-        searchTerm: searchTermFromUrl,
-        sort: sortFromUrl,
-        // category: categoryFromUrl,
-      });
-    }
+    // if (searchTermFromUrl || sortFromUrl) {
+    //   setSidebarData({
+    //     ...sidebarData,
+    //     searchTerm: searchTermFromUrl,
+    //     sort: sortFromUrl,
+    //     // category: categoryFromUrl,
+    //   });
+    // }
 
     const fetchProjects = async () => {
       setLoading(true);
@@ -48,7 +48,7 @@ export default function Search() {
         const data = await res.json();
         setProjects(data.projects);
         setLoading(false);
-        if (data.projects.length === 9) {
+        if (data.projects.length >= 3) {
           setShowMore(true);
         } else {
           setShowMore(false);
@@ -58,29 +58,29 @@ export default function Search() {
     fetchProjects();
   }, [location.search]);
 
-  const handleChange = (e) => {
-    if (e.target.id === 'searchTerm') {
-      setSidebarData({ ...sidebarData, searchTerm: e.target.value });
-    }
-    if (e.target.id === 'sort') {
-      const order = e.target.value || 'desc';
-      setSidebarData({ ...sidebarData, sort: order });
-    }
-    // if (e.target.id === 'category') {
-    //   const category = e.target.value || 'uncategorized';
-    //   setSidebarData({ ...sidebarData, category });
-    // }
-  };
+  // const handleChange = (e) => {
+  //   if (e.target.id === 'searchTerm') {
+  //     setSidebarData({ ...sidebarData, searchTerm: e.target.value });
+  //   }
+  //   if (e.target.id === 'sort') {
+  //     const order = e.target.value || 'desc';
+  //     setSidebarData({ ...sidebarData, sort: order });
+  // }
+  // if (e.target.id === 'category') {
+  //   const category = e.target.value || 'uncategorized';
+  //   setSidebarData({ ...sidebarData, category });
+  // }
+  // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const urlParams = new URLSearchParams(location.search);
-    urlParams.set('searchTerm', sidebarData.searchTerm);
-    urlParams.set('sort', sidebarData.sort);
-    // urlParams.set('category', sidebarData.category);
-    const searchQuery = urlParams.toString();
-    navigate(`/projects?${searchQuery}`);
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const urlParams = new URLSearchParams(location.search);
+  //   urlParams.set('searchTerm', sidebarData.searchTerm);
+  //   urlParams.set('sort', sidebarData.sort);
+  //   // urlParams.set('category', sidebarData.category);
+  //   const searchQuery = urlParams.toString();
+  //   navigate(`/projects?${searchQuery}`);
+  // };
 
   const handleShowMore = async () => {
     const numberOfProjects = projects.length;
@@ -95,7 +95,7 @@ export default function Search() {
     if (res.ok) {
       const data = await res.json();
       setProjects([...projects, ...data.projects]);
-      if (data.projects.length === 9) {
+      if (data.projects.length >= 3) {
         setShowMore(true);
       } else {
         setShowMore(false);

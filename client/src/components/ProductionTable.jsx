@@ -123,15 +123,15 @@ export default function ProductionTable() {
         <TableHead>
           <TableRow>
             <TableHeaderCell>Date Updated</TableHeaderCell>
-            <TableHeaderCell>Image</TableHeaderCell>
+            {/* <TableHeaderCell>Image</TableHeaderCell> */}
             <TableHeaderCell>Title</TableHeaderCell>
             <TableHeaderCell>Month</TableHeaderCell>
             <TableHeaderCell>Agent</TableHeaderCell>
             <TableHeaderCell>Packages Completed</TableHeaderCell>
             <TableHeaderCell>Overlaps Completed</TableHeaderCell>
-            <TableHeaderCell>QA Passed</TableHeaderCell>
-            <TableHeaderCell>QA Failed</TableHeaderCell>
-            <TableHeaderCell>Cohort</TableHeaderCell>
+            <TableHeaderCell>QA% Passed</TableHeaderCell>
+            <TableHeaderCell>QA% Failed</TableHeaderCell>
+            <TableHeaderCell>Average Cohort</TableHeaderCell>
           </TableRow>
         </TableHead>
 
@@ -141,7 +141,7 @@ export default function ProductionTable() {
               <TableCell>
                 {new Date(record.updatedAt).toLocaleDateString()}
               </TableCell>
-              <TableCell>
+              {/* <TableCell>
                 <Link to={`/record/${record.slug}`}>
                   <img
                     src={record.image}
@@ -149,7 +149,7 @@ export default function ProductionTable() {
                     className='w-20 h-10 object-cover bg-gray-500'
                   />
                 </Link>
-              </TableCell>
+              </TableCell> */}
               <TableCell>
                 <Link
                   className='font-medium text-gray-900 dark:text-white'

@@ -22,8 +22,8 @@ export default function DashProjects() {
         const data = await res.json();
         if (res.ok) {
           setUserProjects(data.projects);
-          if (data.projects.length < 9) {
-            setShowMore(false);
+          if (data.projects.length >= 3) {
+            setShowMore(true);
           }
         }
       } catch (error) {
@@ -46,8 +46,8 @@ export default function DashProjects() {
       const data = await res.json();
       if (res.ok) {
         setUserProjects((prev) => [...prev, ...data.projects]);
-        if (data.projects.length < 9) {
-          setShowMore(false);
+        if (data.projects.length >= 3) {
+          setShowMore(true);
         }
       }
     } catch (error) {

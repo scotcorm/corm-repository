@@ -22,8 +22,8 @@ export default function DashCitations() {
         const data = await res.json();
         if (res.ok) {
           setUserCitations(data.citations);
-          if (data.citations.length < 9) {
-            setShowMore(false);
+          if (data.citations.length >= 3) {
+            setShowMore(true);
           }
         }
       } catch (error) {
@@ -46,8 +46,8 @@ export default function DashCitations() {
       const data = await res.json();
       if (res.ok) {
         setUserCitations((prev) => [...prev, ...data.citations]);
-        if (data.citations.length < 9) {
-          setShowMore(false);
+        if (data.citations.length >= 3) {
+          setShowMore(true);
         }
       }
     } catch (error) {
@@ -149,7 +149,7 @@ export default function DashCitations() {
           )}
         </>
       ) : (
-        <p>You have no posts yet</p>
+        <p>You have no citations yet</p>
       )}
 
       <Modal

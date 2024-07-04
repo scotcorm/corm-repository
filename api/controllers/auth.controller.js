@@ -59,7 +59,7 @@ export const signin = async (req, res, next) => {
       { id: validUser._id, isAdmin: validUser.isAdmin },
       // add secret key to .env
       process.env.JWT_SECRET,
-      { expiresIn: '1d' }
+      { expiresIn: '4h' }
     );
     // remove the hashed password from the database record
     const { password: pass, ...rest } = validUser._doc;
