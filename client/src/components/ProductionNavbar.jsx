@@ -56,7 +56,7 @@ const ProductionNavbar = () => {
             <Sidebar.Item
               active={tab === 'dash2022' || !tab}
               icon={HiOutlineChartPie}
-              //as='div'
+              as='div'
             >
               Dashboard 2022
             </Sidebar.Item>
@@ -67,7 +67,7 @@ const ProductionNavbar = () => {
               active={tab === 'dash2023'}
               icon={HiOutlineChartPie}
               className='cursor-pointer'
-              // as='div'
+              as='div'
             >
               Dashboard 2023
             </Sidebar.Item>
@@ -78,7 +78,7 @@ const ProductionNavbar = () => {
               active={tab === 'dash2024'}
               icon={HiOutlineChartPie}
               className='cursor-pointer'
-              // as='div'
+              as='div'
             >
               Dashboard 2024
             </Sidebar.Item>
@@ -89,7 +89,7 @@ const ProductionNavbar = () => {
               active={tab === 'profile'}
               className='cursor-pointer'
               icon={HiOutlineChartPie}
-              // as='div'
+              as='div'
             >
               Cumulative
             </Sidebar.Item>

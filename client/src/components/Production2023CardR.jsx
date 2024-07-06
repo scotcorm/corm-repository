@@ -12,7 +12,7 @@ import { Button, Table } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 // and add to Dashboard Page
 
-export default function DashboardComponent() {
+export default function Production2023CardR() {
   // const [users, setUsers] = useState([]);
   // const [comments, setComments] = useState([]);
   // const [recordcomments, setRecordComments] = useState([]);
@@ -216,7 +216,7 @@ export default function DashboardComponent() {
   return (
     <Card className='w-xs' decoration='top' decorationColor='cyan-800'>
       <Flex justifyContent='between' alignItems='center'>
-        <Text>Average Cohort</Text>
+        <Text>Average Cohorttt</Text>
         <BadgeDelta deltaType='moderateIncrease'>+0.25%</BadgeDelta>
       </Flex>
       <Metric>1175</Metric>
