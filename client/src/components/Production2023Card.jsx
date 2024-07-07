@@ -15,6 +15,7 @@ export default function Production2023Card() {
   const { currentUser } = useSelector((state) => state.user);
   const [userRecords, setUserRecords] = useState([]);
   const [showMore, setShowMore] = useState(true);
+  const display = document.querySelector('#display-data');
 
   useEffect(() => {
     const fetchRecords = async () => {
@@ -25,6 +26,32 @@ export default function Production2023Card() {
         const data = await res.json();
         if (res.ok) {
           setUserRecords(data.records);
+          // console.log(data.records);
+          let average = [];
+          let sum = 0;
+          let i;
+
+          let displayData = data.records.map((object) => {
+            const { cohort, completed } = object;
+            // console.log(object.completed);
+            sum += parseInt([object.cohort]);
+            average.push(object.cohort);
+
+            // for (i = 0; i < average.length; i++) {
+            //   sum += parseInt(average[i]);
+            //   console.log(sum);
+
+            // console.log(average);
+            //}
+
+            // console.log(sum);
+            // console.log(average.length);
+            // let averageCohort = parseInt(sum) / average.length;
+            // console.log(parseInt(averageCohort));
+          });
+          const averageCohort = parseInt(sum) / average.length;
+          // console.log(averageCohort);
+
           if (data.records.length < 9) {
             setShowMore(false);
           }
@@ -47,7 +74,7 @@ export default function Production2023Card() {
         <Text>Average Files Completed Daily</Text>
         <BadgeDelta deltaType='moderateIncrease'>+.78%</BadgeDelta>
       </Flex>
-      <Metric>45</Metric>
+      <Metric id='display-data'>test</Metric>
     </Card>
   );
 }
