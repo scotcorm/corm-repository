@@ -1,14 +1,19 @@
 import React from 'react';
-import { BadgeDelta, Card, Flex, Metric, Text } from '@tremor/react';
+import { BadgeDelta, Card, Flex, Metric, Text, Badge } from '@tremor/react';
+
+import AverageCohort from './AverageCohort';
+import { BsBullseye } from 'react-icons/bs';
 
 export default function ProductionCard() {
   return (
     <Card className='w-xs' decoration='top' decorationColor='cyan-800'>
       <Flex justifyContent='between' alignItems='center'>
-        <Text>Average Files Completed Daily</Text>
-        <BadgeDelta deltaType='moderateIncrease'>+.78%</BadgeDelta>
+        <Text>Average Cohort</Text>
+        <Badge icon={BsBullseye}>live</Badge>
       </Flex>
-      <Metric>45</Metric>
+      <Metric>
+        <AverageCohort />
+      </Metric>
     </Card>
   );
 }
