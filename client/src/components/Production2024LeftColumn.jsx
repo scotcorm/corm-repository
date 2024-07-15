@@ -9,11 +9,12 @@ export default function Production2024LeftColumn() {
     <div className='w-full flex flex-col justify-between p-2'>
       <div className='flex flex-col lg:flex-row gap-2 w-full'>
         <Production2024Card />
-
         <Production2024CardR />
       </div>
-      <div className='flex-auto w-full'>{<Production2024BarChart />}</div>
-      <div className='flex-auto w-full'>{<Production2024Table />}</div>
+      <div className='flex-auto w-full mb-20'>
+        <Production2024BarChart />
+      </div>
+      <div className='flex-auto w-full'>{/* <Production2024Table /> */}</div>
     </div>
   );
 }

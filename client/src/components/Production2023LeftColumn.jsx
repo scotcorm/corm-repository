@@ -1,7 +1,7 @@
 // import React, { useState } from 'react';
 import Production2023Card from './Production2023Card';
-// import ProductionBarChart from './ProductionBarChart';
-// import ProductionTable from './ProductionTable';
+import Production2023BarChart from './Production2023BarChart';
+import Production2023Table from './Production2023Table';
 import Production2023CardR from './Production2023CardR';
 
 export default function Production2023LeftColumn() {
@@ -12,8 +12,10 @@ export default function Production2023LeftColumn() {
 
         <Production2023CardR />
       </div>
-      <div className='flex-auto w-full'>{/* <ProductionBarChart /> */}</div>
-      <div className='flex-auto w-full'>{/* <ProductionTable /> */}</div>
+      <div className='flex-auto w-full mb-20'>
+        <Production2023BarChart />
+      </div>
+      <div className='flex-auto w-full'>{/* <Production2023Table /> */}</div>
     </div>
   );
 }

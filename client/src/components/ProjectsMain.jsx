@@ -1,5 +1,6 @@
 import React from 'react';
-import CallToAction from './CallToAction';
+// import CallToAction from './CallToAction';
+import CallToActionProjects from './CallToActionProjects';
 
 export default function ProjectsMain() {
   return (
@@ -45,7 +46,7 @@ export default function ProjectsMain() {
           molestiae. Incidunt sapiente assumenda ipsa repellendus.
         </p>
       </div>
-      <CallToAction />
+      <CallToActionProjects />
     </div>
   );
 }

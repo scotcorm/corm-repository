@@ -6,7 +6,7 @@ export default function Production2023CardR() {
     <Card className='w-xs' decoration='top' decorationColor='cyan-800'>
       <Flex justifyContent='between' alignItems='center'>
         <Text>Average Files Completed Daily</Text>
-        <BadgeDelta deltaType='moderateIncrease'>+.78%</BadgeDelta>
+        <BadgeDelta deltaType='moderateIncrease'>+18.4%</BadgeDelta>
       </Flex>
       <Metric>45</Metric>
     </Card>

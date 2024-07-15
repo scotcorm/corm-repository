@@ -15,94 +15,98 @@ import {
   Metric,
   Text,
   Title,
+  Legend,
 } from '@tremor/react';
 import {
   ArrowRightIcon,
   ChartPieIcon,
   ViewListIcon,
 } from '@heroicons/react/outline';
+import { red } from 'tailwindcss/colors';
 
-const stocks = [
+const datahero = [
   {
-    name: 'Off Running AG',
-    value: 10456,
-    performance: '6.1%',
+    category: 2022,
+    name: 'January 2022',
+    value: 98,
+    performance: '-2%',
     deltaType: 'increase',
   },
   {
-    name: 'Not Normal Inc.',
-    value: 5789,
-    performance: '1.2%',
+    name: 'February 2022',
+    value: 97,
+    performance: '-3%',
     deltaType: 'moderateDecrease',
   },
   {
-    name: 'Logibling Inc.',
-    value: 4367,
-    performance: '2.3%',
-    deltaType: 'moderateIncrease',
-  },
-  {
-    name: 'Raindrop Inc.',
-    value: 3421,
-    performance: '0.5%',
+    name: 'March 2022',
+    value: 97,
+    performance: '-3%',
     deltaType: 'moderateDecrease',
   },
   {
-    name: 'Mwatch Group',
-    value: 1432,
-    performance: '3.4%',
-    deltaType: 'decrease',
-  },
-  {
-    name: 'Off Running AG',
-    value: 10456,
-    performance: '6.1%',
+    name: 'April 2022',
+    value: 98,
+    performance: '-2%',
     deltaType: 'increase',
   },
   {
-    name: 'Not Normal Inc.',
-    value: 5789,
-    performance: '1.2%',
+    name: 'May 2022',
+    value: 97,
+    performance: '-3%',
     deltaType: 'moderateDecrease',
   },
   {
-    name: 'Logibling Inc.',
-    value: 4367,
-    performance: '2.3%',
-    deltaType: 'moderateIncrease',
+    name: 'June 2022',
+    value: 98,
+    performance: '-2%',
+    deltaType: 'increase',
   },
   {
-    name: 'Raindrop Inc.',
-    value: 3421,
-    performance: '0.5%',
+    name: 'July 2022',
+    value: 97,
+    performance: '-3%',
     deltaType: 'moderateDecrease',
   },
   {
-    name: 'Mwatch Group',
-    value: 1432,
-    performance: '3.4%',
-    deltaType: 'decrease',
+    name: 'August 2022',
+    value: 97,
+    performance: '-3%',
+    deltaType: 'unchanged',
   },
   {
-    name: 'Raindrop Inc.',
-    value: 3421,
-    performance: '0.5%',
+    name: 'September 2022',
+    value: 97,
+    performance: '-3%',
+    deltaType: 'unchanged',
+  },
+  {
+    name: 'October 2022',
+    value: 98,
+    performance: '-2%',
+    deltaType: 'increase',
+  },
+  {
+    name: 'November 2022',
+    value: 97,
+    performance: '-3%',
     deltaType: 'moderateDecrease',
   },
   {
-    name: 'Mwatch Group',
-    value: 1432,
-    performance: '3.4%',
-    deltaType: 'decrease',
+    name: 'December 2022',
+    value: 98,
+    performance: '-2%',
+    deltaType: 'increase',
   },
 ];
 
 const dataFormatter = (number) => {
-  return '$ ' + Intl.NumberFormat('us').format(number).toString();
+  return Intl.NumberFormat('us').format(number).toString() + '%';
 };
 
 const Production2022QACard = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [value, setValue] = React.useState('');
 
   return (
     <Card
@@ -110,7 +114,7 @@ const Production2022QACard = () => {
       decoration='top'
       decorationColor='cyan-800'
     >
-      <Flex className='space-x-8 flex-col lg:flex-row'>
+      <Flex className='space-x-8 flex-col lg:flex-row bg'>
         <Title>QA Overview</Title>
         <TabGroup index={selectedIndex} onIndexChange={setSelectedIndex}>
           <TabList variant='solid'>
@@ -119,37 +123,66 @@ const Production2022QACard = () => {
           </TabList>
         </TabGroup>
       </Flex>
-      <Text className='mt-8'>Portfolio Value</Text>
-      <Metric>$ 25,465</Metric>
+      <Text className='mt-8'>Cumulative QA</Text>
+      <Metric>97.417 %</Metric>
       <Divider />
       <Text className='mt-8'>
-        <Bold>Asset Allocation</Bold>
+        <Bold>QA Totals</Bold>
       </Text>
-      <Text>1 Asset class - 5 Holdings</Text>
+      <Text>2022</Text>
+
       {selectedIndex === 0 ? (
-        <DonutChart
-          data={stocks}
-          valueFormatter={dataFormatter}
-          showAnimation={false}
-          category='value'
-          index='name'
-          className='mt-6'
-        />
+        <>
+          <DonutChart
+            border-spacing-0
+            data={datahero}
+            variant='pie'
+            valueFormatter={dataFormatter}
+            showAnimation={true}
+            category='value'
+            index='name'
+            className='mt-6 '
+            colors={[
+              'green',
+              'green',
+              'green',
+              'green',
+              'green',
+              'green',
+              'green',
+              'green',
+              'green',
+              'green',
+              'green',
+              'green',
+            ]}
+          />
+          <Legend
+            className='mt-3'
+            categories={['2022']}
+            colors={['emerald']}
+            // onClickLegendItem={(e) => {
+            //   value === e ? setValue('') : setValue(e);
+            // }}
+            // activeLegend={value}
+          />
+        </>
       ) : (
         <>
           <Flex className='mt-8' justifyContent='between'>
             <Text className='truncate'>
-              <Bold>Stocks</Bold>
+              <Bold>QAs</Bold>
             </Text>
-            <Text>Since transaction</Text>
+            <Text>Monthly Total</Text>
           </Flex>
           <List className='mt-4'>
-            {stocks.map((stock) => (
-              <ListItem key={stock.name}>
-                <Text>{stock.name}</Text>
+            {datahero.map((datahero) => (
+              <ListItem key={datahero.name}>
+                <Text>{datahero.name}</Text>
                 <Flex className='space-x-2' justifyContent='end'>
                   <Text>
-                    $ {Intl.NumberFormat('us').format(stock.value).toString()}
+                    {Intl.NumberFormat('us').format(datahero.value).toString()}{' '}
+                    %
                   </Text>
                 </Flex>
               </ListItem>

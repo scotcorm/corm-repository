@@ -1,6 +1,6 @@
 import React from 'react';
-import Production2024RightColumn from './Production2023RightColumn';
-import Production2024LeftColumn from './Production2023LeftColumn';
+import Production2024RightColumn from './Production2024RightColumn';
+import Production2024LeftColumn from './Production2024LeftColumn';
 
 export default function Dash2024() {
   return (

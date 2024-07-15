@@ -12,12 +12,10 @@ export default function ProductionLeftColumn() {
 
         <Production2022CardR />
       </div>
-      <div className='flex-auto w-full'>
+      <div className='flex-auto w-full mb-20'>
         <Production2022BarChart />
       </div>
-      <div className='flex-auto w-full'>
-        <Production2022Table />
-      </div>
+      <div className='flex-auto w-full'>{/* <Production2022Table /> */}</div>
     </div>
   );
 }

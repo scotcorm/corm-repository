@@ -172,7 +172,7 @@ const datahero = [
   },
   {
     name: 'January 2024',
-    value: 98,
+    value: 96,
     performance: '-2%',
     deltaType: 'increase',
   },
@@ -258,7 +258,7 @@ const ProductionQACard = () => {
       decoration='top'
       decorationColor='cyan-800'
     >
-      <Flex className='space-x-8 flex-col lg:flex-row'>
+      <Flex className='space-x-8 flex-col lg:flex-row bg'>
         <Title>QA Overview</Title>
         <TabGroup index={selectedIndex} onIndexChange={setSelectedIndex}>
           <TabList variant='solid'>
@@ -268,35 +268,37 @@ const ProductionQACard = () => {
         </TabGroup>
       </Flex>
       <Text className='mt-8'>Cumulative QA</Text>
-      <Metric>98 %</Metric>
+      <Metric>97.417 %</Metric>
       <Divider />
       <Text className='mt-8'>
         <Bold>QA Totals</Bold>
       </Text>
       <Text>Two Complete Years - 2024 in Progress</Text>
+
       {selectedIndex === 0 ? (
         <>
           <DonutChart
+            border-spacing-0
             data={datahero}
             variant='pie'
             valueFormatter={dataFormatter}
             showAnimation={true}
             category='value'
             index='name'
-            className='mt-6'
+            className='mt-6 '
             colors={[
-              'emerald',
-              'emerald',
-              'emerald',
-              'emerald',
-              'emerald',
-              'emerald',
-              'emerald',
-              'emerald',
-              'emerald',
-              'emerald',
-              'emerald',
-              'emerald',
+              'green',
+              'green',
+              'green',
+              'green',
+              'green',
+              'green',
+              'green',
+              'green',
+              'green',
+              'green',
+              'green',
+              'green',
               'indigo',
               'indigo',
               'indigo',
@@ -309,20 +311,24 @@ const ProductionQACard = () => {
               'indigo',
               'indigo',
               'indigo',
-              'rose',
-              'rose',
-              'rose',
-              'rose',
-              'rose',
-              'rose',
-              'rose',
-              'rose',
+              'amber',
+              'pink',
+              'amber',
+              'amber',
+              'amber',
+              'amber',
+              'amber',
+              'gray',
+              'gray',
+              'gray',
+              'gray',
+              'gray',
             ]}
           />
           <Legend
             className='mt-3'
             categories={['2022', '2023', '2024']}
-            colors={['emerald', 'indigo', 'rose']}
+            colors={['emerald', 'indigo', 'amber']}
             // onClickLegendItem={(e) => {
             //   value === e ? setValue('') : setValue(e);
             // }}

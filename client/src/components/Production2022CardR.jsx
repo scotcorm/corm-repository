@@ -8,7 +8,7 @@ export default function Production2022CardR() {
         <Text>Average Files Completed Daily</Text>
         <Badge size='sm'>First Report</Badge>
       </Flex>
-      <Metric>45</Metric>
+      <Metric>38</Metric>
     </Card>
   );
 }

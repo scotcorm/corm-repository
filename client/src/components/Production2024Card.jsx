@@ -5,10 +5,10 @@ export default function Production2024Card() {
   return (
     <Card className='w-xs' decoration='top' decorationColor='cyan-800'>
       <Flex justifyContent='between' alignItems='center'>
-        <Text>Average Files Completed Dailyyy</Text>
-        <BadgeDelta deltaType='moderateIncrease'>+.78%</BadgeDelta>
+        <Text>Average Cohort</Text>
+        <BadgeDelta deltaType='moderateIncrease'>+2.9%</BadgeDelta>
       </Flex>
-      <Metric>45</Metric>
+      <Metric>1232</Metric>
     </Card>
   );
 }

@@ -3,6 +3,8 @@ import React from 'react';
 // import { StatusOnlineIcon } from '@heroicons/react/solid';
 import {
   Badge,
+  Text,
+  Flex,
   Card,
   Table,
   TableBody,
@@ -10,7 +12,9 @@ import {
   TableHead,
   TableHeaderCell,
   TableRow,
+  Title,
 } from '@tremor/react';
+import { BsBullseye } from 'react-icons/bs';
 
 import { useState, useEffect } from 'react';
 // import { HiOutlineExclamationCircle } from 'react-icons/hi';
@@ -115,9 +119,16 @@ export default function ProductionTable() {
 
   return (
     <Card className='mt-4'>
-      <h3 className='text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold'>
-        Production Records
-      </h3>
+      <Flex justifyContent='between' alignItems='center'>
+        {/* <h3 className='text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold'>
+          <Badge icon={BsBullseye}>live</Badge>
+        </h3> */}
+
+        <Title className='text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold'>
+          Production Records
+        </Title>
+        <Badge icon={BsBullseye}>live</Badge>
+      </Flex>
 
       <Table className='mt-5'>
         <TableHead>
