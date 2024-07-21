@@ -9,7 +9,7 @@ export default function CallToAction() {
         <h2 className='text-2xl'>
           Add more info for the Call to Action section
         </h2>
-        <p className='text-gray-500 my-2'>
+        <p className='text-gray-500 dark:text-slate-200 my-2'>
           I made this part with an intersting library- check it out!
         </p>
 

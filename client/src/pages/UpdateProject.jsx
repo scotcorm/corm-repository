@@ -48,7 +48,7 @@ export default function UpdateProject() {
     }
   }, [projectId]);
 
-  const handleUpdloadImage = async () => {
+  const handleUploadImage = async () => {
     try {
       if (!file) {
         setImageUploadError('Please select an image');
@@ -152,8 +152,7 @@ export default function UpdateProject() {
             <option value='personal'>Personal</option>
             <option value='kaplan'>Kaplan</option>
             <option value='mlis'>MLIS</option>
-            <option value='jobhunt'>Job Hunt</option>
-            <option value='developerprojects'>Developer Projects</option>
+            <option value='developer projects'>Developer projects</option>
             <option value='other'>Other</option>
           </Select>
         </div>
@@ -168,7 +167,7 @@ export default function UpdateProject() {
             text='cyan-800'
             size='sm'
             outline
-            onClick={handleUpdloadImage}
+            onClick={handleUploadImage}
             disabled={imageUploadProgress}
           >
             {imageUploadProgress ? (
@@ -194,7 +193,7 @@ export default function UpdateProject() {
         <ReactQuill
           theme='snow'
           value={formData.content}
-          placeholder='Add project...'
+          placeholder='Add Genealogy Record...'
           className='h-72 mb-12'
           required
           onChange={(value) => {

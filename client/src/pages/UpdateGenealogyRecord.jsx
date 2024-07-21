@@ -48,7 +48,7 @@ export default function UpdateGenealogyrecord() {
     }
   }, [genealogyrecordId]);
 
-  const handleUpdloadImage = async () => {
+  const handleUploadImage = async () => {
     try {
       if (!file) {
         setImageUploadError('Please select an image');
@@ -154,7 +154,7 @@ export default function UpdateGenealogyrecord() {
             <option value='mlis'>MLIS</option>
             <option value='jobhunt'>Job Hunt</option>
             <option value='developergenealogyrecords'>
-              Developer Genealogyrecords
+              Developer Genealogy records
             </option>
             <option value='other'>Other</option>
           </Select>
@@ -170,7 +170,7 @@ export default function UpdateGenealogyrecord() {
             text='cyan-800'
             size='sm'
             outline
-            onClick={handleUpdloadImage}
+            onClick={handleUploadImage}
             disabled={imageUploadProgress}
           >
             {imageUploadProgress ? (

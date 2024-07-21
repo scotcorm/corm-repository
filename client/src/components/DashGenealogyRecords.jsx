@@ -23,7 +23,7 @@ export default function DashGenealogyrecords() {
         const data = await res.json();
         if (res.ok) {
           setUserGenealogyrecords(data.genealogyrecords);
-          if (data.genealogyrecords.length < 9) {
+          if (data.genealogyrecords.length < 3) {
             setShowMore(false);
           }
         }
@@ -47,7 +47,7 @@ export default function DashGenealogyrecords() {
       const data = await res.json();
       if (res.ok) {
         setUserGenealogyrecords((prev) => [...prev, ...data.genealogyrecords]);
-        if (data.genealogyrecords.length < 9) {
+        if (data.genealogyrecords.length < 3) {
           setShowMore(false);
         }
       }

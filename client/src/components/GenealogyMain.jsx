@@ -2,8 +2,10 @@ export default function GenealogyMain() {
   return (
     <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
       <div className='text-md text-gray-500 flex flex-col gap-6'>
-        <h1 className='text-3xl font-bold lg:text-6xl mx-auto'>Corm Repo</h1>
-        <h2 className='text-2xl font-bold lg:text-4xl mx-auto'>
+        <h1 className='text-slate-500 dark:text-slate-200 text-3xl font-bold lg:text-6xl mx-auto'>
+          Corm Repo
+        </h1>
+        <h2 className='text-slate-500 dark:text-slate-200 text-2xl font-bold lg:text-4xl mx-auto'>
           David's Genealogy Records
         </h2>
         <img
@@ -12,10 +14,10 @@ export default function GenealogyMain() {
           src='../../src/assets/images/image1600x.png'
           alt='crest image'
         />
-        <h1 className='text-3xl font-semibold sm:border-b border-gray-500 p-3 mt-5 '>
+        <h1 className='text-slate-500 dark:text-slate-200 text-3xl font-semibold sm:border-b border-gray-500 p-3 mt-5'>
           Where did the Acadians come from?
         </h1>
-        <p>
+        <p className='text-slate-500 dark:text-slate-200'>
           This question led me to begin a search for answers that continues
           today. Fortunately, there is a cultural interest in the Southwest
           Louisiana locale which has led to the availability of many written
@@ -31,10 +33,10 @@ export default function GenealogyMain() {
           state of the 50 United States which has this system. This practice
           began many years ago and continues to this day.
         </p>
-        <h1 className='text-3xl font-semibold sm:border-b border-gray-500 p-3 mt-5 '>
+        <h1 className='text-slate-500 dark:text-slate-200 text-3xl font-semibold sm:border-b border-gray-500 p-3 mt-5'>
           Cormier Heritage
         </h1>
-        <p>
+        <p className='text-slate-500 dark:text-slate-200'>
           The earliest Cormier to migrate to New France, also called Acadie, was
           Robert Cormier. Robert was born in La Rochelle, France, in 1610. he,
           his wife Marie Peraud, and their son Thomas boarded an oceangoing ship
@@ -47,10 +49,10 @@ export default function GenealogyMain() {
           Cormier, according to the National Archives in Washington, D.C., is
           the father of all Cormiers in the North American continent.
         </p>
-        <h1 className='text-3xl font-semibold sm:border-b border-gray-500 p-3 mt-5 '>
+        <h1 className='text-slate-500 dark:text-slate-200 text-3xl font-semibold sm:border-b border-gray-500 p-3 mt-5'>
           Louisiana Cormiers
         </h1>
-        <p>
+        <p className='text-slate-500 dark:text-slate-200'>
           Generation 3 was carried by Pierre Cormier, and Generation 4 was
           continued by another Pierre. Generation 5 was under the leadership of
           Michael Cormier, the Acadian from whom the Louisiana Cormiers are

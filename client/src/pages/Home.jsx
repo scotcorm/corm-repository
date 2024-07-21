@@ -57,7 +57,7 @@ export default function Home() {
     <div className=''>
       <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto '>
         <h1 className='text-3xl font-bold lg:text-6xl'>Corm Repo</h1>
-        <p className='text-gray-500 text-xs sm:text-sm'>
+        <p className='text-gray-500 dark:text-slate-200 text-xs sm:text-sm'>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum,
           similique obcaecati praesentium a consectetur voluptas quo deleniti
           nemo, natus laborum quod incidunt qui? Repellendus culpa perspiciatis
@@ -122,12 +122,14 @@ export default function Home() {
                 <CitationCard key={citation._id} citation={citation} />
               ))}
             </div>
-            <Link
-              to={'/search'}
-              className='text-lg text-cyan-800 hover:underline text-center'
-            >
-              View all Citations
-            </Link>
+            <Button outline className='br-none mt-5 max-w-2xl mx-auto'>
+              <Link
+                to={'/search'}
+                className='text-cyan-800 dark:text-slate-200 hover:underline text-center font-bold cursor-pointer'
+              >
+                View all Citations
+              </Link>
+            </Button>
           </div>
         )}
       </div>
@@ -161,12 +163,14 @@ export default function Home() {
                 <ProjectCard key={project._id} project={project} />
               ))}
             </div>
-            <Link
-              to={'/projects'}
-              className='text-lg text-cyan-800 hover:underline text-center'
-            >
-              View all Projects
-            </Link>
+            <Button outline className='br-none mt-5 max-w-2xl mx-auto'>
+              <Link
+                to={'/projects'}
+                className='text-cyan-800 dark:text-slate-200 hover:underline text-center font-bold cursor-pointer'
+              >
+                View all Projects
+              </Link>
+            </Button>
           </div>
         )}
       </div>
@@ -185,12 +189,14 @@ export default function Home() {
                 />
               ))}
             </div>
-            <Link
-              to={'/searchgenealogyrecords'}
-              className='text-lg text-cyan-800 hover:underline text-center'
-            >
-              View Genealogy Records
-            </Link>
+            <Button outline className='br-none mt-5 max-w-2xl mx-auto'>
+              <Link
+                to={'/searchgenealogyrecords'}
+                className='text-cyan-800 dark:text-slate-200 hover:underline text-center font-bold cursor-pointer'
+              >
+                View Album
+              </Link>
+            </Button>
           </div>
         )}
       </div>

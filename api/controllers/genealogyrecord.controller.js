@@ -80,8 +80,8 @@ export const deletegenealogyrecord = async (req, res, next) => {
     return next(errorHandler(403, 'You are not allowed to delete this record'));
   }
   try {
-    await Record.findByIdAndDelete(req.params.recordId);
-    res.status(200).json('The record has been deleted');
+    await Genealogyrecord.findByIdAndDelete(req.params.genealogyrecordId);
+    res.status(200).json('The genealogy record has been deleted');
   } catch (error) {
     next(error);
   }
@@ -92,24 +92,20 @@ export const updategenealogyrecord = async (req, res, next) => {
     return next(errorHandler(403, 'You are not allowed to update this record'));
   }
   try {
-    const updatedRecord = await Record.findByIdAndUpdate(
-      req.params.recordId,
+    const updatedGenealogyrecord = await Genealogyrecord.findByIdAndUpdate(
+      req.params.genealogyrecordId,
       {
         $set: {
-          month: req.body.month,
-          agent: req.body.agent,
-          completed: req.body.completed,
-          cohort: req.body.cohort,
-          overlaps: req.body.overlaps,
-          qapassed: req.body.qapassed,
-          qafailed: req.body.qafailed,
+          date: req.body.date,
+          title: req.body.title,
+          category: req.body.category,
           image: req.body.image,
           content: req.body.content,
         },
       },
       { new: true }
     );
-    res.status(200).json(updatedRecord);
+    res.status(200).json(updatedGenealogyrecord);
   } catch (error) {
     next(error);
   }

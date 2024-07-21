@@ -154,8 +154,9 @@ export default function Search() {
   // };
 
   return (
-    <div className='flex flex-col md:flex-row'>
-      <div className='p-7 border-b md:border-r md:min-h-screen border-gray-500'>
+    <div className='flex flex-col text-slate-500 dark:text-slate-200 px-3 max-w-6xl font-medium md:flex-row mx-auto '>
+      {/* gap-6 p-28 px-3  mx-auto */}
+      {/* <div className='p-7 border-b md:border-r md:min-h-screen border-gray-500'>
         <form className='flex flex-col gap-8' onSubmit={handleSubmit}>
           <div className='flex   items-center gap-2'>
             <label className='whitespace-nowrap font-semibold'>Search:</label>
@@ -187,15 +188,14 @@ export default function Search() {
             Clear Filters
           </Link>
         </Button>
-      </div>
-
+      </div> */}
       <div className='w-full'>
         <GenealogyMain />
 
-        <h1 className='text-3xl font-semibold sm:border-b border-gray-500 p-3 mt-5 '>
-          Genealogy Records:
+        <h1 className='text-slate-500 dark:text-slate-200 text-3xl font-semibold sm:border-b border-gray-500 p-3 mt-5 '>
+          Photo Album:
         </h1>
-        <div className='p-7 flex flex-wrap gap-4'>
+        <div className='p-7 flex flex-wrap gap-2'>
           {!loading && genealogyrecords.length === 0 && (
             <p className='text-xl text-gray-500'>No matches.</p>
           )}
@@ -211,7 +211,7 @@ export default function Search() {
           {showMore && (
             <button
               onClick={handleShowMore}
-              className='text-cyan-800 text-lg hover:underline p-7 w-full'
+              className='text-cyan-800 dark:text-slate-200 text-lg hover:underline p-7 w-full'
             >
               Show More
             </button>
