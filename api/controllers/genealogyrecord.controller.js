@@ -31,7 +31,7 @@ export const creategenealogyrecord = async (req, res, next) => {
 export const getgenealogyrecords = async (req, res, next) => {
   try {
     const startIndex = parseInt(req.query.startIndex) || 0;
-    const limit = parseInt(req.query.limit) || 9;
+    const limit = parseInt(req.query.limit) || 3;
     const sortDirection = req.query.order === 'asc' ? 1 : -1;
     const genealogyrecords = await Genealogyrecord.find({
       ...(req.query.userId && { userId: req.query.userId }),

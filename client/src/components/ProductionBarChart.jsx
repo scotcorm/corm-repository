@@ -4,6 +4,8 @@ import { Card } from 'flowbite-react';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import BarData from './BarData';
+import production from './BarData';
 
 export default function ProductionBarChart() {
   const { currentUser } = useSelector((state) => state.user);
@@ -277,12 +279,14 @@ export default function ProductionBarChart() {
       QA: 0,
     },
   ];
+  <BarData />;
 
   return (
     <Card className='mt-4 '>
       <Title className='text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold'>
         Monthly Production
       </Title>
+      <BarData />
       <BarChart
         className='h-72 mt-4'
         data={chartdata}
@@ -291,7 +295,6 @@ export default function ProductionBarChart() {
         colors={['blue-400']}
         // yAxisWidth={30}
       />
-
       <Title className='text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold'>
         Average Cohort
       </Title>
@@ -303,7 +306,6 @@ export default function ProductionBarChart() {
         colors={['cyan-700']}
         // yAxisWidth={30}
       />
-
       <Title className='text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold'>
         Overlaps Completed
       </Title>

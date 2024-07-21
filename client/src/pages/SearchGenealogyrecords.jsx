@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import GenealogyrecordCard from '../components/GenealogyrecordCard';
+import GenealogyMain from '../components/GenealogyMain';
 // create page then add to app.jsx
 
 export default function Search() {
@@ -189,6 +190,8 @@ export default function Search() {
       </div>
 
       <div className='w-full'>
+        <GenealogyMain />
+
         <h1 className='text-3xl font-semibold sm:border-b border-gray-500 p-3 mt-5 '>
           Genealogy Records:
         </h1>

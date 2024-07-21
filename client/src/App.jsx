@@ -54,6 +54,7 @@ export default function App() {
         <Route path='/terms-conditions' element={<TermsConditions />} />
 
         <Route element={<OnlyAdminPrivateRoute />}>
+          <Route path='/searchnotes' element={<SearchNotes />} />
           <Route path='/create-citation' element={<CreateCitation />} />
           <Route
             path='/update-citation/:citationId'
@@ -105,7 +106,7 @@ export default function App() {
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
         <Route path='/search' element={<Search />} />
-        <Route path='/searchnotes' element={<SearchNotes />} />
+
         <Route
           path='/searchgenealogyrecords'
           element={<SearchGenealogyrecords />}

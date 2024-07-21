@@ -156,7 +156,7 @@ export default function CommentSection({ citationId }) {
             <p className='text-gray-500 text-xs'>
               {200 - comment.length} characters remaining
             </p>
-            <Button gradientDuoTone='pinkToOrange' outline type='submit'>
+            <Button outline type='submit'>
               Submit
             </Button>
           </div>

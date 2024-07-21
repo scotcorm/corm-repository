@@ -15,6 +15,7 @@ import DashGenealogyRecordComments from '../components/DashGenealogyRecordCommen
 import DashGenealogyRecords from '../components/DashGenealogyRecords';
 import DashProjectComments from '../components/DashProjectComments';
 import DashProjects from '../components/DashProjects';
+import SearchNotes from '../pages/SearchNotes';
 
 export default function Dashboard() {
   const location = useLocation();
@@ -60,6 +61,8 @@ export default function Dashboard() {
       {tab === 'citationcomments' && <DashCitationComments />}
       {/* dashboard component */}
       {tab === 'dash' && <DashboardComponent />}
+      {/* All Notes component */}
+      {tab === 'searchnotes' && <SearchNotes />}
     </div>
   );
 }

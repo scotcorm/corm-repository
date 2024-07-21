@@ -83,8 +83,18 @@ const ProductionNavbar = () => {
               Dashboard 2024
             </Sidebar.Item>
           </Link>
+          <Link to='/production-dashboard?tab=dashCumulative'>
+            <Sidebar.Item
+              active={tab === 'dashCumulative'}
+              icon={HiOutlineChartPie}
+              className='cursor-pointer'
+              as='div'
+            >
+              Cumulative
+            </Sidebar.Item>
+          </Link>
 
-          <Link to='/production-dashboard?tab=profile'>
+          {/* <Link to='/production-dashboard?tab=profile'>
             <Sidebar.Item
               active={tab === 'profile'}
               className='cursor-pointer'
@@ -93,7 +103,7 @@ const ProductionNavbar = () => {
             >
               Cumulative
             </Sidebar.Item>
-          </Link>
+          </Link> */}
 
           <div>
             <div className=' absolute bottom-0 left-3 h-16 w-16 '>

@@ -12,12 +12,12 @@ export default function ProductionLeftColumn() {
 
         <ProductionCardR />
       </div>
-      <div className='flex-auto w-full'>
+      <div className='flex-auto w-full mb-20'>
         <ProductionBarChart />
       </div>
-      <div className='flex-auto w-full'>
+      {/* <div className='flex-auto w-full'>
         <ProductionTable />
-      </div>
+      </div> */}
     </div>
   );
 }

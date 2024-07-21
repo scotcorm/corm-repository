@@ -186,7 +186,7 @@ export default function GenealogyrecordCommentSection({ genealogyrecordId }) {
         </form>
       )}
       {genealogyrecordcomments.length === 0 ? (
-        <p className='text-sm my-5'>No genealogyrecord comments yet!</p>
+        <p className='text-sm my-5'>No genealogy record comments yet!</p>
       ) : (
         <>
           <div className='text-sm my-5 flex items-center gap-1'>

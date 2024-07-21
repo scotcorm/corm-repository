@@ -187,6 +187,15 @@ export default function DashSidebar() {
                   Genealogy Comments
                 </Sidebar.Item>
               </Link>
+              <Link to='/dashboard?tab=searchnotes'>
+                <Sidebar.Item
+                  active={tab === 'searchnotes'}
+                  icon={HiAnnotation}
+                  as='div'
+                >
+                  All Notes
+                </Sidebar.Item>
+              </Link>
             </>
           )}
 

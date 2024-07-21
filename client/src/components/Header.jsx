@@ -60,15 +60,12 @@ export default function Header() {
 
   return (
     <Navbar className='border-b-2'>
-      <Link
-        to='/'
-        className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white '
-      >
+      <span className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white '>
         <span className='px-0 py-3 rounded-lg text-cyan-800 border-2 border-black dark:text-orange-400'>
           Corm
         </span>
         Repo
-      </Link>
+      </span>
 
       <form onSubmit={handleSubmit}>
         <TextInput
@@ -133,10 +130,10 @@ export default function Header() {
           <Link to='/about'>About</Link>
         </Navbar.Link>
         <Navbar.Link
-          active={path === '/production-dashboard?tab=profile'}
+          active={path === '/production-dashboard?tab=dashCumulative'}
           as={'div'}
         >
-          <Link to='/production-dashboard?tab=profile'>Dashboard</Link>
+          <Link to='/production-dashboard?tab=dashCumulative'>Dashboard</Link>
         </Navbar.Link>
         <Navbar.Link active={path === '/projects'} as={'div'}>
           <Link to='/projects'>Projects</Link>

@@ -2,10 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function CitationCard({ citation }) {
+  let contentParagraph = (
+    <div
+      dangerouslySetInnerHTML={{ __html: citation && citation.content }}
+    ></div>
+  );
   const shortContent =
-    citation.content.length > 25
-      ? citation.content.substr(0, 25) + '...'
-      : citation.content;
+    contentParagraph.length > 25
+      ? contentParagraph.substr(0, 25) + '...'
+      : contentParagraph;
   const shortTitle =
     citation.title.length > 25
       ? citation.title.substr(0, 25) + '...'
@@ -21,10 +26,18 @@ export default function CitationCard({ citation }) {
       </Link>
       <div className='p-3 flex flex-col gap-2'>
         <p className='text-lg font-semibold line-clamp-2'>{shortTitle}</p>
-        <span className='italic text-sm'>{citation.license}</span>
-        <span className='text-sm'>
+        <span className='italic text-sm'>License: {citation.license}</span>
+        <p className='text-sm font-semibold line-clamp-2'>{shortContent}</p>
+        {/* {/* <span className='italic text-sm'>{citation.license}</span> */}
+        {/* <span className='text-sm'>
           <p dangerouslySetInnerHTML={{ __html: shortContent }}></p>
-        </span>
+        </span> */}
+        {/* <span className='italic text-sm'>{citation.value}</span> */}
+
+        {/* <div
+          className='p-3 max-w-2xl mx-auto w-full citation-content'
+          dangerouslySetInnerHTML={{ __html: citation && citation.content }}
+        ></div> */}
 
         <Link
           to={`/citation/${citation.slug}`}

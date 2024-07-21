@@ -8,7 +8,7 @@ export const createGenealogyrecordComment = async (req, res, next) => {
       return next(
         errorHandler(
           403,
-          'You are not allowed to create this Genealogyrecord comment'
+          'You are not allowed to create this Genealogy record comment'
         )
       );
     }
@@ -68,7 +68,7 @@ export const editGenealogyrecordComment = async (req, res, next) => {
       req.params.genealogyrecordcommentId
     );
     if (!genealogyrecordcomment) {
-      return next(errorHandler(404, 'Genealogyrecord Comment not found'));
+      return next(errorHandler(404, 'Genealogy Record Comment not found'));
     }
     if (genealogyrecordcomment.userId !== req.user.id && !req.user.isAdmin) {
       return next(
@@ -132,13 +132,11 @@ export const getallgenealogyrecordcomments = async (req, res, next) => {
         createdAt: { $gte: oneMonthAgo },
       }
     );
-    res
-      .status(200)
-      .json({
-        genealogyrecordcomments,
-        totalGenealogyrecordComments,
-        lastMonthRecordComments,
-      });
+    res.status(200).json({
+      genealogyrecordcomments,
+      totalGenealogyrecordComments,
+      lastMonthRecordComments,
+    });
   } catch (error) {
     next(error);
   }

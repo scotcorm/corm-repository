@@ -28,13 +28,13 @@ export default function AverageCompleted() {
 
           let displayData = data.records.map((object) => {
             const { cohort, completed } = object;
-            console.log(object.completed);
+            // console.log(object.completed);
             sum += parseInt([object.completed]);
             average.push(object.completed);
           });
           let averageCompleted = parseInt(sum) / average.length;
 
-          console.log(averageCompleted);
+          // console.log(averageCompleted);
           setAverageFinal([...averageFinal, averageCompleted]);
 
           // if (data.records.length < 9) {
