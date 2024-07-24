@@ -10,7 +10,7 @@ export default function ProjectsMain() {
       </h1>
       {/* <div className='min-h-screen max-w-2xl mx-auto flex   items-center flex-col gap-6 p-3'>
       <h1 className='text-3xl font-semibold'>Projects</h1> */}
-      <div className='text-md text-gray-500 flex flex-col gap-6 mb-10'>
+      <div className='text-md text-gray-500 dark:text-slate-200 flex flex-col gap-6 mb-10'>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa
           aperiam deserunt, voluptate iusto corporis impedit omnis odit debitis

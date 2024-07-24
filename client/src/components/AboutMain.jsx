@@ -3,7 +3,7 @@ export default function About() {
     <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
       <h1 className='text-3xl font-bold lg:text-6xl'>Corm Repo</h1>
 
-      <div className='text-md text-gray-500 flex flex-col gap-6'>
+      <div className='text-md text-gray-500 dark:text-slate-200 flex flex-col gap-6'>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad soluta,
           nihil quod voluptas consequatur quis enim delectus, modi dolores dolor

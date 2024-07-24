@@ -7,15 +7,19 @@ export default function CallToAction() {
     <div className='flex flex-col sm:flex-row p-3 border border-cyan-800 justify-center items-center rounded-3xl text-center'>
       <div className='flex-1 justify-center flex flex-col'>
         <h2 className='text-2xl'>
-          Add more info for the Call to Action section
+          Scott Cormier: MLIS and Aspiring Front End React Developer
         </h2>
         <p className='text-gray-500 dark:text-slate-200 my-2'>
-          I made this part with an intersting library- check it out!
+          Please visit my LinkedIn profile to connect!
         </p>
 
         <Button outline className='rounded-br-none mt-5'>
-          <a href='#' target='_blank' rel='noopener noreferrer'>
-            Their name docs page
+          <a
+            href='https://www.linkedin.com/in/scott-cormier-mlis/'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            View Scott Cormier's Profile on LinkedIn
           </a>
         </Button>
       </div>

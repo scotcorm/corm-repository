@@ -57,11 +57,36 @@ export default function Home() {
     <div className=''>
       <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto '>
         <h1 className='text-3xl font-bold lg:text-6xl'>Corm Repo</h1>
-        <p className='text-gray-500 dark:text-slate-200 text-xs sm:text-sm'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum,
-          similique obcaecati praesentium a consectetur voluptas quo deleniti
-          nemo, natus laborum quod incidunt qui? Repellendus culpa perspiciatis
-          quidem cum, velit consectetur.
+        <p className='text-gray-500 text-xl dark:text-slate-200'>
+          Hello all, I'm Scott Cormier 👋{' '}
+        </p>
+        <p>
+          🌱 This site has links to coding projects that I am working on,
+          including a Dashboard to track data, and a MERN project that is meant
+          to encourage use/reuse of images that have Open Access Licenses.
+        </p>
+        <p>
+          🌱 I started coding while working on my MLIS, to support my Data
+          Curation projects, and now I'm a recent nucamp grad focusing mostly on
+          the front end and working with React{' '}
+        </p>
+        <p>
+          🌱 I'm a big fan of Institutional Repositories like tDAR and sites
+          like The Noun Project that encourage users to organize/share
+          information.
+        </p>
+        <p>
+          🌱 Fun fact: I built a website for my old Wing Chun group, and it
+          helped introduce me to HTML, CSS and some JS.
+          <a
+            href='https://scotcorm.github.io/Chicago-Wing-Chun/'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <p className='text-blue-600 ml-7'>
+              Git Hub Pages - Draft of Chicago Wing Chun Site
+            </p>
+          </a>
         </p>
         <div className='flex mx-auto gap-10'>
           <div>
@@ -113,7 +138,7 @@ export default function Home() {
       </div>
       <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 py-7'>
         {citations && citations.length > 0 && (
-          <div className='flex flex-col gap-6'>
+          <div className='flex flex-col gap-6 mt-20'>
             <h2 className='text-2xl font-semibold text-center'>
               Recent Citations
             </h2>

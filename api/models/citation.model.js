@@ -28,7 +28,7 @@ const citationSchema = new mongoose.Schema(
     image: {
       type: String,
       default:
-        'https://www.hostinger.com/tutorials/wp-content/uploads/sites/2/2021/09/how-to-write-a-blog-post.png',
+        'https://firebasestorage.googleapis.com/v0/b/corm-repository.appspot.com/o/1721773366520-NMNH-03826631_screen.jpg?alt=media&token=04da8184-e7f7-4950-8e97-16078ff40453',
     },
     license: {
       type: String,
