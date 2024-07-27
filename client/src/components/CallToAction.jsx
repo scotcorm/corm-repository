@@ -4,7 +4,7 @@ import { Button } from 'flowbite-react';
 
 export default function CallToAction() {
   return (
-    <div className='flex flex-col sm:flex-row p-3 border border-cyan-800 justify-center items-center rounded-3xl text-center'>
+    <div className='flex flex-col sm:flex-row p-3 border border-cyan-800 justify-center items-center rounded-3xl text-center mt-14'>
       <div className='flex-1 justify-center flex flex-col'>
         <h2 className='text-2xl'>
           Scott Cormier: MLIS and Aspiring Front End React Developer

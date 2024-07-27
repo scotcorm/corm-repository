@@ -30,7 +30,7 @@ export default function GenealogyrecordCard({ genealogyrecord }) {
           to={`/genealogyrecord/${genealogyrecord.slug}`}
           className='z-10 group-hover:bottom-0 absolute bottom-[-200px] left-0 right-0 border border-cyan-800 text-cyan-800 dark:text-slate-200 hover:bg-cyan-800 hover:text-white transition-all duration-300 text-center py-2 rounded-md !rounded-tl-none m-2'
         >
-          See More!
+          See Details
         </Link>
       </div>
     </div>

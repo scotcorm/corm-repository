@@ -6,6 +6,8 @@ import CitationCard from '../components/CitationCard';
 import ProjectCard from '../components/ProjectCard';
 import GenealogyrecordCard from '../components/GenealogyrecordCard';
 import { Button } from 'flowbite-react';
+import Hero from '../components/Hero.jsx';
+import HomeHeadlineCards from '../components/HomeHeadlineCards.jsx';
 
 export default function Home() {
   const [citations, setCitations] = useState([]);
@@ -55,29 +57,113 @@ export default function Home() {
 
   return (
     <div className=''>
-      <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto '>
-        <h1 className='text-3xl font-bold lg:text-6xl'>Corm Repo</h1>
-        <p className='text-gray-500 text-xl dark:text-slate-200'>
+      <Hero />
+      {/* <div className='max-w-[1640px] mx-auto pt-0 p-4'> */}
+      {/* <img
+            alt='Creative Commons License'
+            style='border-width:0'
+            src='https://i.creativecommons.org/l/by/4.0/88x31.png'
+          /> */}
+      {/* <p>
+          Background image: “Minnows in a Maze” by Scott Cormier is licensed
+          under a
+          <span>
+            <a
+              href='http://creativecommons.org/licenses/by/4.0/'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-blue-600 ml-1 hover:underline'
+            >
+              Creative Commons Attribution 4.0 International License
+            </a>
+          </span>
+          . Derivative of
+          <span>
+            <a
+              href='https://www.si.edu/object/maze-motif:chndm_1959-150-4?edan_q=maze&oa=1&edan_fq%5B0%5D=media_usage:CC0&destination=/search/collection-images&searchResults=1&id=chndm_1959-150-4'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-blue-600 ml-1 mr-1 hover:underline'
+            >
+              Maze Motif
+            </a>
+          </span>
+          from the Cooper Hewitt Smithsonian Design Museum, licensed
+          <span>
+            <a
+              href='http://creativecommons.org/licenses/by/4.0/'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-blue-600 ml-1 mr-1 hover:underline'
+            >
+              CC0
+            </a>
+          </span>
+          and
+          <span>
+            <a
+              href='https://www.si.edu/object/notropis-louisianae:nmnhvz_5011981?page=3&edan_q=louisiana&edan_fq%5B0%5D=media_usage:CC0&oa=1&destination=/search/collection-images&searchResults=1&id=nmnhvz_5011981'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-blue-600 ml-1 mr-1 hover:underline'
+            >
+              Notropis louisianae
+            </a>
+          </span>
+          from the National Museum of Natural History, also licensed
+          <span>
+            <a
+              href='http://creativecommons.org/licenses/by/4.0/'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-blue-600 ml-1 mr-1 hover:underline'
+            >
+              CC0
+            </a>
+          </span>
+          . Changed images by desaturating them and adding filters.
+        </p>
+      </div> */}
+
+      <div className='flex flex-col gap-6 p-10 px-3 max-w-6xl mx-auto '>
+        <h1 className='text-3xl font-bold lg:text-6xl'>
+          Hello all, I'm Scott Cormier 👋
+        </h1>
+        {/* <p className='text-gray-500 text-xl dark:text-slate-200'>
           Hello all, I'm Scott Cormier 👋{' '}
+        </p> */}
+        <h2 className='text-xl lg:text-2xl'>
+          This site has links to coding projects that I am working on, including
+          a Dashboard to track production data and a MERN project that is meant
+          to encourage use/reuse of images that have Open Access Licenses by
+          offering a curated list with details.
+        </h2>
+        <p className='text-gray-500 dark:text-slate-200 my-2 lg:text-xl'>
+          Sharing information effectively has been an important part of my daily
+          responsibilities at Purdue University Global. I connect students and
+          staff with financial aid information and apply policies and procedures
+          to solve complex problems in a time-sensitive environment. Attention
+          to detail is always important, and my degrees in English and History
+          allow me to communicate effectively with a diverse group of people by
+          helping me adjust the message to suit the needs of the situation.
+          {/* I
+          have always enjoyed helping students solve their information problems */}
+          {/* ,
+          and now that I have earned my MLIS I look forward to facing new
+          information challenges. */}
         </p>
-        <p>
-          🌱 This site has links to coding projects that I am working on,
-          including a Dashboard to track data, and a MERN project that is meant
-          to encourage use/reuse of images that have Open Access Licenses.
+
+        <p className='text-gray-500 dark:text-slate-200 lg:text-xl'>
+          I'm a big fan of Institutional Repositories like tDAR and sites like
+          The Noun Project that encourage users to organize/share information,
+          and I started coding while working on my MLIS, to support my Data
+          Curation projects. Now I'm a recent full-stack bootcamp grad focusing
+          mostly on the front end and working with React!
         </p>
-        <p>
-          🌱 I started coding while working on my MLIS, to support my Data
-          Curation projects, and now I'm a recent nucamp grad focusing mostly on
-          the front end and working with React{' '}
-        </p>
-        <p>
-          🌱 I'm a big fan of Institutional Repositories like tDAR and sites
-          like The Noun Project that encourage users to organize/share
-          information.
-        </p>
-        <p>
-          🌱 Fun fact: I built a website for my old Wing Chun group, and it
-          helped introduce me to HTML, CSS and some JS.
+
+        {/* <p>
+          Fun fact: I built a website for my old Wing Chun group, and it helped
+          introduce me to HTML, CSS and some JS.
           <a
             href='https://scotcorm.github.io/Chicago-Wing-Chun/'
             target='_blank'
@@ -87,9 +173,25 @@ export default function Home() {
               Git Hub Pages - Draft of Chicago Wing Chun Site
             </p>
           </a>
+        </p> */}
+      </div>
+
+      <HomeHeadlineCards />
+
+      {/* ========================================
+      <a
+        href='https://scotcorm.github.io/Chicago-Wing-Chun/'
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        <p className='text-blue-600 ml-7'>
+          Git Hub Pages - Draft of Chicago Wing Chun Site
         </p>
-        <div className='flex mx-auto gap-10'>
-          <div>
+      </a>
+      =============================================={' '} */}
+
+      {/* <div className='flex mx-auto gap-10'> */}
+      {/* <div>
             <Button outline className='br-none mt-5'>
               <Link
                 to='/search'
@@ -103,14 +205,14 @@ export default function Home() {
             <Button outline className='br-none mt-5'>
               <Link
                 to='/projects'
-                className='text-xs sm:text-sm  font-bold cursor-pointer '
+                className='text-xs sm:text-sm font-bold cursor-pointer '
               >
                 View All Projects
               </Link>
             </Button>
-          </div>
+          </div> */}
 
-          {/* <div>
+      {/* <div>
             <Button outline className='br-none mt-5'>
               <Link
                 to='/searchnotes'
@@ -120,9 +222,9 @@ export default function Home() {
               </Link>
             </Button>
           </div> */}
-          <div>
+      {/* <div>
             <Button outline className='br-none mt-5'>
-              {/* <a href='#' target='_blank' rel='noopener noreferrer'> */}
+               
               <Link
                 to='/searchgenealogyrecords'
                 className='text-xs sm:text-sm  font-bold cursor-pointer '
@@ -130,9 +232,9 @@ export default function Home() {
                 View All Genealogy Records
               </Link>
             </Button>
-          </div>
-        </div>
-      </div>
+          </div> */}
+      {/* </div> */}
+      {/* </div> */}
       <div className='p-3  dark:bg-slate-700 max-w-6xl mx-auto'>
         <CallToAction />
       </div>
@@ -150,7 +252,7 @@ export default function Home() {
             <Button outline className='br-none mt-5 max-w-2xl mx-auto'>
               <Link
                 to={'/search'}
-                className='text-cyan-800 dark:text-slate-200 hover:underline text-center font-bold cursor-pointer'
+                className='hover:underline text-center font-bold cursor-pointer'
               >
                 View all Citations
               </Link>
@@ -176,7 +278,6 @@ export default function Home() {
           </div>
         )}
       </div> */}
-
       <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 py-7'>
         {projects && projects.length > 0 && (
           <div className='flex flex-col gap-6'>
@@ -191,7 +292,7 @@ export default function Home() {
             <Button outline className='br-none mt-5 max-w-2xl mx-auto'>
               <Link
                 to={'/projects'}
-                className='text-cyan-800 dark:text-slate-200 hover:underline text-center font-bold cursor-pointer'
+                className='hover:underline text-center font-bold cursor-pointer'
               >
                 View all Projects
               </Link>
@@ -199,7 +300,6 @@ export default function Home() {
           </div>
         )}
       </div>
-
       <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 py-7'>
         {genealogyrecords && genealogyrecords.length > 0 && (
           <div className='flex flex-col gap-6'>
@@ -217,7 +317,7 @@ export default function Home() {
             <Button outline className='br-none mt-5 max-w-2xl mx-auto'>
               <Link
                 to={'/searchgenealogyrecords'}
-                className='text-cyan-800 dark:text-slate-200 hover:underline text-center font-bold cursor-pointer'
+                className='hover:underline text-center font-bold cursor-pointer'
               >
                 View Album
               </Link>
