@@ -1,3 +1,10 @@
+# corm-repository
+ React MERN Portfolio Site with Tailwind 
+
+# About
+This site was created soon after I completed my coding bootcamp, and was one of my first efforts at using Tailwind, and my first large MERN site.  Please forgive the random notes here and there- I'm still working on making the site better as I learn more.  I learned some surprising lessons about routing, and about general structure, that will inform my future efforts.  
+
+
 # Structure
  
 ```
