@@ -4,6 +4,14 @@
 # About
 This site was created soon after I completed my coding bootcamp, and was one of my first efforts at using Tailwind, and my first large MERN site.  Please forgive the random notes here and there- I'm still working on making the site better as I learn more.  I learned some surprising lessons about routing, and about general structure, that will inform my future efforts.  
 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Available Scripts
+In the project directory, you can run:
+### `npm start`
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
 
 # Structure
  
