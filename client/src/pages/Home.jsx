@@ -126,17 +126,25 @@ export default function Home() {
       </div> */}
 
       <div className='flex flex-col gap-6 p-10 px-3 max-w-6xl mx-auto '>
-        <h1 className='text-3xl font-bold lg:text-6xl'>
-          Hello all, I'm Scott Cormier 👋
-        </h1>
         {/* <p className='text-gray-500 text-xl dark:text-slate-200'>
           Hello all, I'm Scott Cormier 👋{' '}
         </p> */}
         <h2 className='text-xl lg:text-2xl'>
           This site has links to coding projects that I am working on, including
-          a Dashboard to track production data and a MERN project that is meant
-          to encourage use/reuse of images that have Open Access Licenses by
-          offering a curated list with details.
+          a
+          <a
+            href='/production-dashboard?tab=dashCumulative'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <span className='text-blue-600 ml-1 mr-1'>Dashboard</span>
+          </a>
+          to track production data and a
+          <a href='/search' target='_blank' rel='noopener noreferrer'>
+            <span className='text-blue-600 ml-1 mr-1'>MERN citations page</span>
+          </a>
+          that is meant to encourage use/reuse of images that have Open Access
+          Licenses by offering a curated list with details.
         </h2>
         <p className='text-gray-500 dark:text-slate-200 my-2 lg:text-xl'>
           Sharing information effectively has been an important part of my daily
@@ -153,12 +161,55 @@ export default function Home() {
           information challenges. */}
         </p>
 
-        <p className='text-gray-500 dark:text-slate-200 lg:text-xl'>
-          I'm a big fan of Institutional Repositories like tDAR and sites like
-          The Noun Project that encourage users to organize/share information,
-          and I started coding while working on my MLIS, to support my Data
-          Curation projects. Now I'm a recent full-stack bootcamp grad focusing
-          mostly on the front end and working with React!
+        <p className='text-gray-500 dark:text-slate-200 lg:text-xl '>
+          I'm a big fan of Institutional Repositories like
+          <a
+            href='https://core.tdar.org/'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <span className='text-blue-600 ml-1'>tDAR</span>
+          </a>
+          , the one at
+          <a
+            href='https://repository.lsu.edu/'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <span className='text-blue-600 ml-1'>
+              LSU's Scholarly Repository
+            </span>
+          </a>
+          , and also sites like
+          <a
+            href='https://thenounproject.com/'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <span className='text-blue-600 ml-1 mr-1'>The Noun Project</span>
+          </a>
+          that encourage users to organize/share information. I started coding
+          while working on my MLIS at the
+          <a
+            href='https://ischool.uw.edu/programs/mlis'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <span className='text-blue-600 ml-1'>
+              University of Washington Information School
+            </span>
+          </a>
+          , to support my Data Curation projects, and now I'm a recent
+          <a
+            href='https://www.nucamp.co/'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <span className='text-blue-600 ml-1 mr-1'>
+              nucamp full-stack bootcamp
+            </span>
+          </a>
+          grad focusing mostly on the front end and working with React!
         </p>
 
         {/* <p>

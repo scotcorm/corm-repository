@@ -20,6 +20,35 @@ export default function CreateProject() {
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
 
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [
+        { list: 'ordered' },
+        { list: 'bullet' },
+        { indent: '-1' },
+        { indent: '+1' },
+      ],
+      ['link', 'image'],
+      ['clean'],
+    ],
+  };
+
+  const formats = [
+    'header',
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'blockquote',
+    'list',
+    'bullet',
+    'indent',
+    'link',
+    'image',
+  ];
+
   const navigate = useNavigate();
 
   const handleUpdloadImage = async () => {
@@ -160,6 +189,8 @@ export default function CreateProject() {
           />
         )}
         <ReactQuill
+          modules={modules}
+          formats={formats}
           theme='snow'
           placeholder='Add project notes here...'
           className='h-72 mb-12'
