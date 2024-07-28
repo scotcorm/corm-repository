@@ -4,6 +4,10 @@
 # About
 This site was created soon after I completed my coding bootcamp, and was one of my first efforts at using Tailwind, and my first large MERN site.  Please forgive the random notes here and there- I'm still working on making the site better as I learn more.  I learned some surprising lessons about routing, and about general structure, that will inform my future efforts.  
 
+## About the Idea for a Citation Repository
+This project began as a way for me to explore/learn the MERN stack by creating a useful app that should help users save citations in a way that encourages use/reuse. 
+The internet is full of useful and unique images, but it is often difficult to know whether they can be reproduced legally.  A repository like this one serves as a curated list to gather clearly licensed images that have been used before, and promise to be useful again.  
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
