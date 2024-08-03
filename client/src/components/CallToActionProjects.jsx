@@ -9,7 +9,7 @@ export default function CallToActionProjects() {
         <h2 className='text-2xl'>Visit my Github</h2>
         <p className='text-gray-500 dark:text-slate-200 my-2'>
           I've been working on websites and other projects ever since I went
-          back to school for my Master's degree, and you'll see Python, and more
+          back to school for my Master's degree, and you'll see Python and more
           there, but my main focus for now is ReactJS.
         </p>
 

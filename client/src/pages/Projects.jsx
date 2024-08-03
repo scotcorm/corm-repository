@@ -164,7 +164,7 @@ export default function Search() {
             {showMore && (
               <button
                 onClick={handleShowMore}
-                className='text-cyan-800 text-lg hover:underline p-7 w-full'
+                className='text-lg hover:underline p-7 w-full'
               >
                 Show More
               </button>

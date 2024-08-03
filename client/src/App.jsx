@@ -92,6 +92,7 @@ export default function App() {
         <Route path='/edit-record' element={<EditRecord />} /> */}
         <Route path='/feral-swine' element={<FeralSwine />} />
         <Route path='/genealogy' element={<Genealogy />} />
+        <Route path='/terms-conditions' element={<TermsConditions />} />
         <Route path='/production-dashboard' element={<ProductionDashboard />} />
         <Route path='/projects' element={<Projects />} />
         <Route path='/project/:projectSlug' element={<ProjectPage />} />

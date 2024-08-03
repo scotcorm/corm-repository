@@ -30,7 +30,11 @@ export default function FooterCom() {
             <div>
               <Footer.Title title='About' />
               <Footer.LinkGroup col>
-                <Footer.Link href='#' target='_blank' rel='noopener noreferrer'>
+                <Footer.Link
+                  href='https://creativecommons.org/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
                   Creative Commons
                 </Footer.Link>
                 <Footer.Link
@@ -43,20 +47,30 @@ export default function FooterCom() {
               </Footer.LinkGroup>
             </div>
             <div>
-              <Footer.Title title='Follow us' />
+              <Footer.Title title='Other Links' />
               <Footer.LinkGroup col>
-                <Footer.Link href='#' target='_blank' rel='noopener noreferrer'>
+                <Footer.Link
+                  href='https://github.com/scotcorm'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
                   Github
                 </Footer.Link>
                 {/* <Footer.Link href='#'>Discord</Footer.Link> */}
-                <Footer.Link href='#'>Netlify</Footer.Link>
+                <Footer.Link href='https://app.netlify.com/teams/scotcorm/sites'>
+                  Netlify
+                </Footer.Link>
               </Footer.LinkGroup>
             </div>
             <div>
               <Footer.Title title='Legal' />
               <Footer.LinkGroup col>
-                <Footer.Link href='#'>Privacy Policy</Footer.Link>
-                <Footer.Link href='#'>Terms &amp; Conditions</Footer.Link>
+                <Footer.Link href='/terms-conditions'>
+                  Privacy Policy
+                </Footer.Link>
+                <Footer.Link href='/terms-conditions'>
+                  Terms &amp; Conditions
+                </Footer.Link>
               </Footer.LinkGroup>
             </div>
           </div>
@@ -69,11 +83,17 @@ export default function FooterCom() {
             year={new Date().getFullYear()}
           />
           <div className='flex gap-6 sm:mt-0 mt-4 sm:justify-center'>
-            <Footer.Icon href='#' icon={BsFacebook} />
-            <Footer.Icon href='#' icon={BsInstagram} />
-            <Footer.Icon href='#' icon={BsDiscord} />
+            {/* <Footer.Icon href='#' icon={BsFacebook} />
+            <Footer.Icon href='#' icon={BsInstagram} /> */}
+            <Footer.Icon
+              href='https://www.discordapp.com/users/scotcorm#7882'
+              icon={BsDiscord}
+            />
             <Footer.Icon href='https://github.com/scotcorm' icon={BsGithub} />
-            <Footer.Icon href='#' icon={BsLinkedin} />
+            <Footer.Icon
+              href='https://www.linkedin.com/in/scott-cormier-mlis/'
+              icon={BsLinkedin}
+            />
           </div>
         </div>
       </div>

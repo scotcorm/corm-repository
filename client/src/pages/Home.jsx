@@ -130,8 +130,8 @@ export default function Home() {
           Hello all, I'm Scott Cormier 👋{' '}
         </p> */}
         <h2 className='text-xl lg:text-2xl'>
-          This site has links to coding projects that I am working on, including
-          a
+          This site is a portfolio project that has links to coding projects
+          that I am working on, including a
           <a
             href='/production-dashboard?tab=dashCumulative'
             target='_blank'
@@ -170,7 +170,7 @@ export default function Home() {
           >
             <span className='text-blue-600 ml-1'>tDAR</span>
           </a>
-          , the one at
+          , or the one at
           <a
             href='https://repository.lsu.edu/'
             target='_blank'
@@ -205,11 +205,10 @@ export default function Home() {
             target='_blank'
             rel='noopener noreferrer'
           >
-            <span className='text-blue-600 ml-1 mr-1'>
-              nucamp full-stack bootcamp
-            </span>
+            <span className='text-blue-600 ml-1 mr-1'>Nucamp</span>
           </a>
-          grad focusing mostly on the front end and working with React!
+          full-stack bootcamp grad focusing mostly on the front end and working
+          with React!
         </p>
 
         {/* <p>

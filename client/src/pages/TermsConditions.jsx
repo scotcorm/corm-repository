@@ -13,6 +13,14 @@ export default function TermsConditions() {
           site to associated databases. Once testing is over I may take the site
           down or move it somewhere else.
         </p>
+        <p>
+          Rules for Cited Images are determined by their origin sites-
+          information and/or links to those sites are provided for each
+          citation- and users are strongly recommended to visit the original
+          sites for the most current information on citation rules and the best
+          versions of images available. Most of what I use are CC0 licenses, and
+          unlikely to change, but change is always possible.
+        </p>
 
         <p>
           That said, I do my best to provide trustworthy links and materials, so

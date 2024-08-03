@@ -1,5 +1,6 @@
 import './CallToActionAbout';
 import CallToActionAbout from './CallToActionAbout';
+import Banner from './Banner';
 
 export default function About() {
   return (
@@ -8,13 +9,15 @@ export default function About() {
         Hello all, I'm Scott Cormier 👋
       </h1>
 
-      <div className='flex flex-col gap-6 p-10 px-3 max-w-6xl mx-auto '>
+      <Banner />
+
+      <div className='flex flex-col gap-6 px-3 max-w-6xl mx-auto '>
         <p className='text-gray-500 dark:text-slate-200 my-2 lg:text-xl'>
           - I've earned a tech-heavy Master of Library and Information Science
           from University of Washington focusing on Knowledge Management and
           Data Curation, and successfully completed NUCAMP's Full Stack, Front
-          End and Back End Bootcamps where I gained a broad general knowledge of
-          the MERN stack.
+          End and Back End Bootcamps where I gained a broad general knowledge
+          including the MERN stack.
         </p>
         <p className='text-gray-500 dark:text-slate-200 my-2 lg:text-xl'>
           - Currently targeting Academic Libraries and Junior Front End
@@ -26,6 +29,10 @@ export default function About() {
           techniques, for my current employer. I am also interested in
           Institutional Repository Management, and learned a lot in the class I
           took at Library Juice Academy.
+        </p>
+        <p className='text-gray-500 dark:text-slate-200 my-2 lg:text-xl'>
+          - This site uses Tailwind CSS, the MERN stack with Google Firebase
+          OAuth, JWT and Redux toolkit.
         </p>
 
         <CallToActionAbout />
