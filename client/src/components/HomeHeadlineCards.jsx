@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default function HomeHeadlineCards() {
   return (
-    <div className='max-w-[1640px] mx-auto p-4 py-12 grid md:grid-cols-3 gap-6'>
+    <div className='max-w-[1640px] mx-auto p-4 py-12 grid md:grid-cols-3 gap-6 mb-14 mt-14'>
       {/* card */}
       <div className='rounded-xl relative'>
         {/* Overlay */}

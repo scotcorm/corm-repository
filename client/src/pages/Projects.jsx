@@ -149,7 +149,7 @@ export default function Search() {
           <ProjectsMain />
 
           <h1 className='text-3xl font-semibold p-3 mt-5 '>
-            Projects results:
+            Other Project Results:
           </h1>
           <div className='flex flex-wrap justify-center gap-6 mb-10'>
             {!loading && projects.length === 0 && (

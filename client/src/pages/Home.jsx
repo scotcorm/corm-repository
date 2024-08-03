@@ -137,11 +137,15 @@ export default function Home() {
             target='_blank'
             rel='noopener noreferrer'
           >
-            <span className='text-blue-600 ml-1 mr-1'>Dashboard</span>
+            <span className='text-blue-600 dark:text-blue-400 ml-1 mr-1'>
+              Dashboard
+            </span>
           </a>
           to track production data and a
           <a href='/search' target='_blank' rel='noopener noreferrer'>
-            <span className='text-blue-600 ml-1 mr-1'>MERN citations page</span>
+            <span className='text-blue-600 dark:text-blue-400 ml-1 mr-1'>
+              MERN citations page
+            </span>
           </a>
           that is meant to encourage use/reuse of images that have Open Access
           Licenses by offering a curated list with details.
@@ -168,7 +172,7 @@ export default function Home() {
             target='_blank'
             rel='noopener noreferrer'
           >
-            <span className='text-blue-600 ml-1'>tDAR</span>
+            <span className='text-blue-600 dark:text-blue-400 ml-1'>tDAR</span>
           </a>
           , or the one at
           <a
@@ -176,7 +180,7 @@ export default function Home() {
             target='_blank'
             rel='noopener noreferrer'
           >
-            <span className='text-blue-600 ml-1'>
+            <span className='text-blue-600 dark:text-blue-400 ml-1'>
               LSU's Scholarly Repository
             </span>
           </a>
@@ -186,7 +190,9 @@ export default function Home() {
             target='_blank'
             rel='noopener noreferrer'
           >
-            <span className='text-blue-600 ml-1 mr-1'>The Noun Project</span>
+            <span className='text-blue-600 dark:text-blue-400 ml-1 mr-1'>
+              The Noun Project
+            </span>
           </a>
           that encourage users to organize/share information. I started coding
           while working on my MLIS at the
@@ -195,7 +201,7 @@ export default function Home() {
             target='_blank'
             rel='noopener noreferrer'
           >
-            <span className='text-blue-600 ml-1'>
+            <span className='text-blue-600 dark:text-blue-400 ml-1'>
               University of Washington Information School
             </span>
           </a>
@@ -205,7 +211,9 @@ export default function Home() {
             target='_blank'
             rel='noopener noreferrer'
           >
-            <span className='text-blue-600 ml-1 mr-1'>Nucamp</span>
+            <span className='text-blue-600 dark:text-blue-400 ml-1 mr-1'>
+              Nucamp
+            </span>
           </a>
           full-stack bootcamp grad focusing mostly on the front end and working
           with React!
