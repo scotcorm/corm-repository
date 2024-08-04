@@ -31,11 +31,12 @@ mongoose
 const __dirname = path.resolve();
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cookieParser());
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log('Server is running on port 3000');
 });
 
