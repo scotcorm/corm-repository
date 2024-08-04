@@ -14,6 +14,7 @@ import genealogyrecordRoutes from './routes/genealogyrecord.route.js';
 import genealogyrecordcommentRoutes from './routes/genealogyrecordcomment.route.js';
 import projectRoutes from './routes/project.route.js';
 import projectcommentRoutes from './routes/projectcomment.route.js';
+import path from 'path';
 
 // add the route.js, import it above and below then add controller
 dotenv.config();
@@ -26,6 +27,8 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+
+const __dirname = path.resolve();
 
 const app = express();
 
@@ -48,6 +51,12 @@ app.use('/api/genealogyrecord', genealogyrecordRoutes);
 app.use('/api/genealogyrecordcomment', genealogyrecordcommentRoutes);
 app.use('/api/projectcomment', projectcommentRoutes);
 app.use('/api/project', projectRoutes);
+
+app.use(express.static(path.join(__dirname, '/client/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+});
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

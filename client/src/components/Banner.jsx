@@ -4,7 +4,7 @@ export default function Banner() {
   const [loopNum, setLoopNum] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const toRotate = [
-    'Master of Library and Information Science - Web Developer - Institutional Repo Management ',
+    'Master of Library and Information Science - Web Developer - Institutional Repository Management ',
     // 'Web Developer  ',
     // 'Institutional Repo Management  ',
   ];

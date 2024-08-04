@@ -156,13 +156,8 @@ export default function Home() {
           staff with financial aid information and apply policies and procedures
           to solve complex problems in a time-sensitive environment. Attention
           to detail is always important, and my degrees in English and History
-          allow me to communicate effectively with a diverse group of people by
-          helping me adjust the message to suit the needs of the situation.
-          {/* I
-          have always enjoyed helping students solve their information problems */}
-          {/* ,
-          and now that I have earned my MLIS I look forward to facing new
-          information challenges. */}
+          give me tools that help me to communicate effectively with students
+          and staff.
         </p>
 
         <p className='text-gray-500 dark:text-slate-200 lg:text-xl '>
