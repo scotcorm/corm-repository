@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Production2024Card from './Production2024Card';
 import Production2024BarChart from './Production2024BarChart';
-import Production2024Table from './Production2024Table';
+// import Production2024Table from './Production2024Table';
 import Production2024CardR from './Production2024CardR';
 
 export default function Production2024LeftColumn() {

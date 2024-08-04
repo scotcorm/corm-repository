@@ -130,8 +130,8 @@ export default function Home() {
           Hello all, I'm Scott Cormier 👋{' '}
         </p> */}
         <h2 className='text-xl lg:text-2xl'>
-          This site is a portfolio project that has links to coding projects
-          that I am working on, including a
+          This site has links to coding projects that I am working on, including
+          a
           <a
             href='/production-dashboard?tab=dashCumulative'
             target='_blank'
@@ -194,8 +194,8 @@ export default function Home() {
               The Noun Project
             </span>
           </a>
-          that encourage users to organize/share information. I started coding
-          while working on my MLIS at the
+          that encourage users to organize/share information. They helped me to
+          shape my goals. I started coding while working on my MLIS at the
           <a
             href='https://ischool.uw.edu/programs/mlis'
             target='_blank'

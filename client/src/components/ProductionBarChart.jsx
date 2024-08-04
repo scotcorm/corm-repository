@@ -4,8 +4,8 @@ import { Card } from 'flowbite-react';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import BarData from './BarData';
-import production from './BarData';
+// import BarData from './BarData';
+// import production from './BarData';
 
 export default function ProductionBarChart() {
   const { currentUser } = useSelector((state) => state.user);
@@ -279,14 +279,14 @@ export default function ProductionBarChart() {
       QA: 0,
     },
   ];
-  <BarData />;
+  // <BarData />;
 
   return (
     <Card className='mt-4 '>
       <Title className='text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold'>
         Monthly Production
       </Title>
-      <BarData />
+      {/* <BarData /> */}
       <BarChart
         className='h-72 mt-4'
         data={chartdata}

@@ -121,7 +121,7 @@ export default function CreateNote() {
             <option value='other'>Other</option>
           </Select>
         </div>
-        <div className='flex gap-4 items-center justify-between border-4  p-3'>
+        <div className='flex gap-4 items-center justify-between border-4 p-3'>
           <FileInput
             type='file'
             accept='image/*'

@@ -13,7 +13,7 @@ import Projects from './pages/Projects';
 //import Notes from './pages/Notes';
 import DigitalMusic from './pages/DigitalMusic';
 import CcCert from './pages/CcCert';
-import ShowRecord from './pages/ShowRecord';
+// import ShowRecord from './pages/ShowRecord';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Header from './components/Header';
@@ -103,7 +103,7 @@ export default function App() {
           path='/genealogyrecord/:genealogyrecordSlug'
           element={<GenealogyRecordPage />}
         />
-        <Route path='/show-record' element={<ShowRecord />} />
+        {/* <Route path='/show-record' element={<ShowRecord />} /> */}
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
         <Route path='/search' element={<Search />} />

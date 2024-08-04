@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../assets/images/corm.png';
 import { Button } from 'flowbite-react';
-import '../assets/images/image.png';
+import image from '../assets/images/image.png';
 
 export default function CallToActionPyProjects() {
   return (
@@ -32,12 +32,13 @@ export default function CallToActionPyProjects() {
           </a>
         </Button>
       </div>
-      <div className='p-20 flex-2 '>
+      <span className='p-10 flex-2 w-52'>
         <img
-          src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jupyter_logo.svg/1200px-Jupyter_logo.svg.png'
+          src={image}
+          // src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jupyter_logo.svg/1200px-Jupyter_logo.svg.png'
           alt='corm image'
         />
-      </div>
+      </span>
     </div>
   );
 }
