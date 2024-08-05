@@ -11,7 +11,7 @@ export default function GenealogyMain() {
         <img
           // className='h-96 w-full rounded-lg object-cover object-center '
           className='flex flex-col lg:flex-row w-1/2 mx-auto'
-          src='../../src/assets/images/image1600x.png'
+          src='/client/src/assets/images/image1600x.png'
           alt='crest image'
         />
         <h1 className='text-slate-500 dark:text-slate-200 text-3xl font-semibold sm:border-b border-gray-500 p-3 mt-5'>
