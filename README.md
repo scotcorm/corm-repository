@@ -2,7 +2,7 @@
  React MERN Portfolio Site with Tailwind 
  https://corm-repository.onrender.com/
 
-## It's hosted as a free site on Render so it may be asleep.  Please keep that in mind when it fist loads.  
+ It's hosted as a free site on Render so it may be asleep.  Please keep that in mind when it fist loads.  
 
 
 # About
